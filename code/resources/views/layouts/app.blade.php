@@ -15,6 +15,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <style>
+        .navbar{
+            height: 90px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -36,21 +41,23 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
+                            @guest
                             @if (Route::has('login'))
                             <li style="margin: 10px"><a href="{{ route('login') }}"
                                 style="color:#0099ff; font-size:18px; text-decoration:underline; font-weight:bold">Login</a>
-                        </li>
+                            </li>
                             @endif
 
                             @if (Route::has('register'))
                             <li style="margin: 10px"><a href="{{ route('register') }}"
                                 style="color:#0099ff; font-size:18px; text-decoration:underline; font-weight:bold">Register</a>
-                        </li>
+                            </li>
                             @endif
                         @else
+                        <div class="container">
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                                 >
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -66,6 +73,7 @@
                                     </form>
                                 </div>
                             </li>
+                        </div>
                         @endguest
                     </ul>
                 </div>

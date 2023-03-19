@@ -23,7 +23,7 @@ Route::get('/contact', function () {
 });
 
 Route::get('/index', function () {
-    return view('layouts.home');
+    return view('layouts.dashboard.author');
 });
 
 Route::get('/editorialBoard', function () {
@@ -47,8 +47,29 @@ Route::get('/privacyPolicy', function(){
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('layouts.dashboard.main');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard1', function () {
+    return view('layouts.dashboard.header');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/author', function () {
+    return view('layouts.dashboard.author');
+})->middleware(['auth', 'verified'])->name('author');
+
+Route::get('/journalAdmin', function () {
+    return view('layouts.dashboard.journalAdmin');
+})->middleware(['auth', 'verified'])->name('journalAdmin');
+
+Route::get('/reviewer', function () {
+    return view('layouts.dashboard.reviewer');
+})->middleware(['auth', 'verified'])->name('reviewer');
+
+Route::get('/editor', function () {
+    return view('layouts.dashboard.editor');
+})->middleware(['auth', 'verified'])->name('editor');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
