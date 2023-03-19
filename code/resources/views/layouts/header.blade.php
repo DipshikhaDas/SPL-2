@@ -96,10 +96,13 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                                this.closest('form').submit();" style="font-weight:bold; text-decoration:underline">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard') }}" style="font-weight:bold; text-decoration:underline">Dashboard</a>
                         </li>
                     @else
                         <li><a href="{{ route('login') }}"
