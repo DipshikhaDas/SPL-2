@@ -13,7 +13,7 @@
                         <!-- Slider -->
                         <section class="cd-intro">
                             <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s">
-                                <span>Dhaka University Journal</span><br>
+                                <span>{{ config ('app.name') }} </span><br>
                                 <span class="cd-words-wrapper">
                                     <b class="is-visible" style="font-size:20px;">View Published Article</b>
                                     <b style="font-size:20px;">Submit Article</b>
