@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\GoogleRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +84,7 @@ require __DIR__.'/auth.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/login/google', [GoogleLoginController::class, 'redirect'])->name('google-login');
+// Route::get('/auth/google/callback', [GoogleLoginController::class, 'login']);
+
