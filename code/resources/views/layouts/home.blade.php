@@ -361,23 +361,23 @@
                     <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms"
                         data-wow-delay="0ms">
                         <div class="img-wrapper">
-                            <img src="{{ asset('frontend/website/images/portfolio/item-1.jpg') }}" class="img-responsive"
+                            <img src="{{ asset('frontend/website/images/portfolio/article.jpeg') }}" class="img-responsive"
                                 alt="this is a title" height="200">
                             <div class="overlay">
                                 <div class="buttons">
                                     {{-- <a rel="gallery" href="{{ asset('frontend/website/images/portfolio/item-1.jpg') }}"></a> --}}
-                                    <a target="_blank" href="single-portfolio.html">View full journal</a>
+                                    <a target="_blank" href="single-portfolio.html">View full article</a>
                                 </div>
                             </div>
                         </div>
                         <figcaption>
                             <h4>
                                 <a href="#">
-                                    Dew Drop
+                                    Article Name
                                 </a>
                             </h4>
                             <p>
-                                Redesigne UI Concept
+                                {{-- Redesigne UI Concept --}}
                             </p>
                         </figcaption>
                     </figure>
@@ -385,23 +385,24 @@
                 <div class="col-sm-4 col-xs-12">
                     <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
                         <div class="img-wrapper">
-                            <img src="{{ asset('frontend/website/images/portfolio/item-2.jpg') }}" class="img-responsive"
+                            <img src="{{ asset('frontend/website/images/portfolio/article.jpeg') }}" class="img-responsive"
                                 alt="this is a title" height="200">
                             <div class="overlay">
                                 <div class="buttons">
                                     {{-- <a rel="gallery" class="fancybox" href="{{ asset('frontend/website/images/portfolio/item-2.jpg') }}">Demo</a> --}}
-                                    <a target="_blank" href="single-portfolio.html">View full journal</a>
+                                    <a target="_blank" href="single-portfolio.html">View full article</a>
                                 </div>
                             </div>
                         </div>
                         <figcaption>
                             <h4>
                                 <a href="#">
-                                    Bottle Mockup
+                                    Article Name
+                                    {{-- Bottle Mockup --}}
                                 </a>
                             </h4>
                             <p>
-                                Lorem ipsum dolor sit.
+                                {{-- Lorem ipsum dolor sit. --}}
                             </p>
                         </figcaption>
                     </figure>
@@ -409,23 +410,23 @@
                 <div class="col-sm-4 col-xs-12">
                     <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
                         <div class="img-wrapper">
-                            <img src="{{ asset('frontend/website/images/portfolio/item-3.jpg') }}" class="img-responsive"
+                            <img src="{{ asset('frontend/website/images/portfolio/article.jpeg') }}" class="img-responsive"
                                 alt="" height="200">
                             <div class="overlay">
                                 <div class="buttons">
                                     {{-- <a rel="gallery" class="fancybox" href="{{ asset('images/portfolio/item-3.jpg') }}">Demo</a> --}}
-                                    <a target="_blank" href="single-portfolio.html">View full journal</a>
+                                    <a target="_blank" href="single-portfolio.html">View full article</a>
                                 </div>
                             </div>
                         </div>
                         <figcaption>
                             <h4>
                                 <a href="#">
-                                    Table Design
+                                    Article Name
                                 </a>
                             </h4>
                             <p>
-                                Lorem ipsum dolor sit amet.
+                                {{-- Lorem ipsum dolor sit amet. --}}
                             </p>
                         </figcaption>
                     </figure>
@@ -433,23 +434,23 @@
                 <div class="col-sm-4 col-xs-12">
                     <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="600ms">
                         <div class="img-wrapper">
-                            <img src="{{ asset('frontend/website/images/portfolio/item-4.jpg') }}" class="img-responsive"
+                            <img src="{{ asset('frontend/website/images/portfolio/article.jpeg') }}" class="img-responsive"
                                 alt="" height="200">
                             <div class="overlay">
                                 <div class="buttons">
                                     {{-- <a rel="gallery" class="fancybox" href="{{ asset('frontend/website/images/portfolio/item-4.jpg') }}">Demo</a> --}}
-                                    <a target="_blank" href="single-portfolio.html">View full journal</a>
+                                    <a target="_blank" href="single-portfolio.html">View full article</a>
                                 </div>
                             </div>
                         </div>
                         <figcaption>
                             <h4>
                                 <a href="#">
-                                    Make Up elements
+                                    Article Name
                                 </a>
                             </h4>
                             <p>
-                                Lorem ipsum dolor.
+                                {{-- Lorem ipsum dolor. --}}
                             </p>
                         </figcaption>
                     </figure>
@@ -457,23 +458,23 @@
                 <div class="col-sm-4 col-xs-12">
                     <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="900ms">
                         <div class="img-wrapper">
-                            <img src="{{ asset('frontend/website/images/portfolio/item-5.jpg') }}" class="img-responsive"
+                            <img src="{{ asset('frontend/website/images/portfolio/article.jpeg') }}" class="img-responsive"
                                 alt="" height="200">
                             <div class="overlay">
                                 <div class="buttons">
                                     {{-- <a rel="gallery" class="fancybox" href="{{ asset('frontend/website/images/portfolio/item-5.jpg') }}">Demo</a> --}}
-                                    <a target="_blank" href="single-portfolio.html">View full journal</a>
+                                    <a target="_blank" href="single-portfolio.html">View full article</a>
                                 </div>
                             </div>
                         </div>
                         <figcaption>
                             <h4>
                                 <a href="#">
-                                    Shoping Bag Concept
+                                    Article Name
                                 </a>
                             </h4>
                             <p>
-                                Lorem ipsum dolor.
+                                {{-- Lorem ipsum dolor. --}}
                             </p>
                         </figcaption>
                     </figure>
@@ -481,23 +482,23 @@
                 <div class="col-sm-4 col-xs-12">
                     <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="1200ms">
                         <div class="img-wrapper">
-                            <img src="{{ asset('frontend/website/images/portfolio/item-6.jpg') }}" class="img-responsive"
+                            <img src="{{ asset('frontend/website/images/portfolio/article.jpeg') }}" class="img-responsive"
                                 alt="" height="200">
                             <div class="overlay">
                                 <div class="buttons">
                                     {{-- <a rel="gallery" class="fancybox" href="{{ asset('frontend/website/images/portfolio/item-6.jpg') }}">Demo</a> --}}
-                                    <a target="_blank" href="single-portfolio.html">View full journal</a>
+                                    <a target="_blank" href="single-portfolio.html">View full article</a>
                                 </div>
                             </div>
                         </div>
                         <figcaption>
                             <h4>
                                 <a href="#">
-                                    Caramel Bottle
+                                    Article Name
                                 </a>
                             </h4>
                             <p>
-                                Lorem ipsum dolor.
+                                {{-- Lorem ipsum dolor. --}}
                             </p>
                         </figcaption>
                     </figure>
