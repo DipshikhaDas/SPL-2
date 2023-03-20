@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 
 class GoogleLoginController extends Controller
@@ -32,6 +33,7 @@ class GoogleLoginController extends Controller
                     'email' => $googleUser->getEmail(),
                 ]);
 
+                $newUser->assignRole('author');
                 Auth::login($newUser);
 
                 return redirect()->intended('dashboard');
