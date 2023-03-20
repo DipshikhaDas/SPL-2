@@ -123,6 +123,9 @@
             </div>
           </div>
         </section>
+        <div class="footer">
+            <p>2023 © Admin Board</p>
+        </div>
       </div>
     </div>
   </div>
