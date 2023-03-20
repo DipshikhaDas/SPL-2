@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleLoginController;
@@ -58,7 +59,7 @@ Route::get('/dashboard1', function () {
 
 Route::get('/author', function () {
     return view('layouts.dashboard.author');
-})->middleware(['auth', 'verified'])->name('author');
+})->middleware(['auth', 'verified', 'role:editor'])->name('author');
 
 Route::get('/journalAdmin', function () {
     return view('layouts.dashboard.journalAdmin');
@@ -85,6 +86,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('/login/google', [GoogleLoginController::class, 'redirect'])->name('google-login');
-// Route::get('/auth/google/callback', [GoogleLoginController::class, 'login']);
+Route::resource('/createFaculty', FacultyController::class);
 

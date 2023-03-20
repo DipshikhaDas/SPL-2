@@ -11,12 +11,21 @@
           <li><a class="sidebar-sub-toggle"><i class="ti-user"></i> Roles <span
                 class="sidebar-collapse-icon ti-angle-down"></span></a>
             <ul>
-              <li><a href="{{url('/journalAdmin')}}">Journal Admin</a></li>
-              <li><a href="{{url('/editor')}}">Editor</a></li>
-              <li><a href="{{url('/reviewer')}}">Reviewer</a></li>
-              <li><a href="{{url('/author')}}">Author</a></li>
-              <li><a href="superAdmin.html">Super Admin</a></li>
-
+              @role('journalAdmin')
+              <li><a href="{{route('journalAdmin')}}">Journal Admin</a></li>
+              @endrole
+              @role('editor')
+              <li><a href="{{route('editor')}}">Editor</a></li>
+              @endrole
+              @role('reviewer')
+              <li><a href="{{route('reviewer')}}">Reviewer</a></li>
+              @endrole
+              @role('author')
+              <li><a href="{{ route('author') }}">Author</a></li>
+              @endrole
+              @role('superAdmin')
+              <li><a href="{{ route('superAdmin') }}">Super Admin</a></li>
+              @endrole
             </ul>
           </li>
         </ul>
