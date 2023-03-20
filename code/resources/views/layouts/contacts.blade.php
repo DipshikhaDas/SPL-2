@@ -39,8 +39,8 @@
         <div class="block">
           <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Contact With Us</h2>
           <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea!
-            consectetur adipisicing elit. Dolore, ea!
+            {{-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, ea!
+            consectetur adipisicing elit. Dolore, ea! --}}
           </p>
           <div class="contact-form">
             {{-- <form id="contact-form" method="#" action="#" role="form">
@@ -81,8 +81,8 @@
         <div class="map-area">
           <h2 class="subtitle  wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Find Us</h2>
           <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
-            Si aute quis eu proident o cupidatat ne anim nescius, et est praesentibus, o quorum vidisse expetendis,
-            nostrud eram quibusdam ad nam nostrud ubi.
+            {{-- Si aute quis eu proident o cupidatat ne anim nescius, et est praesentibus, o quorum vidisse expetendis,
+            nostrud eram quibusdam ad nam nostrud ubi. --}}
 
           </p>
           <div class="map">
@@ -93,28 +93,28 @@
       </div>
     </div>
     <div class="row address-details">
-      <div class="col-lg-3 col-sm-6">
+      {{-- <div class="col-lg-3 col-sm-6">
         <div class="address wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".3s">
           <i class="ion-ios-location-outline"></i>
           <h5>125 , Kings Street,Melbourne <br>United Kingdom,600562</h5>
         </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
+      </div> --}}
+      <div class="col-lg-4 col-sm-6">
         <div class="address wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".5s">
           <i class="ion-ios-location-outline"></i>
-          <h5>125 , Kings Street,Melbourne <br>United Kingdom,600562</h5>
+          <h5>University of Dhaka <br>Dhaka,1000</h5>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="email wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".7s">
           <i class="ion-ios-email-outline"></i>
-          <p>support@themefisher.com<br>support@themefisher.com</p>
+          <p>x@du.ac.bd<br>y@du.ac.bd</p>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="phone wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".9s">
           <i class="ion-ios-telephone-outline"></i>
-          <p>+07 052 245 022<br>+07 999 999 999</p>
+          <p>+088 052 245 022<br>+088 999 999 999</p>
         </div>
       </div>
     </div>
