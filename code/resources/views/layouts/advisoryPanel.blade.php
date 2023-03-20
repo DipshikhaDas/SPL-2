@@ -40,37 +40,37 @@
       <div class="col-md-3 col-sm-6">
         <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".3s">
           <div class="team-img">
-            <img src="{{asset('frontend/website/images/team/team-1.jpg') }}" class="team-pic" alt="">
+            <img src="{{asset('frontend/website/images/team/human.png') }}" class="team-pic" alt="">
           </div>
           <h3 class="team_name">Jonathon Andrew</h3>
-          <p class="team_designation">CEO, Project Manager</p>
+          {{-- <p class="team_designation">CEO, Project Manager</p> --}}
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".5s">
           <div class="team-img">
-            <img src="{{ asset('frontend/website/images/team/team-2.jpg') }}" class="team-pic" alt="">
+            <img src="{{ asset('frontend/website/images/team/human.png') }}" class="team-pic" alt="">
           </div>
           <h3 class="team_name">Jesmin Martina</h3>
-          <p class="team_designation">CEO, Project Manager</p>
+          {{-- <p class="team_designation">CEO, Project Manager</p> --}}
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".7s">
           <div class="team-img">
-            <img src="{{ asset('frontend/website/images/team/team-3.jpg') }}" class="team-pic" alt="">
+            <img src="{{ asset('frontend/website/images/team/human.png') }}" class="team-pic" alt="">
           </div>
           <h3 class="team_name">Deu John</h3>
-          <p class="team_designation">CEO, Project Manager</p>
+          {{-- <p class="team_designation">CEO, Project Manager</p> --}}
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="team-member wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".9s">
           <div class="team-img">
-            <img src="{{ asset('frontend/website/images/team/team-4.jpg') }}" class="team-pic" alt="">
+            <img src="{{ asset('frontend/website/images/team/human.png') }}" class="team-pic" alt="">
           </div>
           <h3 class="team_name">Anderson Martin</h3>
-          <p class="team_designation">CEO, Project Manager</p>
+          {{-- <p class="team_designation">CEO, Project Manager</p> --}}
         </div>
       </div>
     </div>
