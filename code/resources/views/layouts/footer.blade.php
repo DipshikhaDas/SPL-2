@@ -60,13 +60,14 @@
         <div class="container">
             <div class="row content-justify-between">
                 <div class="col-md-8 col-12 text-center text-lg-left text-md-left">
-                    <p class="copyright">Copyright: Design and Developed by <a href="http://www.Themefisher.com"
-                            target="_blank">Themefisher</a>. <br>
-                        Get More Bootstrap Template From Our
-                        <a href="https://themefisher.com/free-bootstrap-templates/" target="_blank">Store</a>
+                    <p class="copyright">Copyright:2023 © Admin Board
+                         {{-- Design and Developed by <a href="http://www.Themefisher.com"
+                            target="_blank">Themefisher</a>. <br> --}}
+                        {{-- Get More Bootstrap Template From Our
+                        <a href="https://themefisher.com/free-bootstrap-templates/" target="_blank">Store</a> --}}
                     </p>
                 </div>
-                <div class="col-md-4 col-12">
+                {{-- <div class="col-md-4 col-12">
                     <!-- Social Media -->
                     <ul class="social text-center text-md-right text-lg-right">
                         <li>
@@ -90,7 +91,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     </footer> <!-- /#footer -->
