@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <!doctype html>
     <html lang="en">
 
@@ -47,8 +46,8 @@
                             <div class="form-row">
                                 <div class="col-lg-12">
                                     <input id="password" type="password" placeholder="{{ __('Password') }}"
-                                        class="form-control my-3 p-4 @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                        class="form-control my-3 p-4 @error('password') is-invalid @enderror"
+                                        name="password" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -60,19 +59,26 @@
                             <div class="form-check">
                                 <div class="col-lg-12" id="remember">
                                     {{-- <div class="form-check"> --}}
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                        {{ old('remember') ? 'checked' : '' }}>
 
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
-                                    </div>
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
                                 {{-- </div> --}}
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn1 mt-3 mb-5">Login</button>
                                 </div>
+                                <div class="col-lg-12">Or,</div>
+                                <div class="col-lg-12">
+                                    <a class="btn btn1 mt-3 mb-5" style="display:flex; justify-content: center; align-items: center;" href="{{ route('google-login') }}">Login With
+                                        Google</a>
+                                </div>
                             </div>
+
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
