@@ -28,7 +28,7 @@
                                                 style="color:#0099ff; font-size:18px; font-weight: bold;"> Dashboard </a>
                                         </li>
                                         <li class="breadcrumb-item active"
-                                            style="color:#0099ff; font-size:18px; font-weight: bold">Journal Admin</li>
+                                            style="color:#0099ff; font-size:18px; font-weight: bold">Super Admin</li>
                                     </ol>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                         <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
                                         </div>
                                         <div class="stat-content dib">
-                                            <div class="stat-text"><a href="{{route('createUser.index')}}" style="font-weight: bold;">Create
+                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Create
                                                     User</a></div>
                                         </div>
                                     </div>
@@ -58,8 +58,7 @@
                                         <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
                                         </div>
                                         <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Articles and
-                                                    Related Stuffs</a></div>
+                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Set Role</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -69,14 +68,14 @@
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
                                         <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Set Role</a>
+                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Create Faculty</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-3">
                                 <div class="card">
                                     <div class="stat-widget-one">
@@ -101,7 +100,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- <div class="col-lg-3">
                       <div class="card">
                           <div class="stat-widget-one">
