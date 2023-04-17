@@ -18,7 +18,8 @@ class RolesAndPermissionSeeder extends Seeder
         $editorRole = Role::create(['name' => 'editor']);
         $reviewerRole = Role::create(['name' => 'reviewer']);
         $authorRole = Role::create(['name' => 'author']);
+        // $adminRole = Role::create(['name' => 'admin']);
 
-        
+
     }
 }
