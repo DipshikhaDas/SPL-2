@@ -12,5 +12,9 @@ class JournalAdminDashboardController extends Controller
         return view('layouts.dashboard.journalAdmin');
     }
 
+    public function viewRoles(){
+        return view('layouts.dashboard.journalAdmin');
+    }
+
 
 }
