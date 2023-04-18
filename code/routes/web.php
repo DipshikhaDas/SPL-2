@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\JournalAdmin\CreateUserController;
-use App\Http\Controllers\JournalAdmin\JournalAdminDashboardController;
+use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
+use App\Http\Controllers\UserAndRoleManagement\JournalAdminDashboardController;
 use App\Http\Controllers\NotificationController;
 
 /*
@@ -81,6 +81,8 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::resource('/create', CreateUserController::class)->name('createUser.create', 'createUser');
     Route::post('/store', [CreateUserController::class, 'store'])->name('createUser.store');
 });
+
+
 
 // Route::resource('/createUser', CreateUserController::class);
 
