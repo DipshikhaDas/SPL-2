@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\JournalAdmin;
+namespace App\Http\Controllers\UserAndRoleManagement;
 
 use App\Http\Controllers\Controller;
 use App\Models\CreateUser;
