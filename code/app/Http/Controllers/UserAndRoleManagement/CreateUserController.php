@@ -31,27 +31,63 @@ class CreateUserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        if (auth()->user()->hasRole('superAdmin')) {
 
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            // 'password' => 'required|string|min:8|confirmed',
-            // 'role' => 'required|in:admin,user'
-        ]);
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'role' => 'required|array|min:1',
+                'role.*' => 'required|string|in:superAdmin,journalAdmin,editor,subEditor,reviewer,author',
+            ], [
+                    'role.required' => 'Please select at least one role.',
+                    'role.in' => 'Invalid role selected.',
+                ]);
 
-        // dd($validatedData);
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make("password"),
+            ]);
 
-        $user = new User();
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = Hash::make($request->password);
-        // $user->role = $validatedData['role'];
-        $user->save();
 
-        // dd($user);
+            $user->assignRole($validatedData['role']);
 
-        return redirect()->route('createUser.index')->with('success', 'User created successfully.');
+            return redirect()->route('createUser.index')->with('success', 'User created successfully.');
+        }
+
+
+        else if (auth()->user()->hasRole('journalAdmin')) {
+
+
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'role' => 'required|array|min:1',
+                'role.*' => 'required|string|in:journalAdmin,editor,subEditor,reviewer,author',
+            ], [
+                    'role.required' => 'Please select at least one role.',
+                    'role.in' => 'Invalid role selected.',
+                ]);
+
+            
+            if (in_array('superAdmin', $validatedData['role'])) {
+                return redirect()->back()->withInput()->withErrors(['role' => 'You are not authorized to create a user with Super Admin role.']);
+            }
+
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make("password"),
+            ]);
+
+           
+            $user->assignRole($validatedData['role']);
+
+
+            return redirect()->route('createUser.index')->with('success', 'User created successfully.');
+        } else {
+            return redirect()->back()->withInput()->withErrors(['role' => 'You are not authorized to create a user.']);
+        }
     }
 
     /**
