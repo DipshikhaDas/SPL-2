@@ -96,10 +96,10 @@
         @endif
 
         @if (count($errors) > 0)
-            <div class="alert alert-danger">
+            <div class="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <li class="alert alert-danger p-4"> {{ $error }}</li>
                     @endforeach
                 </ul>
             </div>

@@ -46,7 +46,7 @@
                                         <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
                                         </div>
                                         <div class="stat-content dib">
-                                            <div class="stat-text"><a href="{{route('createUser.index')}}" style="font-weight: bold;">Create
+                                            <div class="stat-text"><a href="{{route('createUserIndex')}}" style="font-weight: bold;">Create
                                                     User</a></div>
                                         </div>
                                     </div>

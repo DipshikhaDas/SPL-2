@@ -5,6 +5,7 @@ use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserAndRoleManagement\UserRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleLoginController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
 use App\Http\Controllers\UserAndRoleManagement\JournalAdminDashboardController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\journalAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,10 +78,12 @@ Route::get('/author', function () {
 // })->middleware(['auth', 'verified', 'role:journalAdmin'])->name('journalAdmin');
 
 Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdmin')->group(function(){
-    Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
-    Route::resource('/createUser', CreateUserController::class)->name('createUser.index', 'createUser');
-    Route::resource('/create', CreateUserController::class)->name('createUser.create', 'createUser');
+    // Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
+    Route::get('/',[journalAdmin\journalAdminDashboardController::class, 'index'])->name('journalAdmin');
+    Route::get('/createUser', [journalAdmin\journalAdminDashboardController::class, 'createUserIndex'])->name('createUserIndex');
+
     Route::post('/store', [CreateUserController::class, 'store'])->name('createUser.store');
+    Route::resource('/manageRoles',UserRoleController::class);
 });
 
 

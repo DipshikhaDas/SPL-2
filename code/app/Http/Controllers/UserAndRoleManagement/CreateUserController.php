@@ -15,7 +15,7 @@ class CreateUserController extends Controller
      */
     public function index()
     {
-        return view('layouts.dashboard.journalAdmin.createUser');
+        
     }
 
     /**
@@ -23,7 +23,7 @@ class CreateUserController extends Controller
      */
     public function create()
     {
-        return view('layouts.dashboard.journalAdmin.createUserForm');
+    
     }
 
     /**
