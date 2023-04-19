@@ -12,7 +12,7 @@ class UserRoleController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
