@@ -83,6 +83,7 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/createUser', [journalAdmin\journalAdminDashboardController::class, 'createUserIndex'])->name('createUserIndex');
 
     Route::post('/store', [CreateUserController::class, 'store'])->name('createUser.store');
+    Route::get('/setRole',[journalAdmin\journalAdminDashboardController::class, 'rolesIndex'])->name('rolesIndex');
     Route::resource('/manageRoles',UserRoleController::class);
 });
 

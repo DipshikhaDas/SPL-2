@@ -11,6 +11,16 @@
         <!-- theme meta -->
         <meta name="theme-name" content="focus" />
         <title>Journal Admin Dashboard</title>
+        <style>
+            .stat-text {
+                color: initial;
+                transition: color 0.5s;
+            }
+
+            .stat-text.black {
+                color: black;
+            }
+        </style>
     </head>
 
     <body>
@@ -41,7 +51,7 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <div class="card">
+                                {{-- <div class="card">
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
                                         </div>
@@ -50,7 +60,15 @@
                                                     User</a></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
+                                    
+                                    <x-dashboard.card-link
+                                        route="{{ route('createUserIndex') }}"
+                                        logo="person_add"
+                                        text="Create User"
+                                    />
+
+                                    
                             </div>
                             <div class="col-lg-4">
                                 <div class="card">
@@ -65,15 +83,18 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Set Role</a>
+                                <a href="{{ route('rolesIndex') }}">
+                                    <div class="card">
+                                        <div class="stat-widget-one">
+                                            <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i>
+                                            </div>
+                                            <div class="stat-content dib">
+                                                <div class="stat-text" style="font-weight: bold;">Set Role
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <div class="row">
@@ -103,16 +124,16 @@
                             </div>
                         </div>
                         <!-- <div class="col-lg-3">
-                      <div class="card">
-                          <div class="stat-widget-one">
-                              <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                              <div class="stat-content dib">
-                                  <div class="stat-text"><a href="#" style="font-weight: bold;"></a></div>
+                                  <div class="card">
+                                      <div class="stat-widget-one">
+                                          <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                                          <div class="stat-content dib">
+                                              <div class="stat-text"><a href="#" style="font-weight: bold;"></a></div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
-                          </div>
-                      </div>
-                  </div>
-              </div> -->
+                          </div> -->
                     </section>
                     <div class="footer">
                         <p>2023 © Admin Board </p>
@@ -121,6 +142,19 @@
             </div>
 
     </body>
+    <script>
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card) => {
+            card.addEventListener('mouseover', () => {
+                const text = card.querySelector('.stat-text');
+                text.classList.add('black');
+            });
+            card.addEventListener('mouseout', () => {
+                const text = card.querySelector('.stat-text');
+                text.classList.remove('black');
+            });
+        });
+    </script>
 
     </html>
 @endsection
