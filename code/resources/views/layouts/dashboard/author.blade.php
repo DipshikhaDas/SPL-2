@@ -40,19 +40,20 @@
                     <section id="main-content">
                         <div class="row">
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Submit an
-                                                    Article</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="article"
+                                    text="Submit Article"
+                                />
                             </div>
+
                             <div class="col-lg-3">
-                                <div class="card">
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="description"
+                                    text="View Status of Article"
+                                />
+                                {{-- <div class="card">
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
                                         </div>
@@ -61,29 +62,24 @@
                                                     of Article</a></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">View
-                                                    Feedback</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link route="{{ route('rolesIndex') }}" logo="feedback"
+                                    text="View Feedback" />
                             </div>
                         </div>
-                </section>
-                <div class="footer">
-                    <p>2023 © Admin Board</p>
+                    </section>
+                    <div class="footer">
+                        <p>2023 © Admin Board</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
     </body>
+
+    <script src="{{ asset('frontend/scripts/cardFocus.js') }}"></script>
 
     </html>
 @endsection
