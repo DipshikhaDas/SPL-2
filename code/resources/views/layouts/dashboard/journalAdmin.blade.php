@@ -11,17 +11,6 @@
         <!-- theme meta -->
         <meta name="theme-name" content="focus" />
         <title>Journal Admin Dashboard</title>
-        <style>
-            .stat-text {
-                color: initial;
-                transition: color 0.5s;
-            }
-
-            .stat-text.black {
-                color: black;
-            }
-        </style>
-
 
     </head>
 
