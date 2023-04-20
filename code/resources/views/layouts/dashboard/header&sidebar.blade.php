@@ -10,11 +10,10 @@
                      </a>
                  </li>
 
-              
+
 
                  <li class="label">User</li>
-                 <li><a class="sidebar-sub-toggle"><i class="ti-user"></i> Roles <span
-                             class="sidebar-collapse-icon ti-angle-down"></span></a>
+                 <li><a class="sidebar-sub-toggle"><span class="material-symbols-outlined">arrow_drop_down</span>Roles</a>
                      <ul>
 
                          @role('journalAdmin')

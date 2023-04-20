@@ -21,6 +21,8 @@
                 color: black;
             }
         </style>
+
+
     </head>
 
     <body>
@@ -51,110 +53,63 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                {{-- <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="{{route('createUserIndex')}}" style="font-weight: bold;">Create
-                                                    User</a></div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                    
-                                    <x-dashboard.card-link
-                                        route="{{ route('createUserIndex') }}"
-                                        logo="person_add"
-                                        text="Create User"
-                                    />
+                                <x-dashboard.card-link
+                                    route="{{ route('createUserIndex') }}"
+                                    logo="person_add"
+                                    text="Create User"
+                                />
+                             </div>
 
-                                    
-                            </div>
                             <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Articles and
-                                                    Related Stuffs</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('createUserIndex') }}"
+                                    logo="Note"
+                                    text="Articles and Related stuffs"
+                                />
                             </div>
+
                             <div class="col-lg-3">
-                                <a href="{{ route('rolesIndex') }}">
-                                    <div class="card">
-                                        <div class="stat-widget-one">
-                                            <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i>
-                                            </div>
-                                            <div class="stat-content dib">
-                                                <div class="stat-text" style="font-weight: bold;">Set Role
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="settings_accessibility"
+                                    text="Set Role"
+                                />
                             </div>
                         </div>
+
+
                         <div class="row">
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Send
-                                                    Articles to Editor</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="Send"
+                                    text="Send Articles to Editor"
+                                />
                             </div>
+
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Send Review
-                                                    Request</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="QuickReply"
+                                    text="Send Review Request"
+                                />
                             </div>
                         </div>
-                        <!-- <div class="col-lg-3">
-                                  <div class="card">
-                                      <div class="stat-widget-one">
-                                          <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                          <div class="stat-content dib">
-                                              <div class="stat-text"><a href="#" style="font-weight: bold;"></a></div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div> -->
+
                     </section>
+
                     <div class="footer">
                         <p>2023 © Admin Board </p>
                     </div>
                 </div>
             </div>
+        </div>
 
     </body>
-    <script>
-        const cards = document.querySelectorAll('.card');
-        cards.forEach((card) => {
-            card.addEventListener('mouseover', () => {
-                const text = card.querySelector('.stat-text');
-                text.classList.add('black');
-            });
-            card.addEventListener('mouseout', () => {
-                const text = card.querySelector('.stat-text');
-                text.classList.remove('black');
-            });
-        });
-    </script>
 
-    </html>
+    <script src="{{ asset('frontend/scripts/cardFocus.js') }}"></script>
+
+</html>
 @endsection
+
+
