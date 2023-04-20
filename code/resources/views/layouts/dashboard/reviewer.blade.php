@@ -38,7 +38,12 @@
                     <section id="main-content">
                         <div class="row">
                             <div class="col-lg-3">
-                                <div class="card">
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="reviews"
+                                    text="View Review Requests"
+                                />
+                                {{-- <div class="card">
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
                                         </div>
@@ -47,19 +52,14 @@
                                                     Requests</a></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Send
-                                                    Feedback</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="feedback"
+                                    text="Send Feedback"
+                                />
                             </div>
                             <!-- <div class="col-lg-3">
                               <div class="card">
@@ -80,6 +80,8 @@
             </div>
 
     </body>
+
+    <script src="{{ asset('frontend/scripts/cardFocus.js')}}"></script>
 
     </html>
 @endsection

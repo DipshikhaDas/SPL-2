@@ -39,61 +39,50 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">View
-                                                    Articles</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="Preview"
+                                    text="View Articles"
+                                />
                             </div>
+
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Create
-                                                    Reviewers List</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="List"
+                                    text="Create Reviewers List"
+                                />
                             </div>
+
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">View
-                                                    Feedback</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="Visibility"
+                                    text="View Feedback"
+                                />
                             </div>
+
                             <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Send
-                                                    Feedback to Author</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="Send"
+                                    text="Send Articles to Author"
+                                />
                             </div>
                         </div>
                     </section>
+
                     <div class="footer">
                         <p>2018 © Admin Board</p>
                     </div>
+
                 </div>
             </div>
+        </div>
 
     </body>
 
-    </html>
+    <script src="{{ asset('frontend/scripts/cardFocus.js') }}"></script>
+
+</html>
 @endsection

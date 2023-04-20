@@ -11,6 +11,7 @@
         <!-- theme meta -->
         <meta name="theme-name" content="focus" />
         <title>Journal Admin Dashboard</title>
+
     </head>
 
     <body>
@@ -41,85 +42,39 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Create
-                                                    User</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('createUserIndex') }}"
+                                    logo="person_add"
+                                    text="Create User"
+                                />
                             </div>
                             <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Set Role</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="settings_accessibility"
+                                    text="Set Role"
+                                />
                             </div>
                             <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Create Faculty</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-dashboard.card-link
+                                    route="{{ route('rolesIndex') }}"
+                                    logo="Input"
+                                    text="Create Faculty"
+                                />
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Send
-                                                    Articles to Editor</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">Send Review
-                                                    Request</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- <div class="col-lg-3">
-                      <div class="card">
-                          <div class="stat-widget-one">
-                              <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                              <div class="stat-content dib">
-                                  <div class="stat-text"><a href="#" style="font-weight: bold;"></a></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div> -->
+
                     </section>
                     <div class="footer">
                         <p>2023 © Admin Board </p>
                     </div>
                 </div>
             </div>
+        </div>
 
     </body>
 
-    </html>
+    <script src="{{asset('frontend/scripts/cardFocus.js')}}"></script>
+
+</html>
 @endsection
