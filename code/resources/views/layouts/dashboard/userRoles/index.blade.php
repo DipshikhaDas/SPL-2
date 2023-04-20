@@ -17,8 +17,8 @@
                 <div class="container-fluid">
                     <section id="main-content" class="center">
                         <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                @include('layouts.forms.createUserForm')
+                            <div class="col-lg-12 mx-auto">
+                                @include('layouts.dashboard.userRoles.table')
                             </div>
                         </div>
                     </section>
