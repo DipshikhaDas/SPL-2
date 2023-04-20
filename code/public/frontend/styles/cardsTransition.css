@@ -1,0 +1,8 @@
+.stat-text {
+    color: initial;
+    transition: color 0.5s;
+}
+
+.stat-text.black {
+    color: black;
+}

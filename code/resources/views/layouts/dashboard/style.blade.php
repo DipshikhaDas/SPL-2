@@ -28,19 +28,6 @@
 
 {{-- Custom CSS for various things --}}
 
-{{-- GOOGLE LOGOS --}}
-<style>
-    .logo-link {
-        display: inline-flex;
-        align-items: center;
-    }
+<link href="{{ asset('frontend/styles/materialIconsFix.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('frontend/styles/cardsTransition.css') }}" type="text/css" rel="stylesheet" />
 
-    .material-symbols-outlined {
-        vertical-align: middle;
-        /* align the logo and text vertically */
-        font-size: 30px;
-        /* adjust the font size as needed */
-        margin-right: 8px;
-        /* add some spacing between the logo and text */
-    }
-</style>
