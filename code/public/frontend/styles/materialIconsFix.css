@@ -1,0 +1,12 @@
+/* GOOGLE LOGOS  */
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+    font-size: 30px;
+    margin-right: 8px;
+}
