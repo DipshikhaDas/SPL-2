@@ -25,4 +25,10 @@ class journalAdminDashboardController extends Controller
         
         return view('layouts.dashboard.userRoles.index', compact('roles', 'users'));
     }
+
+    public function getUsersWithRoles(){
+        $users = User::with('roles')->get();
+        
+        return response()->json($users);
+    }
 }
