@@ -54,16 +54,21 @@
                          <div class="header-icon" data-toggle="dropdown">
                              <span class="user-avatar"
                                  style="color:#0099ff; font-size:18px; font-weight: bold">{{ Auth::user()->name }}
-                                 <i class="ti-angle-down f-s-10"></i>
+                                 <span class="material-symbols-outlined">
+                                     expand_more
+                                 </span>
                              </span>
                              <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
-                                 <div class="dropdown-content-body">
-                                     <ul>
-                                         <li>
+                                 <div class="dropdown-content-body d-flex-inline mx-auto ">
+                                   <ul>
+                                      
+                                       <li class="d-flex mx-auto">
+                                        <span class="material-symbols-outlined">
+                                          logout
+                                      </span>
                                              <a href="{{ route('logout') }}"
                                                  onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">>
-                                                 <i class="ti-power-off"></i>
                                                  <span> {{ __('Logout') }}</span>
                                              </a>
                                              <form id="logout-form" action="{{ route('logout') }}" method="POST"
