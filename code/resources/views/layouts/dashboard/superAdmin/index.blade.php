@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- theme meta -->
         <meta name="theme-name" content="focus" />
-        <title>Journal Admin Dashboard</title>
+        <title>Super Admin Dashboard</title>
 
     </head>
 
