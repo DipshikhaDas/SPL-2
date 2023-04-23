@@ -23,7 +23,7 @@
                     <section id="main-content" class="center">
                         <div class="row">
                             <div class="col-lg-12 mx-auto">
-                                @include('layouts.dashboard.userRoles.jsgrid')
+                                @include('layouts.dashboard.userRoles.test ')
                             </div>
                         </div>
                     </section>
