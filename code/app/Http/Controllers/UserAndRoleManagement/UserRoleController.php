@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\UserAndRoleManagement;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserRoleController extends Controller
 {
@@ -12,7 +14,22 @@ class UserRoleController extends Controller
      */
     public function index()
     {
+        // $users = User::with('roles')->get();
+        // $users = User::all();
+
+        // return response()->json($users);
+        // return view('layouts.dashboard.userRoles.test', compact('users'));
+    
         
+        $roles = Role::all();
+        $users = User::with('roles')->get();
+        
+        // dd($users);
+
+        return response()->json(
+             $users
+            
+        );
     }
 
     /**
@@ -52,7 +69,16 @@ class UserRoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        $roles = $request->input('roles');
+        $user->syncRoles($roles);
+
+        return response()->json(['message' => 'Roles updated successfully.']);
     }
 
     /**
