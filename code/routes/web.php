@@ -5,6 +5,7 @@ use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
 use App\Http\Controllers\UserAndRoleManagement\UserRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -73,9 +74,11 @@ Route::get('/author', function () {
     return view('layouts.dashboard.author');
 })->middleware(['auth', 'verified', 'role:author'])->name('author');
 
-// Route::get('/journalAdmin', function () {
-//     return view('layouts.dashboard.journalAdmin');
-// })->middleware(['auth', 'verified', 'role:journalAdmin'])->name('journalAdmin');
+
+Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')->group(function(){
+    Route::get('/', [SuperAdminDashboardController::class, 'index'])->name('superAdminIndex');
+});
+
 
 Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdmin')->group(function(){
     // Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
@@ -91,7 +94,7 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
 
 
-// Route::resource('/createUser', CreateUserController::class);
+
 
 
 
@@ -102,10 +105,6 @@ Route::get('/reviewer', function () {
 Route::get('/editor', function () {
     return view('layouts.dashboard.editor');
 })->middleware(['auth', 'verified', 'role:editor'])->name('editor');
-
-Route::get('/superAdmin', function () {
-    return view('layouts.dashboard.superAdmin');
-})->middleware(['auth', 'verified', 'role:superAdmin'])->name('superAdmin');
 
 
 Route::middleware('auth')->group(function () {

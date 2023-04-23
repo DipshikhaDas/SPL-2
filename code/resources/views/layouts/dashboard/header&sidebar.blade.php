@@ -29,7 +29,7 @@
                              <li><a href="{{ route('author') }}">Author</a></li>
                          @endrole
                          @role('superAdmin')
-                             <li><a href="{{ route('superAdmin') }}">Super Admin</a></li>
+                             <li><a href="{{ route('superAdminIndex') }}">Super Admin</a></li>
                          @endrole
                      </ul>
                  </li>
