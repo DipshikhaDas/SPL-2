@@ -7,18 +7,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendEmailNotification extends Notification
+class welcomeEmailNotification extends Notification
 {
     use Queueable;
-
-    public $emailData;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($emailData)
+    public function __construct()
     {
-        $this->emailData = $emailData;
+        //
     }
 
     /**
@@ -36,22 +34,10 @@ class SendEmailNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $emailData = $this->emailData;
-        $loginUrl = $emailData['loginUrl'];
-        $email = $emailData['email'];
-        $password = $emailData['password'];
-        $roles = $emailData['roles'];
-
         return (new MailMessage)
-                    ->subject('Your new account has been created')
-                    ->greeting('Hello!')
-                    ->line('Your new account has been created. Here are your login credentials:')
-                    ->line('Email: '.$email)
-                    ->line('Password: '.$password)
-                    ->line('Assigned Roles: ' .implode(', ',$roles ))
-                    ->action('Login', $loginUrl)
-                    ->line('Please change your password after logging in for the first time.');
-
+                    ->line('Welcome to Dhaka University Journal Publications.')
+                    ->action('Our website', url('http://127.0.0.1:8000/'))
+                    ->line('Thank you for using our website!');
     }
 
     /**
