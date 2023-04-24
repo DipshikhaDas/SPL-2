@@ -31,7 +31,7 @@ class UserObserver
 
             $user->save();
 
-            dd($roleNames);
+            // dd($roleNames);
 
             $emailData = [
                 'email'=>$user->email,
