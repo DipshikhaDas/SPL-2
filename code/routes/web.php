@@ -3,7 +3,7 @@
 // use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
-use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\superAdmin\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
 use App\Http\Controllers\UserAndRoleManagement\UserRoleController;
@@ -77,6 +77,11 @@ Route::get('/author', function () {
 
 Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')->group(function(){
     Route::get('/', [SuperAdminDashboardController::class, 'index'])->name('superAdminIndex');
+    Route::get('/facultyPage', [SuperAdminDashboardController::class, 'getFacultyPage'])->name('facultyPage');
+    Route::get('/faculty', [FacultyController::class, 'index'])->name('getFacultyList');
+    Route::post('/facultys', [FacultyController::class, 'store'])->name('storeFaculty');
+    Route::put('/faculty/{id}', [FacultyController::class, 'update'])->name('updateFaculty');
+    Route::delete('/faculty/{id}', [FacultyController::class, 'destroy'])->name('updateFaculty');
 });
 
 

@@ -30,13 +30,15 @@
             },
             fields: [{
                     name: "name",
+                    title: "Name",
                     type: "text",
                     width: 120,
                     validate: "required"
                 },
                 {
                     name: "email",
-                    type: "text",
+                    title: "Email",
+                    type: "email",
                     width: 150
                 },
                 @foreach ($roles as $role)
