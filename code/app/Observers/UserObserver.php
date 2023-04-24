@@ -7,6 +7,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 
 use App\Notifications\SendEmailNotification;
+use App\Http\Controllers\Controller;
+use App\Models\CreateUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
+use Illuminate\Support\Str;
 
 class UserObserver
 {
@@ -15,16 +21,27 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        $details=[
-            'greeting'=>'Hi DU Journal Publication User',
-            'body'=>'This is the email body',
-            'actiontext'=>'Here is the website',
-            'actionurl'=>'/',
-            'lastline'=>'Thank you for joining with us'
 
-        ];
+        if (auth()->check() && (auth()->user()->hasRole('journalAdmin')||auth()->user()->hasRole('superAdmin'))) {
+            // Send the notification to the new user
+            $temporaryPassword= Str::random(10);
+            $user->password = Hash::make($temporaryPassword);
+            $roles = $user->getRoleNames(); // Get the user's roles
+            $roleNames = $roles->toArray();
 
-        Notification::send($user, new SendEmailNotification($details));
+            $user->save();
+
+            dd($roleNames);
+
+            $emailData = [
+                'email'=>$user->email,
+                'password'=>$temporaryPassword,
+                'roles'=>$roleNames,
+                'loginUrl'=>'http://127.0.0.1:8000/login'
+            ];
+            $user->notify(new SendEmailNotification($emailData));
+        }
+
     }
 
     /**
