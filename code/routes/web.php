@@ -1,6 +1,8 @@
 <?php
 
 // use App\Http\Controllers\Admin\AdminDashboardController;
+
+use App\Http\Controllers\author\authorDashboardController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
 use App\Http\Controllers\superAdmin\FacultyController;
@@ -60,6 +62,10 @@ Route::get('/privacyPolicy', function(){
     return view('layouts.privacyPolicy');
 });
 
+Route::get('/submit', function(){
+    return view('layouts.dashboard.author.submitArticle');
+});
+
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
 Route::get('/dashboard', function () {
@@ -70,9 +76,6 @@ Route::get('/dashboard1', function () {
     return view('layouts.dashboard.header');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/author', function () {
-    return view('layouts.dashboard.author');
-})->middleware(['auth', 'verified', 'role:author'])->name('author');
 
 
 Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')->group(function(){
@@ -95,6 +98,11 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/users-with-roles',[journalAdmin\journalAdminDashboardController::class, 'getUsersWithRoles'])->name('getUsers');
     Route::resource('/userRoles',UserRoleController::class);
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
+});
+
+Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
+    Route::get('/',[authorDashboardController::class, 'index'])->name('author');
+    Route::get('/submitArticle',[authorDashboardController::class, 'submitArticle'])->name('submitArticle');
 });
 
 

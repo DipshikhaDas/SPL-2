@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
+                                    route="{{ route('submitArticle') }}"
                                     logo="article"
                                     text="Submit Article"
                                 />
@@ -53,16 +53,7 @@
                                     logo="description"
                                     text="View Status of Article"
                                 />
-                                {{-- <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                                        </div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text"><a href="#" style="font-weight: bold;">View Status
-                                                    of Article</a></div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+
                             </div>
                             <div class="col-lg-3">
                                 <x-dashboard.card-link route="{{ route('rolesIndex') }}" logo="feedback"
