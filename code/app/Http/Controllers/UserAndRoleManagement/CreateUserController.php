@@ -15,7 +15,7 @@ class CreateUserController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -23,7 +23,7 @@ class CreateUserController extends Controller
      */
     public function create()
     {
-    
+
     }
 
     /**
@@ -52,7 +52,7 @@ class CreateUserController extends Controller
 
             $user->assignRole($validatedData['role']);
 
-            return redirect()->route('createUser.index')->with('success', 'User created successfully.');
+            return redirect()->route('createUserIndex')->with('success', 'User created successfully.');
         }
 
 
@@ -69,7 +69,7 @@ class CreateUserController extends Controller
                     'role.in' => 'Invalid role selected.',
                 ]);
 
-            
+
             if (in_array('superAdmin', $validatedData['role'])) {
                 return redirect()->back()->withInput()->withErrors(['role' => 'You are not authorized to create a user with Super Admin role.']);
             }
@@ -80,11 +80,11 @@ class CreateUserController extends Controller
                 'password' => Hash::make("password"),
             ]);
 
-           
+
             $user->assignRole($validatedData['role']);
 
 
-            return redirect()->route('createUser.index')->with('success', 'User created successfully.');
+            return redirect()->route('createUserIndex')->with('success', 'User created successfully.');
         } else {
             return redirect()->back()->withInput()->withErrors(['role' => 'You are not authorized to create a user.']);
         }
