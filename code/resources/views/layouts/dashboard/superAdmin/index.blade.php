@@ -57,8 +57,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
-                                    logo="Input"
+                                    route="{{ route('facultyPage') }}"
+                                    logo="add_box"
                                     text="Create Faculty"
                                 />
                             </div>
