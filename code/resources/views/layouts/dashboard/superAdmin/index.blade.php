@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- theme meta -->
         <meta name="theme-name" content="focus" />
-        <title>Journal Admin Dashboard</title>
+        <title>Super Admin Dashboard</title>
 
     </head>
 
@@ -57,8 +57,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
-                                    logo="Input"
+                                    route="{{ route('facultyPage') }}"
+                                    logo="add_box"
                                     text="Create Faculty"
                                 />
                             </div>

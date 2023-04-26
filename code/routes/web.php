@@ -5,8 +5,9 @@
 use App\Http\Controllers\author\authorDashboardController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
-use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\superAdmin\FacultyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
 use App\Http\Controllers\UserAndRoleManagement\UserRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -76,9 +77,16 @@ Route::get('/dashboard1', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-// Route::get('/journalAdmin', function () {
-//     return view('layouts.dashboard.journalAdmin');
-// })->middleware(['auth', 'verified', 'role:journalAdmin'])->name('journalAdmin');
+
+Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')->group(function(){
+    Route::get('/', [SuperAdminDashboardController::class, 'index'])->name('superAdminIndex');
+    Route::get('/facultyPage', [SuperAdminDashboardController::class, 'getFacultyPage'])->name('facultyPage');
+    Route::get('/faculty', [FacultyController::class, 'index'])->name('getFacultyList');
+    Route::post('/facultys', [FacultyController::class, 'store'])->name('storeFaculty');
+    Route::put('/faculty/{id}', [FacultyController::class, 'update'])->name('updateFaculty');
+    Route::delete('/faculty/{id}', [FacultyController::class, 'destroy'])->name('updateFaculty');
+});
+
 
 Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdmin')->group(function(){
     // Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
@@ -87,7 +95,9 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
     Route::post('/store', [CreateUserController::class, 'store'])->name('createUser.store');
     Route::get('/setRole',[journalAdmin\journalAdminDashboardController::class, 'rolesIndex'])->name('rolesIndex');
-    Route::resource('/manageRoles',UserRoleController::class);
+    Route::get('/users-with-roles',[journalAdmin\journalAdminDashboardController::class, 'getUsersWithRoles'])->name('getUsers');
+    Route::resource('/userRoles',UserRoleController::class);
+    Route::put('userRole/{id}', [UserRoleController::class, 'update']);
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
@@ -97,7 +107,7 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
 
 
 
-// Route::resource('/createUser', CreateUserController::class);
+
 
 
 
@@ -108,10 +118,6 @@ Route::get('/reviewer', function () {
 Route::get('/editor', function () {
     return view('layouts.dashboard.editor');
 })->middleware(['auth', 'verified', 'role:editor'])->name('editor');
-
-Route::get('/superAdmin', function () {
-    return view('layouts.dashboard.superAdmin');
-})->middleware(['auth', 'verified', 'role:superAdmin'])->name('superAdmin');
 
 
 Route::middleware('auth')->group(function () {

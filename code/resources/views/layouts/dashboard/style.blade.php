@@ -31,3 +31,10 @@
 <link href="{{ asset('frontend/styles/materialIconsFix.css') }}" type="text/css" rel="stylesheet" />
 <link href="{{ asset('frontend/styles/cardsTransition.css') }}" type="text/css" rel="stylesheet" />
 
+
+{{-- JS GRID --}}
+
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
