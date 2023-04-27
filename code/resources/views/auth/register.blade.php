@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row no-gutters">
                <div class="col-lg-6">
-                <img src="icon.avif" alt="">
+                <img src="{{ asset('frontend/website/images/curzon1.png') }}" alt="">
                </div>
 
                <div class="col-lg-6 px-5 pt-5">
@@ -30,7 +30,7 @@
 
                     <div class="form-row">
                         <div class="col-lg-12">
-                            <input id="name" type="text" class="form-control my-2 p-4 @error('name') is-invalid @enderror"
+                            <input id="name" type="text" class="form-control my-3 p-4 @error('name') is-invalid @enderror"
                             placeholder="{{ __('Name') }}" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                             @error('name')
@@ -44,7 +44,7 @@
 
                     <div class="form-row">
                         <div class="col-lg-12">
-                            <input id="email" type="email" class="form-control my-2 p-4 @error('email') is-invalid @enderror"
+                            <input id="email" type="email" class="form-control my-3 p-4 @error('email') is-invalid @enderror"
                             placeholder="{{ __('Email Address') }}" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                             @error('email')
@@ -58,7 +58,7 @@
 
                     <div class="form-row">
                         <div class="col-lg-12">
-                            <input id="password" type="password" class="form-control my-2 p-4 @error('password') is-invalid @enderror"
+                            <input id="password" type="password" class="form-control my-3 p-4 @error('password') is-invalid @enderror"
                             placeholder="{{ __('Password') }}" name="password" required autocomplete="new-password">
 
                             @error('password')
@@ -72,14 +72,14 @@
 
                     <div class="form-row">
                         <div class="col-lg-12">
-                            <input id="password-confirm" type="password" class="form-control my-2 p-4" name="password_confirmation"
+                            <input id="password-confirm" type="password" class="form-control my-3 p-4" name="password_confirmation"
                              placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-lg-12">
-                            <button type="submit" class="btn1 mt-3">{{ __('Register') }}</button>
+                            <button type="submit" class="btn1 mt-3 mb-5">{{ __('Register') }}</button>
                         </div>
                     </div>
                 </form>
