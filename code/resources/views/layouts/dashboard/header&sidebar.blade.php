@@ -2,18 +2,17 @@
      <div class="nano">
          <div class="nano-content">
              <ul>
-                 <li class="label">Main</li>
-                 <li>
+                <div class="logo">
                      <a href="{{ url('/') }}">
-                         <span class="material-symbols-outlined">home</span>
-                         <span class="text">Home</span>
+                        <img  src="{{ asset('logo2.png')}}" style="height: 60px; width: 180px;">
                      </a>
-                 </li>
+                </div>
 
 
 
-                 <li class="label">User</li>
-                 <li><a class="sidebar-sub-toggle"><span class="material-symbols-outlined">arrow_drop_down</span>Roles</a>
+
+                 <li class="label">Dashboard</li>
+                 <li><a class="sidebar-sub-toggle"><span class="material-symbols-outlined">arrow_drop_down</span>Assigned Roles</a>
                      <ul>
 
                          @role('journalAdmin')
@@ -61,14 +60,14 @@
                              <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
                                  <div class="dropdown-content-body d-flex-inline mx-auto ">
                                    <ul>
-                                      
+
                                        <li class="d-flex mx-auto">
-                                        <span class="material-symbols-outlined">
+                                        <span class="material-symbols-outlined" style="font-size: 18px">
                                           logout
                                       </span>
                                              <a href="{{ route('logout') }}"
                                                  onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">>
+                         document.getElementById('logout-form').submit();">
                                                  <span> {{ __('Logout') }}</span>
                                              </a>
                                              <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -91,7 +90,7 @@
  <script src="{{ asset('frontend/dashboard/js/lib/jquery.min.js') }}"></script>
  <script src="{{ asset('frontend/dashboard/js/lib/jquery.nanoscroller.min.js') }}"></script>
  <!-- nano scroller -->
- <script src="{{ asset('frontend/dashboard/js/lib/menubar/sidebar') }}.js"></script>
+ <script src="{{ asset('frontend/dashboard/js/lib/menubar/sidebar.js') }}"></script>
  <script src="{{ asset('frontend/dashboard/js/lib/preloader/pace.min.js') }}"></script>
  <!-- sidebar -->
 
