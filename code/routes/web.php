@@ -85,6 +85,9 @@ Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')
     Route::post('/facultys', [FacultyController::class, 'store'])->name('storeFaculty');
     Route::put('/faculty/{id}', [FacultyController::class, 'update'])->name('updateFaculty');
     Route::delete('/faculty/{id}', [FacultyController::class, 'destroy'])->name('updateFaculty');
+    Route::get('/assignJournalAdmin', [SuperAdminDashboardController::class, 'getAssignJournalAdminPage'])->name('assignJournalAdminPage');
+    Route::post('/assignJournalAdmin/{journalAdmin}', [SuperAdminDashboardController::class, 'addJournalAdminToFaculty'])->name('addJournalAdminToFaculty');
+    Route::delete('assignJournalAdmin/{journalAdmin}/{faculty}', [SuperAdminDashboardController::class, 'removeJournalAdminFromFaculty'])->name('removeJournalAdminFromFaculty');
 });
 
 

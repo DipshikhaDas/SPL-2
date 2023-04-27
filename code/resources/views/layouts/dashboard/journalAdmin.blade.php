@@ -84,6 +84,16 @@
                                 />
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <x-dashboard class="card-link" 
+                                route=""
+                                logo="library_add"
+                                text="Open a Journal"
+                                />
+                            </div>
+                        </div>
 
                     </section>
 
