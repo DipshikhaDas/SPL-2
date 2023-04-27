@@ -1,0 +1,87 @@
+.form-step {
+    display: none;
+    transform-origin: top;
+    animation: animate .5s;
+}
+
+.form-step-active {
+    display: block
+}
+
+@keyframes animate {
+    from {
+        transform: scale(1, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+.progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 10%;
+    counter-reset: step;
+}
+
+.progressbar::before,
+.progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+
+}
+
+.progress {
+    background-color: #24a0ed;
+    width: 0%;
+    transition: .3s;
+}
+
+.progress-step {
+    width: 35px;
+    height: 35px;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+}
+
+.progress-step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+.progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + .75rem);
+    font-size: .85rem;
+    color: #666666;
+}
+
+.progress-step-active {
+    background-color: #24a0ed;
+    color: white;
+
+}
+
+.btn {
+    text-align: center;
+    text-decoration: none;
+    background-color: #24a0ed;
+    color: white;
+    border-radius: .25rem;
+    cursor: pointer;
+}
