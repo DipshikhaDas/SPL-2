@@ -41,13 +41,14 @@
                     <tr>
                         <th style="min-width: 100px;">Name</th>
                         <th style="min-width: 150px;">Email</th>
-                        <th>Faculty</th>
+                        <th style="min-width: 150px;">Faculty</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @error('faculty_id')
-                        <div class="alert alert-danger text-dark text-center alert-dismissible fade show text-center" role="alert">{{ $message }}
+                        <div class="alert alert-danger text-dark text-center alert-dismissible fade show"
+                            role="alert">{{ $message }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -62,7 +63,7 @@
                                     data-journal-admin_id={{ $journalAdmin->id }} method="post"
                                     action="{{ route('addJournalAdminToFaculty', $journalAdmin) }}">
                                     @csrf
-                                    <select class="form-control" name="faculty_id_{{ $journalAdmin->id }}">
+                                    <select class="form-control" name="faculty_id">
                                         <option value="" selected disabled> Select Faculty </option>
                                         @foreach ($faculties as $faculty)
                                             <option value="{{ $faculty->id }}"
@@ -72,6 +73,16 @@
                                         @endforeach
                                     </select>
                                 </form>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary edit-faculty-btn" onclick="toggleEdit('{{$journalAdmin->id}}')">Edit</button>
+                                <button type="submit" class="btn btn-primary"
+                                    onclick="event.preventDefault();document.getElementById('form-{{ $journalAdmin->id }}').submit()">
+                                    <span class="material-symbols-outlined">
+                                        save
+                                    </span>
+                                    Save
+                                </button>
                                 @if ($journalAdmin->faculties->count())
                                     <form method="post"
                                         action="{{ route('removeJournalAdminFromFaculty', ['journalAdmin' => $journalAdmin, 'faculty' => $faculty]) }}"
@@ -84,16 +95,6 @@
                                     <button class="btn btn-primary" disabled>Remove</button>
                                 @endif
                             </td>
-                            <td>
-                                <button type="submit" class="btn btn-primary"
-                                    onclick="event.preventDefault();document.getElementById('form-{{ $journalAdmin->id }}').submit()">
-                                    <span class="material-symbols-outlined">
-                                        save
-                                    </span>
-                                    Save
-                                </button>
-                                <button class="btn btn-primary edit-faculty-btn">Edit</button>
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -104,18 +105,33 @@
     </div>
 </div>
 
+
 <script>
-    $(document).ready(function() {
-        $('.faculty-column select').attr('disabled', true); // disable all faculty selects at first
-        $('.edit-faculty-btn').click(function() {
-            var facultySelect = $(this).closest('tr').find('.faculty-column select');
-            if (facultySelect.attr('disabled')) {
-                facultySelect.attr('disabled', false);
-                $(this).text('Done');
-            } else {
-                facultySelect.attr('disabled', true);
-                $(this).text('Edit');
-            }
-        });
-    });
+
+    function toggleEdit(button) {
+        // alert(button);
+
+        var form = button.closest('tr').querySelector('form.faculty-form');
+        var dropdown = form.querySelector('select');
+        var saveBtn = form.querySelector('button[type="submit"]');
+        var removeBtn = form.querySelector('button.btn-danger');
+
+        if (dropdown.disabled) {
+            console.log('Enable dropdown and buttons');
+            dropdown.disabled = false;
+            saveBtn.disabled = false;
+            removeBtn.disabled = false;
+            button.textContent = 'Cancel';
+        } else {
+            console.log('Disable dropdown and buttons');
+            dropdown.disabled = true;
+            saveBtn.disabled = true;
+            removeBtn.disabled = true;
+            button.textContent = 'Edit';
+            form.reset();
+        }
+    }
+
+
 </script>
+

@@ -21,4 +21,8 @@ class Faculty extends Model
         return $this->hasMany(User::class)->where('role', 'journalAdmin');
     }
 
+    public function journals(){
+        return $this->hasMany(Journal::class);
+    }
+
 }
