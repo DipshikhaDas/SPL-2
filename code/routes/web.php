@@ -3,6 +3,7 @@
 // use App\Http\Controllers\Admin\AdminDashboardController;
 
 use App\Http\Controllers\author\authorDashboardController;
+use App\Http\Controllers\journalAdmin\JournalController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
 use App\Http\Controllers\superAdmin\FacultyController;
@@ -15,9 +16,8 @@ use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
-use App\Http\Controllers\UserAndRoleManagement\JournalAdminDashboardController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\journalAdmin;
+use App\Http\Controllers\journalAdmin\journalAdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,17 +90,20 @@ Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')
     Route::delete('assignJournalAdmin/{journalAdmin}/{faculty}', [SuperAdminDashboardController::class, 'removeJournalAdminFromFaculty'])->name('removeJournalAdminFromFaculty');
 });
 
+// JOURNAL ADMIN ROLE 
 
 Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdmin')->group(function(){
     // Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
-    Route::get('/',[journalAdmin\journalAdminDashboardController::class, 'index'])->name('journalAdmin');
-    Route::get('/createUser', [journalAdmin\journalAdminDashboardController::class, 'createUserIndex'])->name('createUserIndex');
+    Route::get('/',[journalAdminDashboardController::class, 'index'])->name('journalAdmin');
+    Route::get('/createUser', [journalAdminDashboardController::class, 'createUserIndex'])->name('createUserIndex');
 
     Route::post('/store', [CreateUserController::class, 'store'])->name('createUser.store');
-    Route::get('/setRole',[journalAdmin\journalAdminDashboardController::class, 'rolesIndex'])->name('rolesIndex');
-    Route::get('/users-with-roles',[journalAdmin\journalAdminDashboardController::class, 'getUsersWithRoles'])->name('getUsers');
+    Route::get('/setRole',[journalAdminDashboardController::class, 'rolesIndex'])->name('rolesIndex');
+    Route::get('/users-with-roles',[journalAdminDashboardController::class, 'getUsersWithRoles'])->name('getUsers');
     Route::resource('/userRoles',UserRoleController::class);
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
+    Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage'); 
+    Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
@@ -128,6 +131,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/viewJournals', [JournalController::class, 'getAvailableJournalsForSubmissionPage']);
 
 require __DIR__.'/auth.php';
 

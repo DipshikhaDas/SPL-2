@@ -16,7 +16,9 @@ class journalAdminDashboardController extends Controller
 
     public function index()
     {
-        return view('layouts.dashboard.journalAdmin');
+        $faculty = auth()->user()->faculties()->first();
+
+        return view('layouts.dashboard.journalAdmin.index', compact('faculty'));
     }
 
     public function rolesIndex(){
@@ -34,6 +36,13 @@ class journalAdminDashboardController extends Controller
         $users = User::with('roles')->get();
         
         return response()->json($users);
+    }
+
+    public function getCreateJournalPage(){
+
+        $faculty = auth()->user()->faculties()->first();
+
+        return view('layouts.dashboard.journalAdmin.createJournal', compact('faculty'));
     }
 
 }

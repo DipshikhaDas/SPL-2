@@ -48,16 +48,19 @@ class SuperAdminDashboardController extends Controller
         // $validatedData = $request->validate([
         //     'faculty_id' => 'exists:faculties,id',
         // ]);
+
+        // dd($request);
+
         $validatedData = $request->validate([
             'faculty_id' => 'nullable|exists:faculties,id|required',
         ], [
-                'faculty_id.required' => 'Please select a faculty.',
+                'faculty_id' => 'Please select a faculty for '.$journalAdmin->name . ' ('.$journalAdmin->email.')',
             ]);
 
-        if (!$validatedData) {
-            return redirect()->back()->withErrors('Please select a faculty.');
-        }
-        
+        // if (!$validatedData) {
+        //     return redirect()->back()->withErrors('Please select a faculty.');
+        // }
+
         $faculty = Faculty::find($validatedData['faculty_id']);
         $journalAdmin->faculties()->sync([$faculty->id]);
 
