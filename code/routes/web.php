@@ -62,6 +62,10 @@ Route::get('/privacyPolicy', function(){
     return view('layouts.privacyPolicy');
 });
 
+Route::get('/ui', function(){
+    return view('layouts.headerModified');
+});
+
 Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });

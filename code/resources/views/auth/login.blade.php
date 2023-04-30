@@ -22,11 +22,11 @@
             <div class="container">
                 <div class="row no-gutters">
                     <div class="col-lg-6">
-                        <img src="{{ asset('frontend/website/images/icon.avif') }}" alt="">
+                        <img src="{{ asset('frontend/website/images/curzon1.png') }}" alt="">
                     </div>
                     <div class="col-lg-6 px-5 pt-5">
                         <!-- <h1 class="font-weight-bold py-3">Logo</h1> -->
-                        <h4>Sign into your account</h4>
+                        <h3>Sign in</h3>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-row">
