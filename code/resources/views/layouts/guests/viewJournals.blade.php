@@ -1,3 +1,6 @@
+@extends('layouts.main')
+
+@section('main-section')
 <div class="container">
     @foreach ($journals as $journal)
         <ul>
@@ -11,3 +14,4 @@
         
     @endforeach
 </div>
+@endsection
