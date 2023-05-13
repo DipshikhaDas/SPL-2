@@ -6,7 +6,7 @@
         <div class="basic-form">
             <form class="p-4" action="#" method="POST">
                 @csrf
-                {{-- NAME --}}
+
 
                 <div class="progressbar">
                     <div class="progress" id="progress"></div>
@@ -46,11 +46,11 @@
                             </ul>
                         </div>
                     </div>
-                    {{-- EMAIL  --}}
+
 
                     <div class="form-group row">
-                        <label class="" for="title" style="font-weight: bold">Comments for Editor:</label>
-                        <div class="col-sm-12">
+                        <label class="col-sm-2" for="title" style="font-weight: bold">Comments for Editor:</label>
+                        <div class="col-sm-10">
                             <textarea class="form-control" style="height: 200px" id="textEditor1"></textarea>
                         </div>
                     </div>
@@ -83,12 +83,20 @@
                             </ul>
                         </div>
                     </div>
-                    {{-- EMAIL  --}}
+
 
                     <div class="form-group row">
-                        <label class="" for="file_with_author_info" style="font-weight: bold">Upload File*</label>
-                        <div class="col-sm-12">
-                            <input type="file" name="article" class="form-control" required>
+                        <label class="col-sm-2" for="file_with_author_info" style="font-weight: bold">Upload File (With
+                            Author Information):*</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="file_with_author_info" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="file_without_author_info" style="font-weight: bold">Upload File
+                            (Without Author Information):*</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="file_without_author_info" class="form-control" required>
                         </div>
                     </div>
 
@@ -103,53 +111,126 @@
                 </div>
 
                 <div class="form-step">
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="name" style="font-weight: bold">Author's
-                            Name*</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="name" name="name" class="form-control"
-                                value="{{ auth()->user()->name }}" required>
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label" style="font-weight: bold">Email*</label>
-                        <div class="col-sm-10">
-                            <input type="email" id="email" name="email" class="form-control"
-                                value="{{ auth()->user()->email }}" required>
-                        </div>
-                    </div>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="max-width: 40px; min-width: 40px;">Sl no</th>
+                                <th>Labels</th>
 
-                    <div class="form-group row">
-                        <label for="url-input" class="col-sm-2 col-form-label" style="font-weight: bold">URL</label>
-                        <div class="col-sm-10">
-                            <input type="url" id="url-input" name="url-input" class="form-control">
-                        </div>
-                    </div>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="authorTable">
+                            <tr>
+                                <td class="font-weight-bold">1</td>
+                                <td>
+                                    {{-- FIRST NAME --}}
+                                    <div class="form-group row">
+                                        <label for="first_name_1"
+                                            class="col-sm-2 col-form-label font-weight-bold">First
+                                            Name:*</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="first_name_1" name="first_name[]"
+                                                class="form-control" required>
+                                        </div>
+                                    </div>
+                                    {{-- MIDDLE NAME --}}
+                                    <div class="form-group row">
+                                        <label for="middle_name_1"
+                                            class="col-sm-2 col-form-label font-weight-bold">Middle Name:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="middle_name_1" name="middle_name[]"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    {{-- LAST NAME --}}
+                                    <div class="form-group row">
+                                        <label for="last_name_1" class="col-sm-2 col-form-label font-weight-bold">Last
+                                            Name:*</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="last_name_1" name="last_name[]"
+                                                class="form-control" required>
+                                        </div>
+                                    </div>
+                                    {{-- EMAIL --}}
+                                    <div class="form-group row">
+                                        <label for="email_1"
+                                            class="col-sm-2 col-form-label font-weight-bold">Email:*</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" id="email_1" name="email[]" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="name"
-                            style="font-weight: bold">Affliation</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="affliation" name="affliation" class="form-control">
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label for="url-input_1" class="col-sm-2 col-form-label"
+                                            style="font-weight: bold">URL</label>
+                                        <div class="col-sm-10">
+                                            <input type="url" id="url-input_1" name="url-input[]"
+                                                class="form-control">
+                                        </div>
+                                    </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="country"
-                            style="font-weight: bold">Country</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="country" name="name" class="form-control">
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="affiliation_1"
+                                            style="font-weight: bold">Affliation</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="affliation_1" name="affliation[]"
+                                                class="form-control">
+                                            <p class="col-label">(Your institution, e.g. "University of Dhaka")</p>
+                                        </div>
+                                    </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="statement" style="font-weight: bold">Bio
-                            Statement(e.g. Departement and Rank)</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="statement_1"
+                                            style="font-weight: bold;">Bio
+                                            Statement(e.g. Departement and Rank)</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" style="height: 200px" id="statement_1" name="statement[]"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="corresponding_1"
+                                            style="font-weight: bold;">Corresponding Author?</label>
+                                        <div class="col-sm-10">
+                                            Yes <input type="radio" name="corresponding" id="corresponding_1"
+                                                value="1"> <br>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <button onclick="moveUp(this)" class="btn btn-light text-dark" type="button"
+                                        title="Move Author Up" style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            arrow_upward
+                                        </span>
+                                    </button> <br>
+                                    <button onclick="moveDown(this)" class="btn btn-light text-dark" type="button"
+                                        title="Move Author Down" style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            arrow_downward
+                                        </span>
+                                    </button> <br>
+                                    <button onclick="removeAuthor(this)" class="btn btn-light text-dark"
+                                        type="button" title="Remove Author" style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            person_remove
+                                        </span>
+                                    </button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button onclick="addAuthor()" class="btn btn-light text-dark" type="button"
+                        title="Add Another Author">
+                        <span class="material-symbols-outlined" style="font-size: 24px">
+                            person_add
+                        </span> Add Author
+                    </button> <br>
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="title"
@@ -175,13 +256,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="reference"
-                            style="font-weight: bold">Reference</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 100px" id="reference"></textarea>
-                        </div>
-                    </div>
+
 
                     <div class="form-group row">
                         <div class="col-sm-4 text-right">
@@ -196,12 +271,31 @@
 
                 <div class="form-step">
                     <div class="form-group row">
-                        <label class="" for="supplementary" style="font-weight: bold">Upload Supplementary
+                        <label class="col-sm-2" for="supplementary" style="font-weight: bold">Upload Supplementary
                             File</label>
+                        <div class="col-sm-8">
+                            <div class="supplementary-files">
+                                <div class="input-group">
+                                    <input type="file" name="supplementary_file[]" class="form-control">
+                                    <div class="input-group-append">
+                                        <button onclick="removeSupplementaryFile(this)" class="ml-2">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="addSupplementaryFiles()">Add Another File</button>
+                        </div>
+                        <br>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="links" style="font-weight: bold">GitHub & Other Links:</label>
                         <div class="col-sm-10">
-                            <input type="file" name="supplementary" class="form-control">
+                            <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
                         </div>
                     </div>
+
+
+
                     <div class="form-group row">
                         <div class="col-sm-4 text-right">
                             <a href="#" class="btn btn-prev">Previous</a>
@@ -250,7 +344,221 @@
         .catch(error => {
             console.error(error);
         });
+
+    var authorCount = 1;
+
+    function addAuthor() {
+
+        authorCount++;
+
+        var uniqueId = '_' + authorCount;
+        var firstNameId = 'first_name' + uniqueId;
+        var middleNameId = 'middle_name' + uniqueId;
+        var lastNameId = 'last_name' + uniqueId;
+        var emailId = 'email' + uniqueId;
+        var urlId = 'url-input' + uniqueId;
+        var affiliationId = 'affiliation' + uniqueId;
+        var statementId = 'statement' + uniqueId;
+        var correspondingId = 'corresponding' + uniqueId;
+
+        var table = document.getElementById("authorTable");
+        var row = table.insertRow();
+
+        var serialNumberCell = row.insertCell(0);
+        serialNumberCell.textContent = authorCount;
+
+        var labelsCell = row.insertCell(1);
+        labelsCell.innerHTML =
+            `<div class="form-group row">
+                                        <label for="${firstNameId}" class="col-sm-2 col-form-label font-weight-bold">First
+                                            Name:*</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="${firstNameId}" name="first_name[]"
+                                                class="form-control" required>
+                                        </div>
+                                    </div>
+                                    {{-- MIDDLE NAME --}}
+                                    <div class="form-group row">
+                                        <label for="${middleNameId}"
+                                            class="col-sm-2 col-form-label font-weight-bold">Middle Name:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="${middleNameId}" name="middle_name[]"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    {{-- LAST NAME --}}
+                                    <div class="form-group row">
+                                        <label for="${lastNameId}" class="col-sm-2 col-form-label font-weight-bold">Last
+                                            Name:*</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="${lastNameId}" name="last_name[]"
+                                                class="form-control" required>
+                                        </div>
+                                    </div>
+                                    {{-- EMAIL --}}
+                                    <div class="form-group row">
+                                        <label for="${emailId}"
+                                            class="col-sm-2 col-form-label font-weight-bold">Email:*</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" id="${emailId}" name="email[]" class="form-control"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="${urlId}" class="col-sm-2 col-form-label"
+                                            style="font-weight: bold">URL</label>
+                                        <div class="col-sm-10">
+                                            <input type="url" id="${urlId}" name="url-input"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="${affiliationId}"
+                                            style="font-weight: bold">Affliation</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="${affiliationId}" name="affliation"
+                                                class="form-control">
+                                            <p class="col-label">(Your institution, e.g. "University of Dhaka")</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="${statementId}"
+                                            style="font-weight: bold;">Bio
+                                            Statement(e.g. Departement and Rank)</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" style="height: 200px" id="${statementId}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" for="${correspondingId}"
+                                            style="font-weight: bold;">Corresponding Author?</label>
+                                        <div class="col-sm-10">
+                                            Yes <input type="radio" name="corresponding" id="${correspondingId}"
+                                                value="${authorCount}"> <br>
+                                            
+                                        </div>
+                                    </div>`;
+
+
+        var actionCell = row.insertCell(2);
+        actionCell.innerHTML =
+            `<button onclick="moveUp(this)" class="btn btn-light text-dark" type="button" title="Move Author Up"
+                                        style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            arrow_upward
+                                        </span>
+                                    </button> <br>
+                                    <button onclick="moveDown(this)" class="btn btn-light text-dark" type="button" title="Move Author Down"
+                                        style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            arrow_downward
+                                        </span>
+                                    </button> <br>
+                                    <button onclick="removeAuthor(this)" class="btn btn-light text-dark" type="button" title="Remove Author"
+                                        style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            person_remove
+                                        </span>
+                                    </button>`;
+
+    }
+
+    function removeAuthor(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        updateSerialNumbers();
+    }
+
+    function moveUp(button) {
+        var row = button.parentNode.parentNode;
+        console.log(row.rowIndex);
+        var previousRow = row.previousElementSibling;
+        if (previousRow) {
+            row.parentNode.insertBefore(row, previousRow);
+            updateSerialNumbers();
+            updateFieldIds(row);
+        }
+    }
+
+    function moveDown(button) {
+        var row = button.parentNode.parentNode;
+        var nextRow = row.nextElementSibling;
+        if (nextRow) {
+            row.parentNode.insertBefore(nextRow, row);
+            updateSerialNumbers();
+            updateFieldIds(row);
+        }
+    }
+
+    function updateSerialNumbers() {
+        var table = document.getElementById("authorTable");
+        var rows = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var serialNumberCell = rows[i].cells[0];
+            serialNumberCell.textContent = i + 1;
+        }
+
+        authorCount = rows.length - 1;
+    }
+
+    function updateFieldIds(row) {
+        var rowId = row.rowIndex;
+        var inputs = row.querySelectorAll('input, textarea');
+
+        inputs.forEach(function(input) {
+            var inputId = input.getAttribute('id');
+            var newInputId = inputId.replace(/\d+$/, rowId);
+            input.setAttribute('id', newInputId);
+
+            if (inputId.startsWith('corresponding_')) {
+                var corresponding = document.querySelector('input[id="' + newInputId + '"]');
+                corresponding.setAttribute('value', rowId);
+            }
+        });
+
+        var labels = row.querySelectorAll('label');
+
+        labels.forEach(function(label) {
+            var labelFor = label.getAttribute('for');
+            var newLabelFor = labelFor.replace(/\d+$/, rowId);
+            label.setAttribute('for', newLabelFor);
+        });
+    }
+
+    function addSupplementaryFiles() {
+
+        var supplementaryFiles = document.getElementsByClassName("supplementary-files")[0];
+
+        var fileInput = document.createElement("input");
+        fileInput.setAttribute("type", "file");
+        fileInput.setAttribute("name", "supplementary_file[]");
+        fileInput.setAttribute("class", "form-control");
+
+        var removeButton = document.createElement("button");
+        removeButton.setAttribute("onclick", "removeSupplementaryFile(this)");
+        removeButton.setAttribute("class", "ml-2");
+        removeButton.textContent = "Remove";
+
+        var inputGroupAppend = document.createElement("div");
+        inputGroupAppend.setAttribute("class", "input-group-append");
+        inputGroupAppend.appendChild(removeButton);
+
+        var inputGroup = document.createElement("div");
+        inputGroup.setAttribute("class", "input-group");
+        inputGroup.appendChild(fileInput);
+        inputGroup.appendChild(inputGroupAppend);
+
+        supplementaryFiles.appendChild(inputGroup);
+
+    }
+
+    function removeSupplementaryFile(button) {
+        var inputGroup = button.parentNode.parentNode;
+        inputGroup.remove();
+
+    }
 </script>
-
-
-
