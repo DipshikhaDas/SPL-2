@@ -33,7 +33,7 @@ use App\Http\Controllers\journalAdmin\journalAdminDashboardController;
 
 Route::get('/', function () {
     return view('layouts.home');
-});
+})->name('/');
 
 Route::get('/contact', function () {
     return view('layouts.contacts');
@@ -138,7 +138,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/viewJournals', [JournalController::class, 'getAvailableJournalsForSubmissionPage']);
+Route::get('/availableJournals', [articleSubmissionController::class, 'index']);
 
 require __DIR__.'/auth.php';
 
