@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\Admin\AdminDashboardController;
 
+use App\Http\Controllers\article\articleSubmissionController;
 use App\Http\Controllers\author\authorDashboardController;
 use App\Http\Controllers\journalAdmin\JournalController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
@@ -113,6 +114,7 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
     Route::get('/',[authorDashboardController::class, 'index'])->name('author');
     Route::get('/submitArticle',[authorDashboardController::class, 'submitArticle'])->name('submitArticle');
+    Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
 });
 
 
