@@ -85,3 +85,23 @@
     border-radius: .25rem;
     cursor: pointer;
 }
+
+.submit-button {
+    background-color: transparent;
+    border: 2px solid #666666; /* Add a border to the button */
+    color: #666666;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 0.3s;
+  }
+
+  .submit-button:hover {
+    background-color: green;
+    border-color: green; /* Change the border color to green on hover */
+    color: white;
+  }
