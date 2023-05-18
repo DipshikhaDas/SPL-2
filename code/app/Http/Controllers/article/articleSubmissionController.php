@@ -17,7 +17,8 @@ class articleSubmissionController extends Controller
             ->orderBy('deadline_date')
             ->get();
 
-        return view('layouts.guests.availableJournalsForArticleSubmission', compact('journals'));
+        $defaultCover = 'public/cover-photos/default.jpg';
+        return view('layouts.guests.availableJournalsForArticleSubmission', compact('journals', 'defaultCover'));
     }
 
     /**
