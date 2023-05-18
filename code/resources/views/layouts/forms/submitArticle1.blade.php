@@ -85,20 +85,20 @@
                     </div>
 
 
-                    <div class="form-group row">
-                        <label class="col-sm-2" for="file_with_author_info" style="font-weight: bold">Upload File (With
-                            Author Information):*</label>
-                        <div class="col-sm-8">
-                            <input type="file" name="file_with_author_info" class="form-control" required>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2" for="file_with_author_info" style="font-weight: bold">Upload File (With
+                        Author Information):*</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="file_with_author_info" class="form-control" required>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2" for="file_without_author_info" style="font-weight: bold">Upload File
-                            (Without Author Information):*</label>
-                        <div class="col-sm-8">
-                            <input type="file" name="file_without_author_info" class="form-control" required>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2" for="file_without_author_info" style="font-weight: bold">Upload File
+                        (Without Author Information):*</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="file_without_author_info" class="form-control" required>
                     </div>
+                </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4 text-right">
@@ -112,11 +112,11 @@
 
                 <div class="form-step">
 
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="max-width: 40px; min-width: 40px;">Sl no</th>
-                                <th>Labels</th>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="max-width: 40px; min-width: 40px;">Sl no</th>
+                            <th>Labels</th>
 
                                 <th>Action</th>
                             </tr>
@@ -201,71 +201,68 @@
                                 </td>
                                 <td>
 
-                                    <button onclick="moveUp(this)" class="btn btn-light text-dark" type="button"
-                                        title="Move Author Up" style="background: transparent">
-                                        <span class="material-symbols-outlined" style="font-size: 24px">
-                                            arrow_upward
-                                        </span>
-                                    </button> <br>
-                                    <button onclick="moveDown(this)" class="btn btn-light text-dark" type="button"
-                                        title="Move Author Down" style="background: transparent">
-                                        <span class="material-symbols-outlined" style="font-size: 24px">
-                                            arrow_downward
-                                        </span>
-                                    </button> <br>
-                                    <button onclick="removeAuthor(this)" class="btn btn-light text-dark"
-                                        type="button" title="Remove Author" style="background: transparent">
-                                        <span class="material-symbols-outlined" style="font-size: 24px">
-                                            person_remove
-                                        </span>
-                                    </button>
-                                </td>
+                                <button onclick="moveUp(this)" class="btn btn-light text-dark" type="button"
+                                    title="Move Author Up" style="background: transparent">
+                                    <span class="material-symbols-outlined" style="font-size: 24px">
+                                        arrow_upward
+                                    </span>
+                                </button> <br>
+                                <button onclick="moveDown(this)" class="btn btn-light text-dark" type="button"
+                                    title="Move Author Down" style="background: transparent">
+                                    <span class="material-symbols-outlined" style="font-size: 24px">
+                                        arrow_downward
+                                    </span>
+                                </button> <br>
+                                <button onclick="removeAuthor(this)" class="btn btn-light text-dark" type="button"
+                                    title="Remove Author" style="background: transparent">
+                                    <span class="material-symbols-outlined" style="font-size: 24px">
+                                        person_remove
+                                    </span>
+                                </button>
+                            </td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                        </tr>
+                    </tbody>
+                </table>
 
-                    <button onclick="addAuthor()" class="btn btn-light text-dark" type="button"
-                        title="Add Another Author">
-                        <span class="material-symbols-outlined" style="font-size: 24px">
-                            person_add
-                        </span> Add Author
-                    </button> <br>
+                <button onclick="addAuthor()" class="btn btn-light text-dark" type="button"
+                    title="Add Another Author">
+                    <span class="material-symbols-outlined" style="font-size: 24px">
+                        person_add
+                    </span> Add Author
+                </button> <br>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="title"
-                            style="font-weight: bold">Title*</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 100px" id="title" required></textarea>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="title" style="font-weight: bold">Title*</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" style="height: 100px" id="title" required></textarea>
                     </div>
+                </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="abstract"
-                            style="font-weight: bold">Abstract*</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" id="textEditor3" required></textarea>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="abstract" style="font-weight: bold">Abstract*</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" style="height: 200px" id="textEditor3" required></textarea>
                     </div>
+                </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="keywords"
-                            style="font-weight: bold">Keywords*</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 100px" id="keywords" required></textarea>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="keywords" style="font-weight: bold">Keywords*</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" style="height: 100px" id="keywords" required></textarea>
                     </div>
+                </div>
 
 
 
-                    <div class="form-group row">
-                        <div class="col-sm-4 text-right">
-                            <a href="#" class="btn btn-prev">Previous</a>
-                        </div>
-                        <div class="col-sm-5 text-right">
-                            <a href="#" class="btn btn-next">Next</a>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <a href="#" class="btn btn-prev">Previous</a>
                     </div>
+                    <div class="col-sm-5 text-right">
+                        <a href="#" class="btn btn-next">Next</a>
+                    </div>
+                </div>
 
                 </div>
 
@@ -287,12 +284,12 @@
                         <br>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2" for="links" style="font-weight: bold">GitHub & Other Links:</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
-                        </div>
+                <div class="form-group row">
+                    <label class="col-sm-2" for="links" style="font-weight: bold">GitHub & Other Links:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
                     </div>
+                </div>
 
 
 
@@ -307,15 +304,15 @@
                 </div>
 
                 <div class="form-step">
-                    <input type="checkbox" name="item" id="item" required><label for="item1"> Yes, I
-                        agree to have my data collected and stored according to the
-                        <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
-                    <div class="form-group row">
-                        <div class="col-sm-4 text-right">
-                            <a href="{{ route('submitArticle') }}" class="btn btn-cancel">Cancel</a>
-                        </div>
-                        <div class="col-sm-5 text-right">
-                        </div>
+                <input type="checkbox" name="item" id="item" required><label for="item1"> Yes, I
+                    agree to have my data collected and stored according to the
+                    <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <a href="#" class="btn btn-prev">Previous</a>
+                    </div>
+                    <div class="col-sm-5 text-right">
+                        <a href="{{ route('submitArticle') }}" class="btn btn-cancel">Cancel</a>
                     </div>
                     <button type="submit" class="btn btn-success" onclick="formSubmit()">Confirm Submission</button>
                 </div>
@@ -438,7 +435,7 @@
                                         <div class="col-sm-10">
                                             Yes <input type="radio" name="corresponding" id="${correspondingId}"
                                                 value="${authorCount}"> <br>
-                                            
+
                                         </div>
                                     </div>`;
 
@@ -568,3 +565,4 @@
         form.submit();
     }
 </script>
+
