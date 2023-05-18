@@ -11,7 +11,7 @@
         <!-- theme meta -->
         <meta name="theme-name" content="focus" />
         <title>Super Admin Dashboard</title>
-
+        
     </head>
 
     <body>
@@ -42,28 +42,25 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <x-dashboard.card-link
-                                    route="{{ route('createUserIndex') }}"
-                                    logo="person_add"
-                                    text="Create User"
-                                />
+                                <x-dashboard.card-link route="{{ route('createUserIndex') }}" logo="person_add"
+                                    text="Create User" />
                             </div>
                             <div class="col-lg-4">
-                                <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
-                                    logo="settings_accessibility"
-                                    text="Set Role"
-                                />
+                                <x-dashboard.card-link route="{{ route('rolesIndex') }}" logo="settings_accessibility"
+                                    text="Set Role" />
                             </div>
                             <div class="col-lg-3">
-                                <x-dashboard.card-link
-                                    route="{{ route('facultyPage') }}"
-                                    logo="add_box"
-                                    text="Create Faculty"
-                                />
+                                <x-dashboard.card-link route="{{ route('facultyPage') }}" logo="add_box"
+                                    text="Create Faculty" />
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <x-dashboard.card-link route="{{ route('assignJournalAdminPage') }}" logo="group_add"
+                                    text="Assign Journal Admin" />
+                            </div>
+                        </div>
                     </section>
                     <div class="footer">
                         <p>2023 © Admin Board </p>
@@ -74,7 +71,7 @@
 
     </body>
 
-    <script src="{{asset('frontend/scripts/cardFocus.js')}}"></script>
+    <script src="{{ asset('frontend/scripts/cardFocus.js') }}"></script>
 
-</html>
+    </html>
 @endsection

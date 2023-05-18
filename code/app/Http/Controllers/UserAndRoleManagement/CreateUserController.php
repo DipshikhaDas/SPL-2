@@ -47,10 +47,10 @@ class CreateUserController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make("password"),
-            ]);
+            ])->assignRole($validatedData['role']);
 
 
-            $user->assignRole($validatedData['role']);
+            // $user->assignRole($validatedData['role']);
 
             return redirect()->route('createUserIndex')->with('success', 'User created successfully.');
         }
