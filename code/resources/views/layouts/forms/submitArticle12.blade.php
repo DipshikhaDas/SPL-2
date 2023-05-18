@@ -1,11 +1,10 @@
-
 <div class="card">
     <div class="card-header">
         <h4 class="card-title text-center"><b>Submit Article</b></h4>
     </div>
     <div class="card-body">
         <div class="basic-form">
-            <form id="article-submission-form" class="p-4" action="{{ route('submitArticle.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="p-4" action="{{ route('submitArticle.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
 
 
@@ -18,6 +17,7 @@
                     <div class="progress-step" data-title="Confirmation"></div>
                 </div>
 
+                <div class="form-step form-step-active">
                     <div class="form-group row">
                         <label class="" for="name" style="font-weight: bold">Requirements*</label>
                         <div class="col-sm-12">
@@ -51,7 +51,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2" for="textEditor1" style="font-weight: bold">Comments for Editor:</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" id="textEditor1" value="-1"></textarea>
+                            <textarea class="form-control" style="height: 200px" id="textEditor1"></textarea>
                         </div>
                     </div>
 
@@ -63,7 +63,9 @@
                             <a href="#" class="btn btn-next">Next</a>
                         </div>
                     </div>
+                </div>
 
+                <div class="form-step">
                     <div class="form-group row">
                         <label class=""  style="font-weight: bold">Complete the Following
                             Steps</label>
@@ -106,7 +108,9 @@
                             <a href="#" class="btn btn-next">Next</a>
                         </div>
                     </div>
+                </div>
 
+                <div class="form-step">
 
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -137,7 +141,7 @@
                                             class="col-sm-2 col-form-label font-weight-bold">Middle Name:</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="middle_name_1" name="middle_name[]"
-                                                class="form-control" value="-1">
+                                                class="form-control">
                                         </div>
                                     </div>
                                     {{-- LAST NAME --}}
@@ -164,7 +168,7 @@
                                             style="font-weight: bold">URL</label>
                                         <div class="col-sm-10">
                                             <input type="url" id="url-input_1" name="url-input[]"
-                                                class="form-control" value="-1" >
+                                                class="form-control">
                                         </div>
                                     </div>
 
@@ -173,7 +177,7 @@
                                             style="font-weight: bold">Affliation</label>
                                         <div class="col-sm-10">
                                             <input type="text" id="affliation_1" name="affliation[]"
-                                                class="form-control" value="-1" >
+                                                class="form-control">
                                             <p class="col-label">(Your institution, e.g. "University of Dhaka")</p>
                                         </div>
                                     </div>
@@ -183,7 +187,7 @@
                                             style="font-weight: bold;">Bio
                                             Statement(e.g. Departement and Rank)</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" style="height: 200px" id="statement_1" name="statement[]" value="-1" ></textarea>
+                                            <textarea class="form-control" style="height: 200px" id="statement_1" name="statement[]"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -263,7 +267,9 @@
                         </div>
                     </div>
 
+                </div>
 
+                <div class="form-step">
                     <div class="form-group row">
                         <label class="col-sm-2" for="supplementary" style="font-weight: bold">Upload Supplementary
                             File</label>
@@ -298,7 +304,9 @@
                             <a href="#" class="btn btn-next">Next</a>
                         </div>
                     </div>
+                </div>
 
+                <div class="form-step">
                     <input type="checkbox" name="item" id="item" required><label for="item1"> Yes, I
                         agree to have my data collected and stored according to the
                         <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
@@ -309,6 +317,7 @@
                         <div class="col-sm-5 text-right">
                         </div>
                     </div>
+                </div>
                 <button type="submit" class="" onclick="temp()">Confirm Submission</button>
 
             </form>
@@ -556,8 +565,5 @@
 
     function temp(){
         console.log("here");
-
-        var form = document.getElementById('article-submission-form');
-        form.submit();
     }
 </script>

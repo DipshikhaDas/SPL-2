@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\article;
 
 use App\Http\Controllers\Controller;
+use App\Models\Journal;
 use Illuminate\Http\Request;
 
 class articleSubmissionController extends Controller
@@ -12,7 +13,11 @@ class articleSubmissionController extends Controller
      */
     public function index()
     {
-        //
+        $journals = Journal::where('deadline_date', '>=', now()->toDateString())
+            ->orderBy('deadline_date')
+            ->get();
+
+        return view('layouts.guests.availableJournalsForArticleSubmission', compact('journals'));
     }
 
     /**
@@ -29,6 +34,7 @@ class articleSubmissionController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request);
     }
 
     /**
