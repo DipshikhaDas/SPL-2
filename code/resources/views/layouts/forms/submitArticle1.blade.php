@@ -4,7 +4,8 @@
     </div>
     <div class="card-body">
         <div class="basic-form">
-            <form class="p-4" id="article_submission_form" action="{{ route('submitArticle.store')}}" method="POST" enctype="multipart/form-data">
+            <form class="p-4" id="article_submission_form" action="{{ route('submitArticle.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
 
 
@@ -18,24 +19,68 @@
                 </div>
 
                 <div class="form-step form-step-active">
+                    <div class="text-center">
+                        You are submitting an article to the following journal:
+                    </div>
+                    <div class="form-group row justify-content-center">
+                        <div class="col-lg-6">
+                            <table class="table table-bordered text-left">
+                                <tr>
+                                    <td>
+                                        Name:
+                                    </td>
+                                    <td>
+                                        {{ $journal->title }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Faculty:
+                                    </td>
+                                    <td>
+                                        {{ $journal->faculty->name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Volume no.:
+                                    </td>
+                                    <td>
+                                        {{ $journal->volume_no }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Issue no.:
+                                    </td>
+                                    <td>
+                                        {{ $journal->issue_no }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
-                        <label class="" for="name" style="font-weight: bold">Requirements*</label>
-                        <div class="col-sm-12">
+                        <div class="">
+                            <input type="hidden" name="journal_id" id="journal_id" value="{{$journal->id}}" required>
+                        </div>
+                        <label class="col-sm-2" for="name" style="font-weight: bold">Requirements*</label>
+                        <div class="col-sm-10 p-4 d-flex">
                             <ul>
-                                <li><input type="checkbox" name="item1" id="item1" required><label for="item1">
-                                        The submission has not been previously published, nor is it before another
-                                        journal for consideration (or an explanation has been provided in Comments to
-                                        the Editor).</label></li>
+                                <li><input type="checkbox" name="item1" id="item1" required>
+                                    <label for="item1"> The submission has not been previously published, nor is it
+                                        currently under consideration by another journal (or an explanation has been
+                                        provided in the
+                                        Comments to the Editor).
+                                    </label>
+                                </li>
                                 <li><input type="checkbox" name="item2" id="item2" required><label
                                         for="item2">The submission file is in
                                         OpenOffice, Microsoft Word, or RTF document file format.</label></li>
-                                <li><input type="checkbox" name="item3" id="item3" required><label
-                                        for="item3">Where available, URLs for the
-                                        references have been provided.</label></li>
                                 <li><input type="checkbox" name="item4" id="item4" required><label
                                         for="item4">The text is single-spaced; uses a 12-point font; employs italics,
-                                        rather
-                                        than underlining (except with URL addresses).</label></li>
+                                        rather than underlining (except with URL addresses).</label></li>
                                 <li><input type="checkbox" name="item5" id="item5" required><label
                                         for="item5">The text adheres to the stylistic and
                                         bibliographic requirements outlined in the Author Guidelines.</label></li>
@@ -57,7 +102,8 @@
 
                     <div class="form-group row">
                         <div class="col-sm-4 text-right">
-                            <a href="{{ route('submitArticle') }}" class="btn btn-cancel">Cancel</a>
+                            <a href="{{ route('submitArticle', ['journal_id' => $journal->id]) }}"
+                                class="btn btn-cancel">Cancel</a>
                         </div>
                         <div class="col-sm-5 text-right">
                             <a href="#" class="btn btn-next">Next</a>
@@ -67,7 +113,7 @@
 
                 <div class="form-step">
                     <div class="form-group row">
-                        <label class=""  style="font-weight: bold">Complete the Following
+                        <label class="" style="font-weight: bold">Complete the Following
                             Steps</label>
                         <div class="col-sm-12">
                             <ul>
@@ -85,20 +131,20 @@
                     </div>
 
 
-                <div class="form-group row">
-                    <label class="col-sm-2" for="file_with_author_info" style="font-weight: bold">Upload File (With
-                        Author Information):*</label>
-                    <div class="col-sm-8">
-                        <input type="file" name="file_with_author_info" class="form-control" required>
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="file_with_author_info" style="font-weight: bold">Upload File (With
+                            Author Information):*</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="file_with_author_info" class="form-control" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2" for="file_without_author_info" style="font-weight: bold">Upload File
-                        (Without Author Information):*</label>
-                    <div class="col-sm-8">
-                        <input type="file" name="file_without_author_info" class="form-control" required>
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="file_without_author_info" style="font-weight: bold">Upload File
+                            (Without Author Information):*</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="file_without_author_info" class="form-control" required>
+                        </div>
                     </div>
-                </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4 text-right">
@@ -112,11 +158,11 @@
 
                 <div class="form-step">
 
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="max-width: 40px; min-width: 40px;">Sl no</th>
-                            <th>Labels</th>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="max-width: 40px; min-width: 40px;">Sl no</th>
+                                <th>Labels</th>
 
                                 <th>Action</th>
                             </tr>
@@ -167,7 +213,7 @@
                                         <label for="url-input_1" class="col-sm-2 col-form-label"
                                             style="font-weight: bold">URL</label>
                                         <div class="col-sm-10">
-                                            <input type="url" id="url-input_1" name="url-input[]"
+                                            <input type="url" id="url-input_1" name="url_input[]"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -176,7 +222,7 @@
                                         <label class="col-sm-2 col-form-label" for="affiliation_1"
                                             style="font-weight: bold">Affliation</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="affliation_1" name="affliation[]"
+                                            <input type="text" id="affliation_1" name="affiliation[]"
                                                 class="form-control">
                                             <p class="col-label">(Your institution, e.g. "University of Dhaka")</p>
                                         </div>
@@ -201,68 +247,71 @@
                                 </td>
                                 <td>
 
-                                <button onclick="moveUp(this)" class="btn btn-light text-dark" type="button"
-                                    title="Move Author Up" style="background: transparent">
-                                    <span class="material-symbols-outlined" style="font-size: 24px">
-                                        arrow_upward
-                                    </span>
-                                </button> <br>
-                                <button onclick="moveDown(this)" class="btn btn-light text-dark" type="button"
-                                    title="Move Author Down" style="background: transparent">
-                                    <span class="material-symbols-outlined" style="font-size: 24px">
-                                        arrow_downward
-                                    </span>
-                                </button> <br>
-                                <button onclick="removeAuthor(this)" class="btn btn-light text-dark" type="button"
-                                    title="Remove Author" style="background: transparent">
-                                    <span class="material-symbols-outlined" style="font-size: 24px">
-                                        person_remove
-                                    </span>
-                                </button>
-                            </td>
+                                    <button onclick="moveUp(this)" class="btn btn-light text-dark" type="button"
+                                        title="Move Author Up" style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            arrow_upward
+                                        </span>
+                                    </button> <br>
+                                    <button onclick="moveDown(this)" class="btn btn-light text-dark" type="button"
+                                        title="Move Author Down" style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            arrow_downward
+                                        </span>
+                                    </button> <br>
+                                    <button onclick="removeAuthor(this)" class="btn btn-light text-dark"
+                                        type="button" title="Remove Author" style="background: transparent">
+                                        <span class="material-symbols-outlined" style="font-size: 24px">
+                                            person_remove
+                                        </span>
+                                    </button>
+                                </td>
 
-                        </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <button onclick="addAuthor()" class="btn btn-light text-dark" type="button"
-                    title="Add Another Author">
-                    <span class="material-symbols-outlined" style="font-size: 24px">
-                        person_add
-                    </span> Add Author
-                </button> <br>
+                    <button onclick="addAuthor()" class="btn btn-light text-dark" type="button"
+                        title="Add Another Author">
+                        <span class="material-symbols-outlined" style="font-size: 24px">
+                            person_add
+                        </span> Add Author
+                    </button> <br>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="title" style="font-weight: bold">Title*</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 100px" id="title" required></textarea>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="title"
+                            style="font-weight: bold">Title*</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" style="height: 100px" id="title" name="title" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="abstract" style="font-weight: bold">Abstract*</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 200px" id="textEditor3" required></textarea>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="abstract"
+                            style="font-weight: bold">Abstract*</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" style="height: 200px" name="abstract" id="textEditor3" required></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="keywords" style="font-weight: bold">Keywords*</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 100px" id="keywords" required></textarea>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="keywords"
+                            style="font-weight: bold">Keywords*</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" style="height: 100px" id="keywords" name="keywords" required></textarea>
+                        </div>
                     </div>
-                </div>
 
 
 
-                <div class="form-group row">
-                    <div class="col-sm-4 text-right">
-                        <a href="#" class="btn btn-prev">Previous</a>
+                    <div class="form-group row">
+                        <div class="col-sm-4 text-right">
+                            <a href="#" class="btn btn-prev">Previous</a>
+                        </div>
+                        <div class="col-sm-5 text-right">
+                            <a href="#" class="btn btn-next">Next</a>
+                        </div>
                     </div>
-                    <div class="col-sm-5 text-right">
-                        <a href="#" class="btn btn-next">Next</a>
-                    </div>
-                </div>
 
                 </div>
 
@@ -284,12 +333,13 @@
                         <br>
                     </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2" for="links" style="font-weight: bold">GitHub & Other Links:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="links" style="font-weight: bold">GitHub & Other
+                            Links:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
+                        </div>
                     </div>
-                </div>
 
 
 
@@ -304,18 +354,20 @@
                 </div>
 
                 <div class="form-step">
-                <input type="checkbox" name="item" id="item" required><label for="item1"> Yes, I
-                    agree to have my data collected and stored according to the
-                    <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
-                <div class="form-group row">
-                    <div class="col-sm-4 text-right">
-                        <a href="#" class="btn btn-prev">Previous</a>
+                    <input type="checkbox" name="item" id="item" required><label for="item1"> Yes, I
+                        agree to have my data collected and stored according to the
+                        <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
+                    <div class="form-group row">
+                        <div class="col-sm-4 text-right">
+                            <a href="#" class="btn btn-prev">Previous</a>
+                        </div>
+                        <div class="col-sm-5 text-right">
+                            <a href="{{ route('submitArticle', ['journal_id' => $journal->id]) }}"
+                                class="btn btn-cancel">Cancel</a>
+                        </div>
+                        <button type="submit" class="btn btn-success" onclick="formSubmit()">Confirm
+                            Submission</button>
                     </div>
-                    <div class="col-sm-5 text-right">
-                        <a href="{{ route('submitArticle') }}" class="btn btn-cancel">Cancel</a>
-                    </div>
-                    <button type="submit" class="btn btn-success" onclick="formSubmit()">Confirm Submission</button>
-                </div>
 
             </form>
         </div>
@@ -406,7 +458,7 @@
                                         <label for="${urlId}" class="col-sm-2 col-form-label"
                                             style="font-weight: bold">URL</label>
                                         <div class="col-sm-10">
-                                            <input type="url" id="${urlId}" name="url-input[]"
+                                            <input type="url" id="${urlId}" name="url_input[]"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -415,7 +467,7 @@
                                         <label class="col-sm-2 col-form-label" for="${affiliationId}"
                                             style="font-weight: bold">Affliation</label>
                                         <div class="col-sm-10">
-                                            <input type="text" id="${affiliationId}" name="affliation[]"
+                                            <input type="text" id="${affiliationId}" name="affiliation[]"
                                                 class="form-control">
                                             <p class="col-label">(Your institution, e.g. "University of Dhaka")</p>
                                         </div>
@@ -560,9 +612,8 @@
     }
 
 
-    function formSubmit(){
+    function formSubmit() {
         var form = document.getElementById("article_submission_form");
         form.submit();
     }
 </script>
-

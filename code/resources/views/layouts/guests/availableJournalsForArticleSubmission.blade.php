@@ -46,7 +46,7 @@
                                             <p class="card-text">Issue no: {{ $journal->issue_no }}</p>
                                             <p class="card-text">Deadline: {{ $journal->deadline_date }}</p>
 
-                                            <a href="" class="btn btn-secondary">Submit An Article </a>
+                                            <a href="{{ route('submitArticle', ['journal_id' => $journal->id])}}" class="btn btn-secondary">Submit An Article </a>
 
                                     </div>
                                 </div>
