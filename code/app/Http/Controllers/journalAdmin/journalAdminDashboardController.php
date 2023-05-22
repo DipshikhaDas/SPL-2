@@ -24,7 +24,7 @@ class journalAdminDashboardController extends Controller
     public function rolesIndex(){
         $roles = Role::all();
         $users = User::all();
-        
+
         // return view('layouts.dashboard.userRoles.index',compact('roles'));
         return view('layouts.dashboard.userRoles.index',[
             'roles' => $roles,
@@ -34,7 +34,7 @@ class journalAdminDashboardController extends Controller
 
     public function getUsersWithRoles(){
         $users = User::with('roles')->get();
-        
+
         return response()->json($users);
     }
 
@@ -43,6 +43,14 @@ class journalAdminDashboardController extends Controller
         $faculty = auth()->user()->faculties()->first();
 
         return view('layouts.dashboard.journalAdmin.createJournal', compact('faculty'));
+    }
+
+    public function submitPublishedArticle(){
+        return view('layouts.dashboard.journalAdmin.submitPublishedArticle');
+    }
+
+    public function submitPublishedJournal(){
+        return view('layouts.dashboard.journalAdmin.submitPublishedJournal');
     }
 
 }
