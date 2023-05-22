@@ -18,7 +18,7 @@ class FacultyController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        
+
         $validatedData = $request->validate([
             'name' => 'required'
         ]);
@@ -31,25 +31,25 @@ class FacultyController extends Controller
         return response()->json($faculty);
     }
     public function update(Request $request, $id)
-{
-    $validatedData = $request->validate([
-        'name' => 'required'
-    ]);
+    {
+        $validatedData = $request->validate([
+            'name' => 'required'
+        ]);
 
-    $faculty = Faculty::findOrFail($id);
+        $faculty = Faculty::findOrFail($id);
 
-    $faculty->name = $validatedData['name'];
-    $faculty->save();
+        $faculty->name = $validatedData['name'];
+        $faculty->save();
 
-    return response()->json($faculty);
-}
+        return response()->json($faculty);
+    }
 
-public function destroy($id)
-{
-    $faculty = Faculty::findOrFail($id);
+    public function destroy($id)
+    {
+        $faculty = Faculty::findOrFail($id);
 
-    $faculty->delete();
+        $faculty->delete();
 
-    return response()->json(['message' => 'Faculty deleted successfully']);
-}
+        return response()->json(['message' => 'Faculty deleted successfully']);
+    }
 }
