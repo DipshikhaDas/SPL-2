@@ -42,26 +42,31 @@ class articleSubmissionController extends Controller
         //
         // dd($request);
 
-        // $validatedData = $request->validate(
-        //     [
-        //         'comments_for_editor' => 'nullable|string',
-        //         'file_with_author_info' => 'required|file',
-        //         'file_without_author_info' => 'required|file',
-        //         'first_name.*' => 'required|string',
-        //         'middle_name.*' => 'required|string',
-        //         'last_name.*' => 'required|string',
-        //         'email.*' => 'required|email',
-        //         'url_input.*' => 'nullable|url',
-        //         'affiliation.*' => 'nullable|string',
-        //         'statement.*' => 'nullable|string',
-        //         'corresponding' => 'required',
-        //         'title' => 'required|string',
-        //         'abstract' => 'required|string',
-        //         'keywords' => 'required|string',
-        //         'supplementary_file.*' => 'nullable|file',
+        $validatedData = $request->validate(
+            [
+                'never_published_req' => 'required|string',
+                'file_format_req' => 'required|string',
+                'document_formatting_req' => 'required|string',
+                'stylistic_req' => 'required|string',
+                'figure_placement_req' => 'required|string',
+                'comments_for_editor' => 'nullable|string',
+                'file_with_author_info' => 'required|file',
+                'file_without_author_info' => 'required|file',
+                'first_name.*' => 'required|string',
+                'middle_name.*' => 'required|string',
+                'last_name.*' => 'required|string',
+                'email.*' => 'required|email',
+                'url_input.*' => 'nullable|url',
+                'affiliation.*' => 'nullable|string',
+                'statement.*' => 'nullable|string',
+                'corresponding' => 'required',
+                'title' => 'required|string',
+                'abstract' => 'required|string',
+                'keywords' => 'required|string',
+                'supplementary_file.*' => 'nullable|file',
 
-        //     ]
-        // );
+            ]
+        );
 
 
         //store the article

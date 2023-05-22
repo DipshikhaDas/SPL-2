@@ -68,24 +68,24 @@
                         <label class="col-sm-2" for="name" style="font-weight: bold">Requirements*</label>
                         <div class="col-sm-10 p-4 d-flex">
                             <ul>
-                                <li><input type="checkbox" name="item1" id="item1" required>
-                                    <label for="item1"> The submission has not been previously published, nor is it
+                                <li><input type="checkbox" name="never_published_req" id="never_published_req" required>
+                                    <label for="never_published_req"> The submission has not been previously published, nor is it
                                         currently under consideration by another journal (or an explanation has been
                                         provided in the
                                         Comments to the Editor).
                                     </label>
                                 </li>
-                                <li><input type="checkbox" name="item2" id="item2" required><label
-                                        for="item2">The submission file is in
+                                <li><input type="checkbox" name="file_format_req" id="file_format_req" required><label
+                                        for="file_format_req">The submission file is in
                                         OpenOffice, Microsoft Word, or RTF document file format.</label></li>
-                                <li><input type="checkbox" name="item4" id="item4" required><label
-                                        for="item4">The text is single-spaced; uses a 12-point font; employs italics,
+                                <li><input type="checkbox" name="document_formatting_req" id="document_formatting_req" required><label
+                                        for="document_formatting_req">The text is single-spaced; uses a 12-point font; employs italics,
                                         rather than underlining (except with URL addresses).</label></li>
-                                <li><input type="checkbox" name="item5" id="item5" required><label
-                                        for="item5">The text adheres to the stylistic and
+                                <li><input type="checkbox" name="stylistic_req" id="stylistic_req" required><label
+                                        for="stylistic_req">The text adheres to the stylistic and
                                         bibliographic requirements outlined in the Author Guidelines.</label></li>
-                                <li><input type="checkbox" name="item6" id="item6" required><label
-                                        for="item6">All illustrations, figures,
+                                <li><input type="checkbox" name="figure_placement_req" id="figure_placement_req" required><label
+                                        for="figure_placement_req">All illustrations, figures,
                                         and tables are placed within the text at the appropriate points, rather than at
                                         the end.</label></li>
                             </ul>
@@ -354,7 +354,7 @@
                 </div>
 
                 <div class="form-step">
-                    <input type="checkbox" name="item" id="item" required><label for="item1"> Yes, I
+                    <input type="checkbox" name="agreement_req" id="agreement_req" required><label for="agreement_req"> Yes, I
                         agree to have my data collected and stored according to the
                         <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
                     <div class="form-group row">
