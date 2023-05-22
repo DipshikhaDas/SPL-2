@@ -112,7 +112,7 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
     Route::get('/',[authorDashboardController::class, 'index'])->name('author');
-    Route::get('/submitArticle',[authorDashboardController::class, 'submitArticle'])->name('submitArticle');
+    Route::get('/submitArticle/{journal_id}',[articleSubmissionController::class, 'create'])->name('submitArticle');
     Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
 });
 
