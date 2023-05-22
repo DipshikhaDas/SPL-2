@@ -47,10 +47,10 @@
                      </div>
                  </div>
                  <div class="form-group row">
-                     <label class="col-sm-2 col-form-label" for="cover_photo">Cover Photo: (jpeg,jpg,png,gif - max filesize = 2048 KB)</label>
+                     <label class="col-sm-2 col-form-label" for="cover_photo">Cover Photo:</label>
                      <div class="col-sm-10">
-                         <input class="form-control-file" type="file" name="cover_photo" id="cover_photo"
-                             >
+                         <input class="form-control-file" type="file" name="cover_photo" id="cover_photo">
+                         <p>(jpeg,jpg,png,gif - max filesize = 2048 KB)</p>
                      </div>
                  </div>
 

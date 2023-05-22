@@ -15,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/ionicons/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/animate-css/animate.css') }}">
@@ -24,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/facncybox/jquery.fancybox.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/hover/hover-min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/css/style.css') }}">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         nav {
             display: flex;
@@ -68,10 +67,6 @@
 
     @include('layouts.footer')
 
-
-    <!-- Template Javascript Files
-            ================================================== -->
-    <!-- jquery -->
     <script src="{{ asset('frontend/website/plugins/jQurey/jquery.min.js') }}"></script>
     <!-- Form Validation -->
     <script src="{{ asset('frontend/website/plugins/form-validation/jquery.form.js') }}"></script>

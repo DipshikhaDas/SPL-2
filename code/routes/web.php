@@ -77,11 +77,6 @@ Route::get('/dashboard', function () {
     return view('layouts.dashboard.main');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard1', function () {
-    return view('layouts.dashboard.header');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')->group(function(){
     Route::get('/', [SuperAdminDashboardController::class, 'index'])->name('superAdminIndex');
@@ -95,7 +90,7 @@ Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')
     Route::delete('assignJournalAdmin/{journalAdmin}/{faculty}', [SuperAdminDashboardController::class, 'removeJournalAdminFromFaculty'])->name('removeJournalAdminFromFaculty');
 });
 
-// JOURNAL ADMIN ROLE 
+// JOURNAL ADMIN ROLE
 
 Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdmin')->group(function(){
     // Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
@@ -107,8 +102,12 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/users-with-roles',[journalAdminDashboardController::class, 'getUsersWithRoles'])->name('getUsers');
     Route::resource('/userRoles',UserRoleController::class);
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
-    Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage'); 
+    Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage');
     Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
+
+    Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+
+    Route::get('/submitPublishedJournal',[journalAdminDashboardController::class, 'submitPublishedJournal'])->name('submitPublishedJournal');
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
