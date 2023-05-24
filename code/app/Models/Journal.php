@@ -22,4 +22,9 @@ class Journal extends Model
     {
         return $this->belongsTo(Faculty::class);
     }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
