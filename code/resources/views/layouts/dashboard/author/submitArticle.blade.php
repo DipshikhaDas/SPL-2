@@ -10,8 +10,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Journal Admin Dashboard</title>
         <link rel="stylesheet" href="{{ asset('frontend/styles/submitArticleStyle.css')}}">
-        <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
-
+        {{-- <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script> --}}
+        <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 
     </head>
 
