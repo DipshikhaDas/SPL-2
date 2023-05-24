@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\journalAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -49,8 +50,14 @@ class journalAdminDashboardController extends Controller
         return view('layouts.dashboard.journalAdmin.submitPublishedArticle');
     }
 
-    public function submitPublishedJournal(){
-        return view('layouts.dashboard.journalAdmin.submitPublishedJournal');
+    public function submitPublishedJournal($id){
+        $journal = Journal::find($id);
+        return view('layouts.dashboard.journalAdmin.submitPublishedJournal', compact('journal'));
+    }
+
+    public function addPublishedJournalPage(){
+        $journals = Journal::all();
+        return view('layouts.dashboard.journalAdmin.addPublishedJournal', compact('journals'));
     }
 
 }

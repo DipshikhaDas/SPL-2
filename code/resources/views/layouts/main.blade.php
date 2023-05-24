@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/facncybox/jquery.fancybox.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/hover/hover-min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/styles/materialIconsFix.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         nav {

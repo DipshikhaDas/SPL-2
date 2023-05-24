@@ -16,6 +16,7 @@ class Journal extends Model
         'issue_no',
         'deadline_date',
         'cover_photo',
+        'faculty_id',
     ];
 
     public function faculty()
