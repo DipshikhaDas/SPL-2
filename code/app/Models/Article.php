@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Keyword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,5 +46,9 @@ class Article extends Model
     public function links()
     {
         return $this->hasMany(ArticleLink::class);
+    }
+    public function keywords()
+    {
+        return $this->belongsToMany(Keyword::class);
     }
 }
