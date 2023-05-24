@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // $this->call(RolesAndPermissionSeeder::class);
-        // $this->call(AdminSeeder::class);
+        $this->call(AdminSeeder::class);
 
-        $this->call(FacultySeeder::class);
+        // $this->call(FacultySeeder::class);
     }
 
 }

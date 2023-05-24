@@ -19,6 +19,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\journalAdmin\journalAdminDashboardController;
+use App\Http\Controllers\PublishedJournalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,10 @@ Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });
 
+Route::get('/journal', function(){
+    return view('layouts.guests.availableJournalDescription');
+});
+
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
 Route::get('/dashboard', function () {
@@ -107,7 +112,13 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
     Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
 
-    Route::get('/submitPublishedJournal',[journalAdminDashboardController::class, 'submitPublishedJournal'])->name('submitPublishedJournal');
+    Route::get('/addPublishedJournal',[journalAdminDashboardController::class, 'addPublishedJournalPage'])->name('addPublishedJournalTable');
+
+    Route::get('/addPublishedJournal/submit/{journal_id}',[journalAdminDashboardController::class, 'submitPublishedJournal'])->name('submitPublishedJournal');
+    Route::post('/storePublishedJournal', [PublishedJournalController::class, 'store'])->name('storePublishedJournal');
+
+
+
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
@@ -115,9 +126,6 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::get('/submitArticle/{journal_id}',[articleSubmissionController::class, 'create'])->name('submitArticle');
     Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
 });
-
-
-
 
 
 

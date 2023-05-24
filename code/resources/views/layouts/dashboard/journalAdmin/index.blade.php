@@ -115,7 +115,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <x-dashboard.card-link class="card-link"
-                                route="{{ route('submitPublishedJournal') }}"
+                                route="{{ route('addPublishedJournalTable') }}"
                                 logo="library_add"
                                 text="Add Published Journal" />
                             </div>

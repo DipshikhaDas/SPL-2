@@ -68,14 +68,16 @@
                             {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" onclick="event.preventDefault();
                                     this.closest('form').submit();" href="{{ route('logout') }}">
-                                        logout
+                                        Logout
                                     </a>
                                 </form>
-                                <a class="dropdown-item" href="{{ url('/dashboard') }}">Dashboard</a>
                             </div>
                         </li>
 
