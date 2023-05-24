@@ -4,8 +4,11 @@ namespace App\Http\Controllers\article;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\ArticleAdditionalFile;
 use App\Models\ArticleAuthor;
+use App\Models\ArticleSubmission;
 use App\Models\Journal;
+use App\Models\Keyword;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -42,31 +45,31 @@ class articleSubmissionController extends Controller
         //
         // dd($request);
 
-        $validatedData = $request->validate(
-            [
-                'never_published_req' => 'required|string',
-                'file_format_req' => 'required|string',
-                'document_formatting_req' => 'required|string',
-                'stylistic_req' => 'required|string',
-                'figure_placement_req' => 'required|string',
-                'comments_for_editor' => 'nullable|string',
-                'file_with_author_info' => 'required|file',
-                'file_without_author_info' => 'required|file',
-                'first_name.*' => 'required|string',
-                'middle_name.*' => 'required|string',
-                'last_name.*' => 'required|string',
-                'email.*' => 'required|email',
-                'url_input.*' => 'nullable|url',
-                'affiliation.*' => 'nullable|string',
-                'statement.*' => 'nullable|string',
-                'corresponding' => 'required',
-                'title' => 'required|string',
-                'abstract' => 'required|string',
-                'keywords' => 'required|string',
-                'supplementary_file.*' => 'nullable|file',
+        // $validatedData = $request->validate(
+        //     [
+        //         'never_published_req' => 'required|string',
+        //         'file_format_req' => 'required|string',
+        //         'document_formatting_req' => 'required|string',
+        //         'stylistic_req' => 'required|string',
+        //         'figure_placement_req' => 'required|string',
+        //         'comments_for_editor' => 'nullable|string',
+        //         'file_with_author_info' => 'required|file',
+        //         'file_without_author_info' => 'required|file',
+        //         'first_name.*' => 'required|string',
+        //         'middle_name.*' => 'required|string',
+        //         'last_name.*' => 'required|string',
+        //         'email.*' => 'required|email',
+        //         'url_input.*' => 'nullable|url',
+        //         'affiliation.*' => 'nullable|string',
+        //         'statement.*' => 'nullable|string',
+        //         'corresponding' => 'required',
+        //         'title' => 'required|string',
+        //         'abstract' => 'required|string',
+        //         'keywords' => 'required|string',
+        //         'supplementary_file.*' => 'nullable|file',
 
-            ]
-        );
+        //     ]
+        // );
 
 
         //store the article
@@ -77,7 +80,42 @@ class articleSubmissionController extends Controller
         $article->keywords = $request->input('keywords');
         $article->save();
 
-        // dd($article);
+        // Get the keywords from the form
+        $keywordsString = $request->input('keywords');
+
+        // Convert keywords to lowercase
+        $keywordsString = strtolower($keywordsString);
+
+        // Split the string into an array of keywords
+        $keywordsArray = explode(';', $keywordsString);
+
+        // Remove leading and trailing whitespace from each keyword
+        $keywordsArray = array_map('trim', $keywordsArray);
+
+        // Associate the keywords with the article
+        $uniqueKeywords = [];
+        foreach ($keywordsArray as $keyword) {
+            $keyword = strtolower($keyword);
+
+            // Skip empty keywords
+            if ($keyword === '') {
+                continue;
+            }
+
+            if (!in_array($keyword, $uniqueKeywords)) {
+                $existingKeyword = Keyword::where('name', $keyword)->first();
+
+                if ($existingKeyword) {
+                    $article->keywords()->attach($existingKeyword->id);
+                } else {
+                    $newKeyword = Keyword::create(['name' => $keyword]);
+                    $article->keywords()->attach($newKeyword->id);
+                }
+
+                $uniqueKeywords[] = $keyword;
+            }
+        }
+
 
         $authors = [];
         foreach ($request->input('first_name') as $index => $firstName) {
@@ -96,10 +134,10 @@ class articleSubmissionController extends Controller
             $authors[] = $author;
 
 
-            if ($index === ($request->input('corresponding') - 1)){
+            if ($index === ($request->input('corresponding') - 1)) {
                 $user = User::where('email', $author->email)->first();
 
-                if($user){
+                if ($user) {
                     $article->correspondingAuthors()->sync([$user->id]);
                 }
 
@@ -110,16 +148,51 @@ class articleSubmissionController extends Controller
         $supplementaryFiles = [];
         if ($request->hasFile('supplementary_file')) {
             foreach ($request->file('supplementary_file') as $file) {
-                $filename = $file->store('supplementary_files');
-                $supplementaryFiles[] = $filename;
+
+                $additionalFile = new ArticleAdditionalFile();
+                $additionalFile->article_id = $article->id;
+                $filename = time().$article->title."supplementary".$file->hashName();
+                $path = $file->storeAs('public/article_submissions/supplementary_files', $filename);
+                $additionalFile->additional_file_name = $path;
+                $additionalFile->save();
+
+                $supplementaryFiles[] = $additionalFile;
             }
         }
 
         $article->additionalFiles()->saveMany($supplementaryFiles);
+
+        $articleSubmission = new ArticleSubmission();
         
+        $articleSubmission->article_id = $article->id;
+
+        if ($request->hasFile('file_with_author_info')){
+            $file = $request->file('file_with_author_info');
+            $filename = time().$article->title."with_author_info".$file->hashName();
+            $path = $file->storeAs('public/article_submissions/with_author_info', $filename);
+            $articleSubmission->file_with_author_info = $path; 
+        }
+        if ($request->hasFile('file_without_author_info')){
+            $file = $request->file('file_without_author_info');
+            $filename = time().$article->title."without_author_info".$file->hashName();
+            $path = $file->storeAs('public/article_submissions/without_author_info', $filename);
+            $articleSubmission->file_without_author_info = $path; 
+        }
+
+        // dd($articleSubmission);
+
+        $articleSubmission->author_comments = $request->input('comments_for_editor');
+        $articleSubmission->save();
+        $article->submissions()->save($articleSubmission);
+
+            //      $cover_photo = $request->file('cover_photo');
+            // $filename = time() . '_' . $cover_photo->hashName();
+            // $path = $cover_photo->storeAs('public/cover-photos', $filename);
+            // $journal->cover_photo = $path;
+            // $journal->save();
         $article->save();
 
-        return redirect()->back(); 
+        return redirect()->back();
     }
 
     /**

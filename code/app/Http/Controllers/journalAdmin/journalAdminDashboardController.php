@@ -45,4 +45,22 @@ class journalAdminDashboardController extends Controller
         return view('layouts.dashboard.journalAdmin.createJournal', compact('faculty'));
     }
 
+    public function viewSubmittedArticles(){
+
+        //get all the articles of every journal of a faculty that have not been sent to the editor.
+        $articles = auth()->user()
+                    ->faculties()
+                    ->with('journals.articles')
+                    ->get()
+                    ->pluck('journals')
+                    ->flatten()
+                    ->pluck('articles')
+                    ->flatten()
+                    ->where('status', null);
+                //    dd($articles);
+
+        return view('layouts.dashboard.journalAdmin.viewSubmittedArticles', compact('articles'));
+
+    }
+
 }
