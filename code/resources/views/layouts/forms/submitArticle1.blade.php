@@ -96,7 +96,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2" for="textEditor1" style="font-weight: bold">Comments for Editor:</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" id="textEditor1" name="comments_for_editor"></textarea>
+                            <textarea class="ckeditor form-control" style="height: 200px" id="textEditor1" name="comments_for_editor"></textarea>
                         </div>
                     </div>
 
