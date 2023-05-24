@@ -25,7 +25,7 @@
             </td>
 
             <td>
-                <a href="google.com" target="_blank" class="badge badge-info">view</a>
+                <a href="{{ route('viewArticle', ['article' => $article])}}" target="_blank" class="badge badge-info">view</a>
             </td>
         </tr>
     @endforeach    
