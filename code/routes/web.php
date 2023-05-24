@@ -7,6 +7,8 @@ use App\Http\Controllers\author\authorDashboardController;
 use App\Http\Controllers\journalAdmin\JournalController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
+use App\Http\Controllers\MyArticlesController;
+use App\Http\Controllers\article\postArticleSubmissionController;
 use App\Http\Controllers\superAdmin\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
@@ -109,6 +111,9 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
     Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage');
     Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
+    Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+    Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
+
 
     Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
 
@@ -125,6 +130,7 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::get('/',[authorDashboardController::class, 'index'])->name('author');
     Route::get('/submitArticle/{journal_id}',[articleSubmissionController::class, 'create'])->name('submitArticle');
     Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
+    Route::get('/myArticles', [MyArticlesController::class, 'index']);
 });
 
 
