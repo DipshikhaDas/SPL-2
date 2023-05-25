@@ -27,8 +27,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="keywords" style="font-weight: bold">Keywords:</label>
                     <div class="col-sm-10">
-                        <textarea class=" form-control" style="height: 100px" name="keywords" required readonly>
-                        {{ $article->keywords }} </textarea>
+                        <textarea class="form-control" style="height: 100px" name="keywords" required readonly>{{ $article->keywords }} </textarea>
                     </div>
                 </div>
                 {{-- REFERENCE --}}

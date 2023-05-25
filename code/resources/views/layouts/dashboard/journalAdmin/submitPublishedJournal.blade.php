@@ -1,4 +1,4 @@
-    @extends('layouts.dashboard.index')
+@extends('layouts.dashboard.index')
 
 @section('body-section')
     <!DOCTYPE html>
