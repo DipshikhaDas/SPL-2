@@ -18,7 +18,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="abstract" style="font-weight: bold">Abstract:*</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 200px" name="abstract" required>{!! $article->abstract !!}
+                        <textarea class="ckeditor form-control" style="height: 200px" name="abstract" required readonly>{!! $article->abstract !!}
                         </textarea>
                     </div>
                 </div>
@@ -26,7 +26,15 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="keywords" style="font-weight: bold">Keywords:*</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" style="height: 100px" name="keywords" required>{{ $article->keywords()->pluck('name')->join(', ') }}
+                        <textarea class=" form-control" style="height: 100px" name="keywords" required>{{ $article->keywords()->pluck('name')->join(', ') }}
+                        </textarea>
+                    </div>
+                </div>
+                {{-- REFERENCE --}}
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="reference" style="font-weight: bold">Keywords:*</label>
+                    <div class="col-sm-10">
+                        <textarea class="ckeditor form-control" style="height: 100px" name="reference" required readonly>{!! $article->reference !!}
                         </textarea>
                     </div>
                 </div>
@@ -74,14 +82,29 @@
                             </tr>
                             <tr>
                                 <td class="">Bio Statement:</td>
-                                <td>{{ $author->bio_statement }}</td>
+                                <td>{!! $author->bio_statement !!}</td>
                             </tr>
                             <tr>
                                 <td>Corresponding Author:</td>
-                                <td></td>
+                                @if ($author->email === $article->correspondingAuthors()->first()->email)
+                                    <td> Yes </td>
+                                @else
+                                    <td> No </td>
+                                @endif
                             </tr>
                             <tr> </tr>
+
                         @endforeach
+                    </table>
+                </div>
+
+                <div class="form-group row">
+                    <h4>Submission Files</h4>
+                    <table class="table table-borered table-striped">
+                        <tr>
+                            <td>File With Author Info:</td>
+                            <td><a href="{{$article->file_with_author_info}}" target="_blank" download=""> download </a></td>
+                        </tr>
                     </table>
                 </div>
             </fieldset>
