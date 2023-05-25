@@ -1,3 +1,5 @@
+
+ {{-- sidebar --}}
  <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
      <div class="nano">
          <div class="nano-content">
@@ -37,6 +39,7 @@
      </div>
  </div>
 
+ {{-- header --}}
  <div class="header">
      <div class="container-fluid">
          <div class="row">

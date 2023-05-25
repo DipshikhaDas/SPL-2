@@ -25,7 +25,7 @@ class SomethingSeeder extends Seeder
             // 'remember_token' => Str::random(10),
         ]);
         $user->assignRole('journalAdmin', 'editor', 'author', 'reviewer', 'superAdmin');
-        
+
         $editor = User::create([
             'name' => 'Random Editor',
             'email' => 'editor@editor.com',
@@ -43,7 +43,7 @@ class SomethingSeeder extends Seeder
         // $faculty->journalAdmins()->saveMany($user->id);
         $user->faculties()->sync([$faculty->id]);
 
-        $imagePath = '/home/setu/test.jpeg';
+        $imagePath =    getenv('HOME').'/test.jpeg';
         $fileContents = file_get_contents($imagePath);
         $fileName = basename($imagePath);
 
@@ -58,7 +58,7 @@ class SomethingSeeder extends Seeder
             'author_guideline' => ' <ul>' .
             '<li> one </li>' .
             '<li> two </li>' .
-            '</ul>', 
+            '</ul>',
             'faculty_id' => $faculty->id,
             'editor_id' => $editor->id,
             'cover_photo' => 'public/' . Storage::disk('public')->putFileAs('cover-photos', $imagePath, $fileName),

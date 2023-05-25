@@ -41,16 +41,16 @@
                             <div class="col-lg-6 mx-auto">
                                 <div class="card">
                                     <div class="card-title text-center"><h4>My Info</h4></div>
-                                    <div class="card-body"> 
+                                    <div class="card-body">
                                         <table class="table table-hover">
                                             <tr>
                                                 <td>
-                                                    <b>User Name:</b>    
+                                                    <b>User Name:</b>
                                                 </td>
                                                 <td>
                                                     {{ auth()->user()->name}}
                                                 </td>
-                                            </tr>    
+                                            </tr>
                                             <tr>
                                                 <td>
                                                     <b>Email:</b>
@@ -65,7 +65,7 @@
                                             <td>
                                                 {{$faculty? $faculty->name : "No faculty"}}
                                             </td>
-                                        </table>     
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -98,20 +98,32 @@
                                 <x-dashboard.card-link route="{{ route('rolesIndex') }}" logo="QuickReply"
                                     text="Send Review Request" />
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-lg-3">
-                                <x-dashboard.card-link class="card-link" 
-                                route="{{ route('createJournalPage') }}" 
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('createJournalPage') }}"
                                 logo="library_add"
                                 text="Open a Journal" />
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-3">
-                                <x-dashboard.card-link class="card-link" 
-                                route="{{ route('viewSubmittedArticles') }}" 
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('viewCompletedArticles') }}"
+                                logo="library_add"
+                                text="Add Published Article" />
+                            </div>
+                            <div class="col-lg-3">
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('addPublishedJournalTable') }}"
+                                logo="library_add"
+                                text="Add Published Journal" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('viewSubmittedArticles') }}"
                                 logo="view_list"
                                 text="View Submitted Articles" />
                             </div>
