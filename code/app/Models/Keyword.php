@@ -17,4 +17,8 @@ class Keyword extends Model
         return $this->belongsToMany(Article::class);
     }
 
+    public function published_articles(){
+        return $this->belongsToMany(PublishedArticle::class);
+    }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\journalAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -24,7 +26,7 @@ class journalAdminDashboardController extends Controller
     public function rolesIndex(){
         $roles = Role::all();
         $users = User::all();
-        
+
         // return view('layouts.dashboard.userRoles.index',compact('roles'));
         return view('layouts.dashboard.userRoles.index',[
             'roles' => $roles,
@@ -34,7 +36,7 @@ class journalAdminDashboardController extends Controller
 
     public function getUsersWithRoles(){
         $users = User::with('roles')->get();
-        
+
         return response()->json($users);
     }
 
@@ -61,6 +63,20 @@ class journalAdminDashboardController extends Controller
 
         return view('layouts.dashboard.journalAdmin.viewSubmittedArticles', compact('articles'));
 
+    }
+
+    public function submitPublishedArticle(Article $article){
+        return view('layouts.dashboard.journalAdmin.submitPublishedArticle', compact('article'));
+    }
+
+    public function submitPublishedJournal($id){
+        $journal = Journal::find($id);
+        return view('layouts.dashboard.journalAdmin.submitPublishedJournal', compact('journal'));
+    }
+
+    public function addPublishedJournalPage(){
+        $journals = Journal::all();
+        return view('layouts.dashboard.journalAdmin.addPublishedJournal', compact('journals'));
     }
 
 }

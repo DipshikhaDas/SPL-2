@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\journalAdmin\ArticleController;
 use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\journalAdmin\journalAdminDashboardController;
+use App\Http\Controllers\PublishedJournalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,16 +75,23 @@ Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });
 
+Route::get('/journal', function(){
+    return view('layouts.guests.availableJournalDescription');
+});
+
+Route::get('/aims&scope', function(){
+    return view('layouts.guests.aims&scopeofAvailableJournal');
+});
+
+Route::get('/articleDescription', function(){
+    return view('layouts.guests.viewPublishedArticleDescription');
+});
+
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
 Route::get('/dashboard', function () {
     return view('layouts.dashboard.main');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/dashboard1', function () {
-    return view('layouts.dashboard.header');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 
 
 Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')->group(function(){
@@ -97,7 +106,7 @@ Route::middleware(['auth', 'verified', 'role:superAdmin'])->prefix('superAdmin')
     Route::delete('assignJournalAdmin/{journalAdmin}/{faculty}', [SuperAdminDashboardController::class, 'removeJournalAdminFromFaculty'])->name('removeJournalAdminFromFaculty');
 });
 
-// JOURNAL ADMIN ROLE 
+// JOURNAL ADMIN ROLE
 
 Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdmin')->group(function(){
     // Route::get('/',[JournalAdminDashboardController::class, 'journalAdmin'])->name('journalAdmin');
@@ -109,10 +118,21 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/users-with-roles',[journalAdminDashboardController::class, 'getUsersWithRoles'])->name('getUsers');
     Route::resource('/userRoles',UserRoleController::class);
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
-    Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage'); 
+    Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage');
     Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
     Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+    Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
+
     Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
+
+
+    Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+    Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
+
+    Route::get('/addPublishedJournal',[journalAdminDashboardController::class, 'addPublishedJournalPage'])->name('addPublishedJournalTable');
+
+    Route::get('/addPublishedJournal/submit/{journal_id}',[journalAdminDashboardController::class, 'submitPublishedJournal'])->name('submitPublishedJournal');
+    Route::post('/storePublishedJournal', [PublishedJournalController::class, 'store'])->name('storePublishedJournal');
 
 });
 
@@ -122,9 +142,6 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
     Route::get('/myArticles', [MyArticlesController::class, 'index']);
 });
-
-
-
 
 
 
