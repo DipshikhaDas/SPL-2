@@ -122,8 +122,8 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-3">
-                                <x-dashboard.card-link class="card-link" 
-                                route="{{ route('viewSubmittedArticles') }}" 
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('viewSubmittedArticles') }}"
                                 logo="view_list"
                                 text="View Submitted Articles" />
                             </div>
