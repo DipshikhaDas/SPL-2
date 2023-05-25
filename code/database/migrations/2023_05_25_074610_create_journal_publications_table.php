@@ -10,17 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('journal_publications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('journal_id');
-            $table->string('title');
-            $table->text('abstract');
-            $table->text('keywords');
-            $table->text('reference');
-            $table->string('file_with_author_info');
-            $table->string('file_without_author_info');
-            $table->text('author_comments')->nullable();
-            $table->string('status')->nullable();
+            $table->integer('volume_no');
+            $table->integer('issue_no');
+            $table->date('publication_date')->nullable();
             $table->timestamps();
 
 
@@ -28,7 +23,6 @@ return new class extends Migration {
                 ->references('id')
                 ->on('journals')
                 ->onDelete('cascade');
-
         });
     }
 
@@ -37,6 +31,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('journal_publications');
     }
 };

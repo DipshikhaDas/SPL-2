@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->integer('volume_no');
-            $table->integer('issue_no');
-            $table->datetime('deadline_date');
+            $table->text('aims_and_scope')->nullable();
+            $table->text('author_guideline')->nullable();
+            $table->unsignedBigInteger('editor_id')->nullable();
             $table->string('cover_photo')->nullable();
             $table->unsignedBigInteger('faculty_id');
             $table->timestamps();
@@ -25,6 +25,11 @@ return new class extends Migration
             $table->foreign('faculty_id')
                     ->references('id')
                     ->on('faculties')
+                    ->onDelete('cascade');
+
+            $table->foreign('editor_id')
+                    ->references('id')
+                    ->on('users')
                     ->onDelete('cascade');
         });
     }
