@@ -35,10 +35,11 @@ class ArticleController extends Controller
 
     public function storePublishedArticle(Request $request)
     {
+
         $validatedData = $request->validate(
             [
                 'first_name.*' => 'required|string',
-                'middle_name.*' => 'required|string',
+                'middle_name.*' => 'nullable|string',
                 'last_name.*' => 'required|string',
                 'email.*' => 'required|email',
                 'url.*' => 'nullable|url',
@@ -46,7 +47,7 @@ class ArticleController extends Controller
                 'abstract' => 'required|string',
                 'keywords' => 'required|string',
                 'reference' => 'required|string',
-                'cover_photo' => 'nullable|string',
+                'cover_photo' => 'nullable|file',
                 'article_file' => 'required|file',
                 'journal_id' => 'required|string',
                 'publication_date' => 'required|string',
@@ -121,7 +122,7 @@ class ArticleController extends Controller
         $authors = [];
         foreach ($request->input('first_name') as $index => $firstName) {
             $author = new PublishedArticleAuthor();
-            $author->article_id = $article->id;
+            $author->published_article_id = $article->id;
             $author->first_name = $firstName;
             $author->middle_name = $request->input('middle_name')[$index];
             $author->last_name = $request->input('last_name')[$index];
