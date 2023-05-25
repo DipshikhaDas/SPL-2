@@ -40,11 +40,11 @@
                 </a>
             </div>
 
-            <div style="float: left; width: 20%; background-color: #f2f2f2; height: 60px; padding-top: 1.6%; padding-left: 2.5%">
+            <div style="float: left; width: 20%; background-color: #f2f2f2; height: 60px; padding-top: 1.6%; padding-left: 1.4%">
                 <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline; font-weight: bold">
                     <span class="material-symbols-outlined">
                         auto_stories
-                    </span>Aims and Scope
+                    </span>Journal Description
                 </a>
             </div>
 
@@ -66,6 +66,7 @@
                 <div class="col-md-7">
                     <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
                         <div class="blog-content" style="margin-top: 4%">
+                            <h2>Aims&Scope</h2>
                             <p class="text-justify">Ultrices posuere cubilia curae curabitur sit amet tortor ut massa commodo. Vestibulum
                                 consectetur euismod
                                 malesuada tincidunt cum. Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
@@ -132,7 +133,7 @@
                         </div>
 
 
-                        <div class="categories widget shadow">
+                        <div class="categories widget shadow" style="margin-top: 3%">
                             <h3 class="widget-head">Latest Articles of this Journal</h3>
                             <ul>
                                 <li class="row" style="border-bottom: 1px solid #999; border-top: 1px solid #999">
@@ -215,7 +216,7 @@
                             </ul>
                         </div>
                         <div class="categories widget shadow">
-                            <h3 class="widget-head">Latest Articles</h3>
+                            <h3 class="widget-head">For Authors</h3>
                             <ul>
                                 <li>
                                     <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline">

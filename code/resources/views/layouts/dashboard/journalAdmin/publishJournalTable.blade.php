@@ -3,14 +3,6 @@
         <h4 class="card-title text-center"><b>Published Journal that has not been Uploaded</b></h4>
     </div>
     <div class="card-body p-4">
-        {{-- <div class="alert alert-info alert-dismissible fade show" role="alert">
-            This page shows users with the <b>Journal Admin</b> role. If you can't find a user, then it probably
-            means that the user does not have the 'Journal Admin' role enabled. You can set the role <a
-                href="{{ route('rolesIndex') }}" class="alert-link"><b>here.</b></a>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div> --}}
         <div class="container-fluid">
 
             <label for="search">

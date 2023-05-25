@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\GoogleRegistrationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\journalAdmin\ArticleController;
 use App\Http\Controllers\UserAndRoleManagement\CreateUserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\journalAdmin\journalAdminDashboardController;
@@ -78,6 +79,14 @@ Route::get('/journal', function(){
     return view('layouts.guests.availableJournalDescription');
 });
 
+Route::get('/aims&scope', function(){
+    return view('layouts.guests.aims&scopeofAvailableJournal');
+});
+
+Route::get('/articleDescription', function(){
+    return view('layouts.guests.viewPublishedArticleDescription');
+});
+
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
 Route::get('/dashboard', function () {
@@ -111,7 +120,9 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
     Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage');
     Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
-    Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+    // Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+    Route::get('/submittedArticles', [ArticleController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+
     Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
 
 
