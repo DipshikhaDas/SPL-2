@@ -1,49 +1,45 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title text-center"><b>View Submitted Articles</b></h4>
+        <h4 class="card-title text-center"><b>Published Journal that has not been Uploaded</b></h4>
     </div>
-
     <div class="card-body p-4">
-
-        <div class="table-responsive">
+        <div class="table table-responsive">
             <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th style="min-width: 100px">Sl no.</th>
-                        <th style="min-width: 150px">Journal Name</th>
-                        <th style="min-width: 150px">Title of Article</th>
-                        <th style="min-width: 150px">Author's Name</th>
-                        <th style="min-width: 150px">Action</th>
-                    </tr>
-                </thead>
+                <tr>
+                    <thead>
+                        <th>Sl no.</th>
+                        <th>Journal</th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Action</th>
+                    </thead>
+                </tr>
 
-                {{-- @foreach ($articles as $index => $article) --}}
                 <tbody>
-                    <tr>
-                        <td>
-                            Serial No
-                        </td>
-                        <td>
-                            Journal Name
-                        </td>
+                    @foreach ($articles as $index => $article)
+                        <tr>
+                            <td>
+                                {{ $index + 1 }}
+                            </td>
+                            <td>
+                                {{ $article->journal->title }}
+                            </td>
 
-                        <td>
-                            Article's Title
-                        </td>
+                            <td>
+                                {{ $article->title }}
+                            </td>
 
-                        <td>
-                            Author's Name
-                        </td>
+                            <td>
+                                {{ $article->authors->pluck('last_name')->join(', ') }}
+                            </td>
 
-                        <td>
-                            <a class="btn btn-primary" href="">
-                                <span class="material-symbols-outlined">preview</span>
-                                View
-                            </a>
-                        </td>
-                    </tr>
+                            <td>
+                                <a href="{{ route('submitPublishedArticle', ['article' => $article]) }}" target="_blank"
+                                    class="badge badge-info">Submit</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
-                {{-- @endforeach --}}
             </table>
         </div>
     </div>

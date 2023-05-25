@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\journalAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -64,8 +65,8 @@ class journalAdminDashboardController extends Controller
 
     }
 
-    public function submitPublishedArticle(){
-        return view('layouts.dashboard.journalAdmin.submitPublishedArticle');
+    public function submitPublishedArticle(Article $article){
+        return view('layouts.dashboard.journalAdmin.submitPublishedArticle', compact('article'));
     }
 
     public function submitPublishedJournal($id){
