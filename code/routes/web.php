@@ -120,20 +120,19 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
     Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage');
     Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
-    // Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
-    Route::get('/submittedArticles', [ArticleController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+    Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
+    Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
 
     Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
 
 
-    Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+    Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+    Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
 
     Route::get('/addPublishedJournal',[journalAdminDashboardController::class, 'addPublishedJournalPage'])->name('addPublishedJournalTable');
 
     Route::get('/addPublishedJournal/submit/{journal_id}',[journalAdminDashboardController::class, 'submitPublishedJournal'])->name('submitPublishedJournal');
     Route::post('/storePublishedJournal', [PublishedJournalController::class, 'store'])->name('storePublishedJournal');
-
-
 
 });
 
