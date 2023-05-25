@@ -28,9 +28,9 @@ class Article extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function submissions()
+    public function revisions()
     {
-        return $this->hasMany(ArticleSubmission::class);
+        return $this->hasMany(ArticleRevision::class);
     }
 
     public function authors()

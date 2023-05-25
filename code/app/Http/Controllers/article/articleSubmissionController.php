@@ -19,10 +19,11 @@ class articleSubmissionController extends Controller
      */
     public function index()
     {
-        $journals = Journal::where('deadline_date', '>=', now()->toDateString())
-            ->orderBy('deadline_date')
-            ->get();
+        // $journals = Journal::where('deadline_date', '>=', now()->toDateString())
+        //     ->orderBy('deadline_date')
+        //     ->get();
 
+        $journals = Journal::all();
         $defaultCover = 'public/cover-photos/default.jpg';
         return view('layouts.guests.availableJournalsForArticleSubmission', compact('journals', 'defaultCover'));
     }
@@ -66,6 +67,7 @@ class articleSubmissionController extends Controller
         //         'title' => 'required|string',
         //         'abstract' => 'required|string',
         //         'keywords' => 'required|string',
+        //         'reference' => 'required|string',
         //         'supplementary_file.*' => 'nullable|file',
 
         //     ]
@@ -73,11 +75,32 @@ class articleSubmissionController extends Controller
 
 
         //store the article
+
+        // dd($request);
+
         $article = new Article();
         $article->journal_id = $request->input('journal_id');
         $article->title = $request->input('title');
         $article->abstract = $request->input('abstract');
         $article->keywords = $request->input('keywords');
+        $article->reference = $request->input('reference');
+
+
+        if ($request->hasFile('file_with_author_info')) {
+            $file = $request->file('file_with_author_info');
+            $filename = time() . $article->title . "with_author_info" . $file->hashName();
+            $path = $file->storeAs('public/article_submissions/with_author_info', $filename);
+            $article->file_with_author_info = $path;
+        }
+        if ($request->hasFile('file_without_author_info')) {
+            $file = $request->file('file_without_author_info');
+            $filename = time() . $article->title . "without_author_info" . $file->hashName();
+            $path = $file->storeAs('public/article_submissions/without_author_info', $filename);
+            $article->file_without_author_info = $path;
+
+        }
+        $article->author_comments = $request->input('comments_for_editor');
+        
         $article->save();
 
         // Get the keywords from the form
@@ -151,7 +174,7 @@ class articleSubmissionController extends Controller
 
                 $additionalFile = new ArticleAdditionalFile();
                 $additionalFile->article_id = $article->id;
-                $filename = time().$article->title."supplementary".$file->hashName();
+                $filename = time() . $article->title . "supplementary" . $file->hashName();
                 $path = $file->storeAs('public/article_submissions/supplementary_files', $filename);
                 $additionalFile->additional_file_name = $path;
                 $additionalFile->save();
@@ -162,34 +185,12 @@ class articleSubmissionController extends Controller
 
         $article->additionalFiles()->saveMany($supplementaryFiles);
 
-        $articleSubmission = new ArticleSubmission();
-        
-        $articleSubmission->article_id = $article->id;
 
-        if ($request->hasFile('file_with_author_info')){
-            $file = $request->file('file_with_author_info');
-            $filename = time().$article->title."with_author_info".$file->hashName();
-            $path = $file->storeAs('public/article_submissions/with_author_info', $filename);
-            $articleSubmission->file_with_author_info = $path; 
-        }
-        if ($request->hasFile('file_without_author_info')){
-            $file = $request->file('file_without_author_info');
-            $filename = time().$article->title."without_author_info".$file->hashName();
-            $path = $file->storeAs('public/article_submissions/without_author_info', $filename);
-            $articleSubmission->file_without_author_info = $path; 
-        }
-
-        // dd($articleSubmission);
-
-        $articleSubmission->author_comments = $request->input('comments_for_editor');
-        $articleSubmission->save();
-        $article->submissions()->save($articleSubmission);
-
-            //      $cover_photo = $request->file('cover_photo');
-            // $filename = time() . '_' . $cover_photo->hashName();
-            // $path = $cover_photo->storeAs('public/cover-photos', $filename);
-            // $journal->cover_photo = $path;
-            // $journal->save();
+        //      $cover_photo = $request->file('cover_photo');
+        // $filename = time() . '_' . $cover_photo->hashName();
+        // $path = $cover_photo->storeAs('public/cover-photos', $filename);
+        // $journal->cover_photo = $path;
+        // $journal->save();
         $article->save();
 
         return redirect()->back();

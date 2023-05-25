@@ -14,6 +14,8 @@
                 text-align: left;
             }
         </style>
+        
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     </head>
 
     <body>

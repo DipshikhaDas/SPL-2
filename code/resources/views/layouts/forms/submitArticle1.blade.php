@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title text-center"><b>Submit Article</b></h4>
+        <h4 class="card-title text-center"><b>Submit Article In the {{$journal->title}} </b></h4>
     </div>
     <div class="card-body">
         <div class="basic-form">
@@ -41,7 +41,7 @@
                                         {{ $journal->faculty->name }}
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <td>
                                         Volume no.:
                                     </td>
@@ -56,20 +56,22 @@
                                     <td>
                                         {{ $journal->issue_no }}
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </table>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="">
-                            <input type="hidden" name="journal_id" id="journal_id" value="{{$journal->id}}" required>
+                            <input type="hidden" name="journal_id" id="journal_id" value="{{ $journal->id }}"
+                                required>
                         </div>
                         <label class="col-sm-2" for="name" style="font-weight: bold">Requirements*</label>
                         <div class="col-sm-10 p-4 d-flex">
                             <ul>
                                 <li><input type="checkbox" name="never_published_req" id="never_published_req" required>
-                                    <label for="never_published_req"> The submission has not been previously published, nor is it
+                                    <label for="never_published_req"> The submission has not been previously published,
+                                        nor is it
                                         currently under consideration by another journal (or an explanation has been
                                         provided in the
                                         Comments to the Editor).
@@ -78,14 +80,15 @@
                                 <li><input type="checkbox" name="file_format_req" id="file_format_req" required><label
                                         for="file_format_req">The submission file is in
                                         OpenOffice, Microsoft Word, or RTF document file format.</label></li>
-                                <li><input type="checkbox" name="document_formatting_req" id="document_formatting_req" required><label
-                                        for="document_formatting_req">The text is single-spaced; uses a 12-point font; employs italics,
+                                <li><input type="checkbox" name="document_formatting_req" id="document_formatting_req"
+                                        required><label for="document_formatting_req">The text is single-spaced; uses a
+                                        12-point font; employs italics,
                                         rather than underlining (except with URL addresses).</label></li>
                                 <li><input type="checkbox" name="stylistic_req" id="stylistic_req" required><label
                                         for="stylistic_req">The text adheres to the stylistic and
                                         bibliographic requirements outlined in the Author Guidelines.</label></li>
-                                <li><input type="checkbox" name="figure_placement_req" id="figure_placement_req" required><label
-                                        for="figure_placement_req">All illustrations, figures,
+                                <li><input type="checkbox" name="figure_placement_req" id="figure_placement_req"
+                                        required><label for="figure_placement_req">All illustrations, figures,
                                         and tables are placed within the text at the appropriate points, rather than at
                                         the end.</label></li>
                             </ul>
@@ -96,7 +99,8 @@
                     <div class="form-group row">
                         <label class="col-sm-2" for="textEditor1" style="font-weight: bold">Comments for Editor:</label>
                         <div class="col-sm-10">
-                            <textarea class="ckeditor form-control" style="height: 200px" id="textEditor1" name="comments_for_editor"></textarea>
+                            <textarea class="ckeditor form-control" style="height: 200px" id="textEditor1" name="comments_for_editor">
+                            </textarea>
                         </div>
                     </div>
 
@@ -116,7 +120,7 @@
                         <label class="" style="font-weight: bold">Complete the Following
                             Steps</label>
                         <div class="col-sm-12">
-                            <ul>
+                            <ol>
                                 <li>1. On this page, click Browse (or Choose File) which opens a Choose File window for
                                     locating the file on the hard drive of your computer.</li>
                                 <li>2. Locate the file you wish to submit and highlight it.</li>
@@ -126,7 +130,7 @@
                                     journal's web site and renames it following the journal's conventions.</li>
                                 <li>5. Once the submission is uploaded, click Save and Continue at the bottom of this
                                     page.</li>
-                            </ul>
+                            </ol>
                         </div>
                     </div>
 
@@ -233,7 +237,7 @@
                                             style="font-weight: bold;">Bio
                                             Statement(e.g. Departement and Rank)</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" style="height: 200px" id="statement_1" name="statement[]"></textarea>
+                                            <textarea class="ckeditor form-control" style="height: 200px" id="statement_1" name="statement[]"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -290,7 +294,7 @@
                         <label class="col-sm-2 col-form-label" for="abstract"
                             style="font-weight: bold">Abstract*</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" name="abstract" id="textEditor3" required></textarea>
+                            <textarea class="ckeditor form-control" style="height: 200px" name="abstract" id="textEditor3" required></textarea>
                         </div>
                     </div>
 
@@ -299,10 +303,18 @@
                             style="font-weight: bold">Keywords*</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" style="height: 100px" id="keywords" name="keywords" required></textarea>
+                            <p>Insert keywords with (;) as the delimeter. <i>For example: keyword1; key word 2; Keyword3; <i> </p>
                         </div>
                     </div>
 
 
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="reference"
+                            style="font-weight: bold">References*</label>
+                        <div class="col-sm-10">
+                            <textarea class="ckeditor form-control" style="height: 200px" name="reference" id="textEditor3" required></textarea>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4 text-right">
@@ -337,7 +349,7 @@
                         <label class="col-sm-2" for="links" style="font-weight: bold">GitHub & Other
                             Links:</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 200px" id="textEditor2"></textarea>
+                            <textarea class="ckeditor form-control" style="height: 200px" id="textEditor2"></textarea>
                         </div>
                     </div>
 
@@ -354,7 +366,8 @@
                 </div>
 
                 <div class="form-step">
-                    <input type="checkbox" name="agreement_req" id="agreement_req" required><label for="agreement_req"> Yes, I
+                    <input type="checkbox" name="agreement_req" id="agreement_req" required><label
+                        for="agreement_req"> Yes, I
                         agree to have my data collected and stored according to the
                         <a href="{{ url('/privacyPolicy') }}">Privacy Policy</a>.</label>
                     <div class="form-group row">
