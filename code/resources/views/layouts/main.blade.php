@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <!-- Basic Page Needs
         ================================================== -->
@@ -16,15 +17,16 @@
 
 
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/bootstrap/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/website/plugins/ionicons/ionicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/website/plugins/animate-css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/website/plugins/slider/slider.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/website/plugins/slick/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontend/website/plugins/ionicons/ionicons.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontend/website/plugins/animate-css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontend/website/plugins/slider/slider.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontend/website/plugins/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/facncybox/jquery.fancybox.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/plugins/hover/hover-min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/website/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/styles/materialIconsFix.css')}}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{{ asset('frontend/styles/materialIconsFix.css') }}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         nav {
@@ -46,9 +48,20 @@
             /* align-items: center; */
         }
 
+        /* ul {
+            display: list-item;
+            list-style-type: disc !important;
+
+        }
+
+        ol {
+            display: list-item;
+            list-style-type: decimal !important;
+        } */
+
         li {
-            list-style: none;
-            margin: 0 10px;
+            display: list-item;
+            list-style-type: disc;
         }
 
         a {
@@ -56,7 +69,7 @@
             color: #000;
         }
 
-        .global-page-header{
+        .global-page-header {
             margin-top: 50px;
         }
     </style>

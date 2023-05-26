@@ -2485,7 +2485,7 @@ ul.inbox-pagination li {
   padding: 2px 15px;
 }
 ul {
-  list-style-type: none;
+  /* list-style-type: none; */
   padding: 0px;
   margin: 0px;
 }
