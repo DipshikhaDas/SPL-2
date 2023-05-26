@@ -11,22 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('published_journals', function (Blueprint $table) {
+        Schema::create('journal_volumes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->unsignedBigInteger('journal_id');
             $table->integer('volume_no');
-            $table->integer('issue_no');
-            $table->string('isbn');
-            $table->string('cover_photo')->nullable();
-            $table->string('file')->nullable();
-            $table->unsignedBigInteger('faculty_id');
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
             $table->timestamps();
 
-            $table->foreign('faculty_id')
+
+            $table->foreign('journal_id')
                     ->references('id')
-                    ->on('faculties')
+                    ->on('journals')
                     ->onDelete('cascade');
+
         });
     }
 
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('published_journals');
+        Schema::dropIfExists('journal_volumes');
     }
 };
