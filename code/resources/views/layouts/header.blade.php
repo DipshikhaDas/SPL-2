@@ -4,7 +4,7 @@
         <nav class="d-flex">
             <ul class="left-elements">
                 <a href="{{ url('/') }}" style="max-width: 180px">
-                    <img class="bd-placeholder-img" style="height: 60px; width: 180px" src="duLogo2.png"
+                    <img class="bd-placeholder-img" style="height: 60px; width: 180px" src="{{asset('duLogo2.png')}}"
                     alt="">
                 </a>
             </ul>
