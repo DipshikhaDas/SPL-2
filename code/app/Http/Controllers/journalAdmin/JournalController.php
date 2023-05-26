@@ -4,6 +4,8 @@ namespace App\Http\Controllers\journalAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
+use App\Models\JournalVolume;
+use App\Models\JournalVolumeIssue;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -97,6 +99,30 @@ class JournalController extends Controller
         return view('layouts.dashboard.journalAdmin.newVolume', compact('journal'));
     }
 
+    public function storeVolume(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'vol_no' => 'required|integer',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'journal_id' => 'required|exists:journals,id',
+        ]);
+
+        // Create a new Volume instance
+        $volume = new JournalVolume();
+        $volume->volume_no = $validatedData['vol_no'];
+        $volume->start = Carbon::parse($validatedData['start_date']);
+        $volume->end = Carbon::parse($validatedData['end_date']);
+        $volume->journal_id = $validatedData['journal_id'];
+
+        // Save the volume to the database
+        $volume->save();
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Volume created successfully.');
+    }
+
     public function createJournalVolumeIssue($id)
     {
         $journal = Journal::findOrFail($id);
@@ -126,6 +152,30 @@ class JournalController extends Controller
 
         return view('layouts.guests.availableJournalDescription', compact('journal'));
     }
+    public function storeIssue(Request $request)
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'volume_id' => 'required|exists:journal_volumes,id',
+        'issue_no' => 'required|integer',
+        'publication_date' => 'required|date',
+    ]);
+
+    // Create a new Issue instance
+    $issue = new JournalVolumeIssue();
+    $issue->volume_id = $validatedData['volume_id'];
+    $issue->issue_no = $validatedData['issue_no'];
+    $issue->publication_date = $validatedData['publication_date'];
+
+    // Save the issue to the database
+    $issue->save();
+
+    // Redirect back with success message
+    return redirect()->back()->with('success', 'Issue created successfully.');
+}
+
+
+
     public function getAllJournals()
     {
         $faculty = auth()->user()->faculties()->first();
