@@ -39,7 +39,6 @@
         <div class="content-wrap">
             <div class="main">
                 <div class="container-fluid">
-                    {!! $journal->aims_and_scope !!}
                     <section id="main-content" class="center">
                         <div class="row">
                             <div class="col-lg-12 mx-auto">
