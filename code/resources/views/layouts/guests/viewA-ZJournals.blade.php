@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <h2>About this Journal</h2>
+                        <h2>Journals A - Z </h2>
                     </div>
                 </div>
             </div>
@@ -39,15 +39,22 @@
                     </div>
                 </div>
 
-                <div class="categories widget shadow">
-                    <h3 class="widget-head">For Authors</h3>
-                    <ul>
-                        <li style="border-bottom: 1px solid #d3d3d3; border-top: 1px solid #d3d3d3">
-                            <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline">
-                                Journal Name</a>
-                        </li>
-                    </ul>
-                </div>
+                @foreach ($alphabet as $letter)
+                    <div class="categories widget shadow">
+                        <h4> {{ $letter }} </h4>
+                        <ul>
+                            @foreach ($journals as $journal)
+                                @if (strtoupper($journal->title[0]) === strtoupper($letter))
+                                    <li style="border-bottom: 1px solid #d3d3d3; border-top: 1px solid #d3d3d3">
+                                        <a href="{{route('individualJournal',['id'=>$journal->id])}}" style="color:#0099ff; font-size:18px; text-decoration: underline">
+                                            {{ $journal->title }}
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
             </div>
         </div>
 
