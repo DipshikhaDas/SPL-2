@@ -140,6 +140,9 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/addPublishedJournal/submit/{journal_id}',[journalAdminDashboardController::class, 'submitPublishedJournal'])->name('submitPublishedJournal');
     Route::post('/storePublishedJournal', [PublishedJournalController::class, 'store'])->name('storePublishedJournal');
 
+    Route::get('/journalVolume', [JournalController::class, 'getJournalsForView'])->name('createJournalVolumeView');
+    Route::get('/journalVolume/create/{id}', [JournalController::class, 'createJournalVolume'])->name('createJournalVolumeForm');
+    Route::get('/journalVolume/issue/create/{id}', [JournalController::class, 'createJournalVolumeIssue'])->name('createJournalVolumeIssueForm');
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){

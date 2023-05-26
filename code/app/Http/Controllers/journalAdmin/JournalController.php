@@ -85,6 +85,33 @@ class JournalController extends Controller
 
     }
 
+    public function createJournalVolume($id)
+    {
+        $journal = Journal::findOrFail($id);
+
+        $faculty = auth()->user()->faculties()->first();
+        if (auth()->user()->faculties()->first()->id != $journal->faculty_id) {
+            abort(403, "You are not authorized to edit this Journal");
+        }
+
+        return view('layouts.dashboard.journalAdmin.newVolume', compact('journal'));
+    }
+
+    public function createJournalVolumeIssue($id)
+    {
+        $journal = Journal::findOrFail($id);
+
+        $faculty = auth()->user()->faculties()->first();
+        if (auth()->user()->faculties()->first()->id != $journal->faculty_id) {
+            abort(403, "You are not authorized to edit this Journal");
+        }
+
+        $volumes = $journal->volumes()->get();
+
+        return view('layouts.dashboard.journalAdmin.newIssue', compact('journal', 'volumes'));
+
+    }
+
     public function getAllJournals()
     {
         $faculty = auth()->user()->faculties()->first();
@@ -95,6 +122,19 @@ class JournalController extends Controller
         // dd($journals);
 
         return view('layouts.dashboard.journalAdmin.allJournalsOfFaculty', compact('faculty', 'journals'));
+    }
+
+    public function getJournalsForView()
+    {
+        $faculty = auth()->user()->faculties()->first();
+
+
+        $journals = $faculty->journals()->get();
+
+        // dd($journals);
+
+        return view('layouts.dashboard.journalAdmin.journalVolumeView', compact('faculty', 'journals'));
+
     }
 
     public function edit($id)
