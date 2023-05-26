@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class JournalVolumeIssue extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'volume_id',
+        'issue_no',
         'publication_date',
     ];
 
