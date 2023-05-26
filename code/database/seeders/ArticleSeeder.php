@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ArticleStatus;
 use App\Models\Article;
 use App\Models\ArticleAdditionalFile;
 use App\Models\ArticleAuthor;
@@ -38,6 +39,7 @@ class ArticleSeeder extends Seeder
         $keywordsArray = array_map('trim', $keywordsArray);
         
         $article->keywords = $keywordsString;
+        $article->status = ArticleStatus::MANUSCRIPT_SUBMITTED;
         
         $article->save();
         $uniqueKeywords = [];

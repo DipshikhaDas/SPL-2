@@ -51,4 +51,9 @@ class Article extends Model
     {
         return $this->belongsToMany(Keyword::class);
     }
+
+    public function editors()
+    {
+        return $this->belongsToMany(User::class, 'article_editor','article_id');
+    }
 }

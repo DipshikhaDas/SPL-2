@@ -109,5 +109,14 @@
                 </div>
             </fieldset>
         </form>
+
+        <form action="{{route('sendArticleToEditor')}}" method="POST">
+            @csrf
+            <input type="hidden" name="article_id" value="{{$article->id}}">
+            <input type="hidden" name="journal_id" value="{{$article->journal_id}}">
+            <button class="btn btn-primary">
+                Send Article To Editor
+            </button>
+        </form>
     </div>
 </div>

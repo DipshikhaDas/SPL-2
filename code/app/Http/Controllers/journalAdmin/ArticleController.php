@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\journalAdmin;
 
+use App\Enums\ArticleStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Journal;
 use App\Models\Keyword;
 use App\Models\PublishedArticle;
 use App\Models\PublishedArticleAuthor;
@@ -136,6 +139,36 @@ class ArticleController extends Controller
         }
 
         $article->authors()->saveMany($authors);
+
+    }
+
+    public function sendArticleToEditor(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+                'article_id' => 'required|exists:articles,id',
+                'journal_id' => 'required|exists:journals,id',
+            ]
+        );
+
+        $articleId = $validatedData['article_id'];
+        $journalId = $validatedData['journal_id'];
+
+        $article = Article::findOrFail($articleId);
+        $journal = Journal::findOrFail($journalId);
+
+        
+        $editor = $journal->editor()->first();
+        
+        // dd($editor, $article);
+        
+        if (!$editor->editedArticles()->where('article_id', $articleId)->exists()) {
+            $editor->editedArticles()->attach($articleId);
+            $article->status = ArticleStatus::WITH_EDITOR;
+            $article->save();
+        }
+
+        return redirect()->back();
 
     }
 }

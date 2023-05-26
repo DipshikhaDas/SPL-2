@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\article;
 
+use App\Enums\ArticleStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleAdditionalFile;
@@ -98,7 +99,7 @@ class articleSubmissionController extends Controller
 
         }
         $article->author_comments = $request->input('comments_for_editor');
-        
+        $article->status = ArticleStatus::MANUSCRIPT_SUBMITTED;
         $article->save();
 
         // Get the keywords from the form
