@@ -36,21 +36,21 @@ class SendEmailNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $emailData = $this->emailData;
-        $loginUrl = $emailData['loginUrl'];
-        $email = $emailData['email'];
-        $password = $emailData['password'];
-        $roles = $emailData['roles'];
+        // $emailData = $this->emailData;
+        // $loginUrl = $emailData['loginUrl'];
+        // $email = $emailData['email'];
+        // $password = $emailData['password'];
+        // $roles = $emailData['roles'];
 
-        return (new MailMessage)
-                    ->subject('Your new account has been created')
-                    ->greeting('Hello!')
-                    ->line('Your new account has been created. Here are your login credentials:')
-                    ->line('Email: '.$email)
-                    ->line('Password: '.$password)
-                    ->line('Assigned Roles: ' .implode(', ',$roles ))
-                    ->action('Login', $loginUrl)
-                    ->line('Please change your password after logging in for the first time.');
+        // return (new MailMessage)
+        //             ->subject('Your new account has been created')
+        //             ->greeting('Hello!')
+        //             ->line('Your new account has been created. Here are your login credentials:')
+        //             ->line('Email: '.$email)
+        //             ->line('Password: '.$password)
+        //             ->line('Assigned Roles: ' .implode(', ',$roles ))
+        //             ->action('Login', $loginUrl)
+        //             ->line('Please change your password after logging in for the first time.');
 
     }
 
