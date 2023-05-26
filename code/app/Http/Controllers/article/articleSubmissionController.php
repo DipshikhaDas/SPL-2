@@ -19,11 +19,9 @@ class articleSubmissionController extends Controller
      */
     public function index()
     {
-        // $journals = Journal::where('deadline_date', '>=', now()->toDateString())
-        //     ->orderBy('deadline_date')
-        //     ->get();
+     
 
-        $journals = Journal::all();
+        $journals = Journal::where('accepting_articles', true)->get();
         $defaultCover = 'public/cover-photos/default.jpg';
         return view('layouts.guests.availableJournalsForArticleSubmission', compact('journals', 'defaultCover'));
     }
@@ -186,11 +184,6 @@ class articleSubmissionController extends Controller
         $article->additionalFiles()->saveMany($supplementaryFiles);
 
 
-        //      $cover_photo = $request->file('cover_photo');
-        // $filename = time() . '_' . $cover_photo->hashName();
-        // $path = $cover_photo->storeAs('public/cover-photos', $filename);
-        // $journal->cover_photo = $path;
-        // $journal->save();
         $article->save();
 
         return redirect()->back();

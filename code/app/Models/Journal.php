@@ -12,11 +12,18 @@ class Journal extends Model
     protected $fillable = [
         'title',
         'description',
-        'volume_no',
-        'issue_no',
+        'aims_and_scope',
+        'author_guideline',
+        'editorial_board',
+        'editor_id',
         'deadline_date',
         'cover_photo',
         'faculty_id',
+        'accepting_articles',
+    ];
+
+    protected $casts = [
+        'accepting_articles' => 'boolean',
     ];
 
     public function faculty()
@@ -27,5 +34,9 @@ class Journal extends Model
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function editor(){
+        return $this->belongsTo(User::class, 'editor_id');
     }
 }

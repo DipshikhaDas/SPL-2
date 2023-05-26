@@ -128,6 +128,14 @@
                                 text="View Submitted Articles" />
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('getAllJournals') }}"
+                                logo="view_list"
+                                text="View All Journals" />
+                            </div>
+                        </div>
 
                     </section>
 

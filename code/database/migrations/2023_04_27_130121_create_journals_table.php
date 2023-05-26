@@ -17,9 +17,11 @@ return new class extends Migration
             $table->text('description');
             $table->text('aims_and_scope')->nullable();
             $table->text('author_guideline')->nullable();
+            $table->text('editorial_board')->nullable();
             $table->unsignedBigInteger('editor_id')->nullable();
             $table->string('cover_photo')->nullable();
-            $table->unsignedBigInteger('faculty_id');
+            $table->unsignedBigInteger('faculty_id')->nullable();
+            $table->boolean('accepting_articles')->default(true);
             $table->timestamps();
 
             $table->foreign('faculty_id')
