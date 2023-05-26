@@ -88,6 +88,10 @@ Route::get('/articleDescription', function(){
     return view('layouts.guests.viewPublishedArticleDescription');
 });
 
+Route::get('/a-zJournals', function(){
+    return view('layouts.guests.viewA-ZJournals');
+});
+
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
 Route::get('/dashboard', function () {

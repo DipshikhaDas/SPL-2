@@ -215,7 +215,7 @@
                             </ul>
                         </div>
                         <div class="categories widget shadow">
-                            <h3 class="widget-head">Latest Articles</h3>
+                            <h3 class="widget-head">For Authors</h3>
                             <ul>
                                 <li>
                                     <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline">
