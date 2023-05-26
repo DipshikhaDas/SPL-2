@@ -76,9 +76,7 @@ Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });
 
-Route::get('/journal', function(){
-    return view('layouts.guests.availableJournalDescription');
-});
+Route::get('/journal/{id}', [JournalController::class, 'individualJournal'])->name('individualJournal');
 
 Route::get('/aims&scope', function(){
     return view('layouts.guests.aims&scopeofAvailableJournal');
@@ -88,9 +86,7 @@ Route::get('/articleDescription', function(){
     return view('layouts.guests.viewPublishedArticleDescription');
 });
 
-Route::get('/a-zJournals', function(){
-    return view('layouts.guests.viewA-ZJournals');
-});
+Route::get('/atozJournals',[JournalController::class, 'atozjournals'])->name('atozjournals');
 
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
