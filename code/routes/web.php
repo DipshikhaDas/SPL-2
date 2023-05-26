@@ -12,6 +12,7 @@ use App\Http\Controllers\article\postArticleSubmissionController;
 use App\Http\Controllers\superAdmin\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserAndRoleManagement\UserRoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -120,6 +121,11 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::put('userRole/{id}', [UserRoleController::class, 'update']);
     Route::get('/createJournal', [JournalAdminDashboardController::class, 'getCreateJournalPage'])->name('createJournalPage');
     Route::post('/storeJournal', [JournalController::class, 'store'])->name('storeJournal');
+    Route::get('/allJournals', [JournalController::class, 'getAllJournals'])->name('getAllJournals');
+    Route::get('/getEditors', [JournalController::class, 'getEditors'])->name('getEditors');
+    Route::get('/edit/{journal}',[JournalController::class, 'edit'])->name('journalEdit');
+    Route::put('/edit/{id}',[JournalController::class, 'update'])->name('journalUpdate');
+
     Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
     Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
 
@@ -144,7 +150,9 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
 });
 
 
-
+Route::middleware(['auth','verified'])->group( function () {
+    Route::get('/test',[TestController::class,'test'])->name('test');
+});
 
 Route::get('/reviewer', function () {
     return view('layouts.dashboard.reviewer');

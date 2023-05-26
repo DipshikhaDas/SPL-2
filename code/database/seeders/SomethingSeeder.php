@@ -59,6 +59,12 @@ class SomethingSeeder extends Seeder
             '<li> one </li>' .
             '<li> two </li>' .
             '</ul>',
+
+            'editorial_board' => ' <ul>' .
+            '<li> one </li>' .
+            '<li> two </li>' .
+            '</ul>',
+             
             'faculty_id' => $faculty->id,
             'editor_id' => $editor->id,
             'cover_photo' => 'public/' . Storage::disk('public')->putFileAs('cover-photos', $imagePath, $fileName),
