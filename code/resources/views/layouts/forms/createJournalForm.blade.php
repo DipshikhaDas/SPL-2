@@ -1,7 +1,4 @@
 <div class="card">
-    <!-- Include jQuery library -->
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-
     <div class="card-header">
         <h4 class="card-title text-center">Create a Journal For the {{ $faculty->name }}</h4>
     </div>

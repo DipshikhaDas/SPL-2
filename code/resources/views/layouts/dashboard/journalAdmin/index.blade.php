@@ -137,6 +137,15 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <x-dashboard.card-link class="card-link"
+                                route="{{ route('createJournalVolumeView') }}"
+                                logo="view_list"
+                                text="Create A Journal Volume" />
+                            </div>
+                        </div>
+
                     </section>
 
                     <div class="footer">
