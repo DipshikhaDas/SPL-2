@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Article::class);
     }
+
+    public function editJournal()
+    {
+        return $this->hasMany(Journal::class, 'editor_id');
+    }
 }
