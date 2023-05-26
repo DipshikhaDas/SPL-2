@@ -112,6 +112,20 @@ class JournalController extends Controller
 
     }
 
+    public function atozjournals()
+    {
+        $journals = Journal::all();
+        $alphabet = range('A', 'Z');
+
+        return view('layouts.guests.viewA-ZJournals', compact('journals', 'alphabet'));
+    }
+
+    public function individualJournal($id)
+    {
+        $journal = Journal::findOrFail($id);
+
+        return view('layouts.guests.availableJournalDescription', compact('journal'));
+    }
     public function getAllJournals()
     {
         $faculty = auth()->user()->faculties()->first();

@@ -18,21 +18,22 @@
 
 
     <!--=============================================
-    =            Blog With Right Sidebar            =
-      ==============================================-->
+        =            Blog With Right Sidebar            =
+          ==============================================-->
     <section id="blog-full-width">
         <div class="container">
             <div style="border: 2px solid #999; padding: 10px;">
                 <h1 class="blogpost-title">
-                    <a href="post-fullwidth.html">Title</a>
+                    {{ $journal->title }}
                 </h1>
                 <div class="blog-meta">
-                    <p style="margin: 0;">Faculty Name</p>
+                    <p style="margin: 0;">{{ $journal->faculty->name }}</p>
                 </div>
             </div>
 
 
-            <div style="float: left; width: 20%; background-color: #e6f2ff; height: 60px; padding-top: 1.6%; padding-left: 3%">
+            <div
+                style="float: left; width: 20%; background-color: #e6f2ff; height: 60px; padding-top: 1.6%; padding-left: 3%">
                 <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline; font-weight: bold;">
                     <span class="material-symbols-outlined">
                         group
@@ -40,7 +41,8 @@
                 </a>
             </div>
 
-            <div style="float: left; width: 20%; background-color: #f2f2f2; height: 60px; padding-top: 1.6%; padding-left: 2.5%">
+            <div
+                style="float: left; width: 20%; background-color: #f2f2f2; height: 60px; padding-top: 1.6%; padding-left: 2.5%">
                 <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline; font-weight: bold">
                     <span class="material-symbols-outlined">
                         auto_stories
@@ -48,13 +50,16 @@
                 </a>
             </div>
 
-            <div style="float: left; width: 20%; background-color: #e6f2ff; height: 60px; padding-top: 1.6%; padding-left: 3%">
+            <div
+                style="float: left; width: 20%; background-color: #e6f2ff; height: 60px; padding-top: 1.6%; padding-left: 3%">
             </div>
 
-            <div style="float: left; width: 20%; background-color: #f2f2f2; height: 60px; padding-top: 1.6%; padding-left: 3%">
+            <div
+                style="float: left; width: 20%; background-color: #f2f2f2; height: 60px; padding-top: 1.6%; padding-left: 3%">
             </div>
 
-            <div style="float: left; width: 20%; background-color: #e6f2ff; height: 60px; padding-top: 1.6%; padding-left: 3%">
+            <div
+                style="float: left; width: 20%; background-color: #e6f2ff; height: 60px; padding-top: 1.6%; padding-left: 3%">
             </div>
 
 
@@ -66,68 +71,31 @@
                 <div class="col-md-7">
                     <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
                         <div class="blog-content" style="margin-top: 4%">
-                            <p class="text-justify">Ultrices posuere cubilia curae curabitur sit amet tortor ut massa commodo. Vestibulum
-                                consectetur euismod
-                                malesuada tincidunt cum. Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur
-                                dictum. Pellentesques sed volutpat ante, cursus port. Praesent mi magna, penatibus et
-                                magniseget dis
-                                parturient montes sed quia consequuntur magni dolores eos qui ratione.
-
-                                Ultrices posuere cubilia curae curabitur sit amet tortor ut massa commodo. Vestibulum
-                                consectetur euismod
-                                malesuada tincidunt cum. Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur
-                                dictum. Pellentesques sed volutpat ante, cursus port. Praesent mi magna, penatibus et
-                                magniseget dis
-                                parturient montes sed quia consequuntur magni dolores eos qui ratione.
-                                Ultrices posuere cubilia curae curabitur sit amet tortor ut massa commodo. Vestibulum
-                                consectetur euismod
-                                malesuada tincidunt cum. Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur
-                                dictum. Pellentesques sed volutpat ante, cursus port. Praesent mi magna, penatibus et
-                                magniseget dis
-                                parturient montes sed quia consequuntur magni dolores eos qui ratione.
-                                Ultrices posuere cubilia curae curabitur sit amet tortor ut massa commodo. Vestibulum
-                                consectetur euismod
-                                malesuada tincidunt cum. Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur
-                                dictum. Pellentesques sed volutpat ante, cursus port. Praesent mi magna, penatibus et
-                                magniseget dis
-                                parturient montes sed quia consequuntur magni dolores eos qui ratione.
-                                Ultrices posuere cubilia curae curabitur sit amet tortor ut massa commodo. Vestibulum
-                                consectetur euismod
-                                malesuada tincidunt cum. Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur dictum.Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur dictum.Sed ullamcorper dignissim consectetur ut tincidunt eros sed sapien
-                                consectetur dictum.
-
+                            <p class="text-justify">
+                                {!! $journal->description !!}
                             </p>
                             {{-- <a href="single-post.html" class="btn btn-dafault btn-details hvr-bounce-to-right">Continue Reading</a> --}}
                     </article>
                     <div class="sidebar">
                         <div class="card-wrapper mb-1" style="padding-bottom: 24px;">
                             <div class="card shadow">
-                                <ul>
-                                    <li>
                                         <h3>Latest Issue</h3>
-                                    </li>
-                                    <li>
+                                        <br>
                                         <div class="row no-gutters">
                                             <div class="col-md-3">
-                                                <img class="img-fluid" src="{{ asset('frontend/website/images/journal.jpg') }}" alt=""
+                                                <img class="img-fluid"
+                                                    src="{{ asset('frontend/website/images/journal.jpg') }}" alt=""
                                                     style="padding: 4%" />
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="card-body" style="padding: 10%">
                                                     <p class="card-text">Volume no:</p>
                                                     <p class="card-text" style="padding-bottom: 8%">Issue no: and Date</p>
-                                                    <a href="" class="btn btn-primary">View all volumes and issues</a>
+                                                    <a href="" class="btn btn-primary">View all volumes and
+                                                        issues</a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -137,7 +105,9 @@
                             <ul>
                                 <li class="row" style="border-bottom: 1px solid #999; border-top: 1px solid #999">
                                     <div class="col-6">
-                                        <a href="#" style="color:#0099ff; font-size:18px; text-decoration: underline">Article's Name</a>
+                                        <a href="#"
+                                            style="color:#0099ff; font-size:18px; text-decoration: underline">Article's
+                                            Name</a>
                                         <p>Author's Name</p>
                                         <p>Original Paper</p>
                                         <p>Published on: Date</p>
@@ -149,7 +119,9 @@
                                 </li>
                                 <li class="row" style="border-bottom: 1px solid #999;">
                                     <div class="col-6">
-                                        <a href="#" style="color:#0099ff; font-size:18px; text-decoration: underline">Article's Name</a>
+                                        <a href="#"
+                                            style="color:#0099ff; font-size:18px; text-decoration: underline">Article's
+                                            Name</a>
                                         <p>Author's Name</p>
                                         <p>Original Paper</p>
                                         <p>Published on: Date</p>
@@ -160,7 +132,8 @@
                                     </div>
                                 </li>
                             </ul>
-                            <p><a href="" style="font-size:18px; text-decoration: underline">View all volumes and issues</a></p>
+                            <p><a href="" style="font-size:18px; text-decoration: underline">View all volumes and
+                                    issues</a></p>
                         </div>
 
                     </div>
@@ -170,25 +143,27 @@
                 <div class="col-md-5">
                     <div class="sidebar">
                         {{-- <div class="card mb-3" style="padding: 3%; margin-bottom: 20px" > --}}
-                            <div class="card-wrapper mb-3" style="padding-bottom: 24px;">
-                                <div class="card shadow">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img class="img-fluid" src="{{ asset('frontend/website/images/journal.jpg') }}" alt=""
-                                                style="padding: 4%" />
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <h4 class="card-title fw-bold" style="margin-top: 2%;">title</h4>
-                                                <p class="card-text">faculty name:</p>
-                                                <p class="card-text">Volume no:</p>
-                                                <p class="card-text">Issue no:</p>
-                                                <a href="" class="btn btn-primary">Submit An Article</a>
-                                            </div>
+                        <div class="card-wrapper mb-3" style="padding-bottom: 24px;">
+                            <div class="card shadow">
+                                <div class="row no-gutters">
+                                    <div class="col-md-5">
+                                        <img class="img-fluid" src="{{ asset('frontend/website/images/journal.jpg') }}"
+                                            alt="" style="padding: 4%" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h4 class="card-title fw-bold" style="margin-top: 2%;">{{ $journal->title }}
+                                            </h4>
+                                            <p class="card-text">{{ $journal->faculty->name }}</p>
+
+
+                                            <a href="{{ route('submitArticle', ['journal_id' => $journal->id]) }}"
+                                                class="btn btn-secondary">Submit An Article </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                         <div class="recent-post widget shadow">
                             <ul>
@@ -231,13 +206,13 @@
                                         </span>
                                         Contact</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="" style="color:#0099ff; font-size:18px; text-decoration: underline">
                                         <span class="material-symbols-outlined">
                                             groups
                                         </span>
                                         Advisory Panal</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
 
@@ -250,9 +225,9 @@
     </section>
 
     <!--
-                                                      ==================================================
-                                                      Call To Action Section Start
-                                                      ================================================== -->
+                                                          ==================================================
+                                                          Call To Action Section Start
+                                                          ================================================== -->
     <section id="call-to-action">
         <div class="container">
             <div class="row">
