@@ -59,7 +59,7 @@ class SomethingSeeder extends Seeder
             '<li> two </li>' .
             '</ul>',
 
-            'editorial_board' => '<p><strong>Editors</strong><br>
+            'editorial_board' => "<p><strong>Editors</strong><br>
 <strong>Editorial Board</strong><br>
 <strong>Editor-in-Chief</strong><br>
 Aixiang Wu, University of Science and Technology Beijing, China<br>
@@ -499,7 +499,7 @@ Erol Yılmaz, Recep Tayyip Erdoğan University, Turkey<br>
 Wei Zhai, National University of Singapore, Singapore<br>
 Kun Zheng, AGH University of Science and Technology, Poland<br>
 <strong>Editors</strong><br>
-Donghua Huang, Yan Du, Peixian Chen, Lu Pan, Liping Yang, Xian Jia</p>',
+Donghua Huang, Yan Du, Peixian Chen, Lu Pan, Liping Yang, Xian Jia</p>",
 
             'faculty_id' => $faculty->id,
             'editor_id' => $editor->id,

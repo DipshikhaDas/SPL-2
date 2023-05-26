@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\journalAdmin;
 
+use App\Enums\ArticleStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Journal;
@@ -64,8 +65,8 @@ class journalAdminDashboardController extends Controller
             ->flatten()
             ->pluck('articles')
             ->flatten()
-            ->where('status', null);
-        //    dd($articles);
+            ->where('status', ArticleStatus::MANUSCRIPT_SUBMITTED->value);
+    
 
         return view('layouts.dashboard.journalAdmin.viewSubmittedArticles', compact('articles'));
 

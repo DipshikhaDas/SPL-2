@@ -40,22 +40,33 @@
                 </div>
 
                 @foreach ($alphabet as $letter)
-                    <div class="categories widget shadow">
-                        <h4> {{ $letter }} </h4>
-                        <ul>
-                            @foreach ($journals as $journal)
-                                @if (strtoupper($journal->title[0]) === strtoupper($letter))
-                                    <li style="border-bottom: 1px solid #d3d3d3; border-top: 1px solid #d3d3d3">
-                                        <a href="{{route('individualJournal',['id'=>$journal->id])}}" style="color:#0099ff; font-size:18px; text-decoration: underline">
-                                            {{ $journal->title }}
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
+                    @php
+                        $printLetter = false;
+                    @endphp
+                    @foreach ($journals as $journal)
+                        @if (strtoupper($journal->title[0]) === strtoupper($letter))
+                            @if ($printLetter == false)
+                                <div class="categories widget shadow">
+                                    <h4> {{ $letter }} </h4>
+                                    <ul>
+                                        @php
+                                            $printLetter = true;
+                                        @endphp
+                            @endif
+                            <li style="border-bottom: 1px solid #d3d3d3; border-top: 1px solid #d3d3d3">
+                                <a href="{{ route('individualJournal', ['id' => $journal->id]) }}"
+                                    style="color:#0099ff; font-size:18px; text-decoration: underline">
+                                    {{ $journal->title }}
+                                </a>
+                            </li>
+                        @endif
+                        @endforeach
+                        @if ($printLetter == true)
+                            </ul>
+                        </div>
+                        @endif
                 @endforeach
-            </div>
+        </div>
         </div>
 
     </section>
