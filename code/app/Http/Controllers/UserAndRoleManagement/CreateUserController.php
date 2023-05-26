@@ -5,8 +5,11 @@ namespace App\Http\Controllers\UserAndRoleManagement;
 use App\Http\Controllers\Controller;
 use App\Models\CreateUser;
 use App\Models\User;
+use App\Notifications\AccountCreatedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
+
 
 class CreateUserController extends Controller
 {
@@ -49,6 +52,7 @@ class CreateUserController extends Controller
                 'password' => Hash::make("password"),
             ])->assignRole($validatedData['role']);
 
+            $user->notify(new AccountCreatedNotification($validatedData['role'], 'email', 'password'));
 
             // $user->assignRole($validatedData['role']);
 

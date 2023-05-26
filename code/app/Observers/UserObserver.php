@@ -22,25 +22,24 @@ class UserObserver
     public function created(User $user): void
     {
 
-        if (auth()->check() && (auth()->user()->hasRole('journalAdmin')||auth()->user()->hasRole('superAdmin'))) {
-            // Send the notification to the new user
-            $temporaryPassword= Str::random(10);
-            $user->password = Hash::make($temporaryPassword);
-            $roles = $user->getRoleNames(); // Get the user's roles
-            $roleNames = $roles->toArray();
+        // if (auth()->check() && (auth()->user()->hasRole('journalAdmin')||auth()->user()->hasRole('superAdmin'))) {
 
-            $user->save();
+        //     $temporaryPassword= Str::random(10);
+        //     $user->password = Hash::make($temporaryPassword);
+        //     $roles = $user->getRoleNames(); // Get the user's roles
+        //     $roleNames = $roles->toArray();
 
-            // dd($user);
+        //     $user->save();
 
-            $emailData = [
-                'email'=>$user->email,
-                'password'=>$temporaryPassword,
-                'roles'=>$roleNames,
-                'loginUrl'=>'http://127.0.0.1:8000/login'
-            ];
-            $user->notify(new SendEmailNotification($emailData));
-        }
+
+        //     $emailData = [
+        //         'email'=>$user->email,
+        //         'password'=>$temporaryPassword,
+        //         'roles'=>$roleNames,
+        //         'loginUrl'=>'http://127.0.0.1:8000/login'
+        //     ];
+        //     $user->notify(new SendEmailNotification($emailData));
+        // }
 
     }
 
