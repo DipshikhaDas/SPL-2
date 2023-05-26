@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            <form class="p-4" action="" method="POST" enctype="multipart/form-data">
+            <form class="p-4" action="{{ route('storeIssue') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- Journal ID --}}
                 <div class="form-group row">
@@ -25,20 +25,30 @@
                     </div>
                     {{-- <input type="hidden" name="journal_id" value="{{$journal->id}}"> --}}
                 </div>
-      
+
                 {{-- Vol no --}}
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="vol_no">Select Volume: </label>
                     <div class="col-sm-10">
                         {{-- <input type="number" class="form-control" name="vol_no" id="vol_no"> --}}
-                        <select name="vol_no" id="vol_no">
+                        <select name="volume_id" id="volume_id">
                             <option value="">Select Volume No. </option>
                             @foreach ($volumes as $volume)
-                                <option value="{{$volume->volume_no}}"> {{$volume->volume_no}} </option>
+                                <option value="{{$volume->id}}"> {{$volume->volume_no}} </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
+
+                {{-- Issue no --}}
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="issue_no">Issue No:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="issue_no" id="issue_no">
+                    </div>
+                    {{-- <input type="hidden" name="journal_id" value="{{$journal->id}}"> --}}
+                </div>
+
                 {{-- publication date --}}
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="publication_date">Publication Date: </label>
@@ -46,9 +56,9 @@
                         <input type="date" class="form-control" name="publication_date" id="publication_date">
                     </div>
                 </div>
-    
 
-                
+
+
                 <div class="form-group row">
                     <div class="col-sm-10 text-right">
                         <button type="submit" class="btn btn-primary">Save</button>

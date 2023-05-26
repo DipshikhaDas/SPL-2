@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            <form class="p-4" action="" method="POST" enctype="multipart/form-data">
+            <form class="p-4" action="{{ route('storeVolume') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- Journal ID --}}
                 <div class="form-group row">
@@ -25,7 +25,7 @@
                     </div>
                     <input type="hidden" name="journal_id" value="{{$journal->id}}">
                 </div>
-      
+
                 {{-- Vol no --}}
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="vol_no">Volume No:</label>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="form-group row">
                     <div class="col-sm-10 text-right">
                         <button type="submit" class="btn btn-primary">Save</button>
