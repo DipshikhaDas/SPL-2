@@ -10,6 +10,8 @@ use App\Models\ArticleSubmission;
 use App\Models\Journal;
 use App\Models\Keyword;
 use App\Models\User;
+use App\Notifications\ArticleSubmissionConfirmationCorrespondingAuthorNotification;
+use App\Notifications\ArticleSubmissionConfirmationNotification;
 use Illuminate\Http\Request;
 
 class articleSubmissionController extends Controller
@@ -19,7 +21,7 @@ class articleSubmissionController extends Controller
      */
     public function index()
     {
-     
+
 
         $journals = Journal::where('accepting_articles', true)->get();
         $defaultCover = 'public/cover-photos/default.jpg';
@@ -98,7 +100,7 @@ class articleSubmissionController extends Controller
 
         }
         $article->author_comments = $request->input('comments_for_editor');
-        
+
         $article->save();
 
         // Get the keywords from the form
@@ -139,6 +141,7 @@ class articleSubmissionController extends Controller
 
 
         $authors = [];
+        $submitted_by = [];
         foreach ($request->input('first_name') as $index => $firstName) {
             $author = new ArticleAuthor();
             $author->article_id = $article->id;
@@ -160,6 +163,8 @@ class articleSubmissionController extends Controller
 
                 if ($user) {
                     $article->correspondingAuthors()->sync([$user->id]);
+                    $author->is_corresponding = true;
+                    $submitted_by = $author->first_name. ' ' . $author->middle_name . ' ' . $author->last_name;
                 }
 
             }
@@ -185,6 +190,16 @@ class articleSubmissionController extends Controller
 
 
         $article->save();
+
+        foreach ($authors as $author) {
+
+            if($author->is_corresponding){
+                $author->notify(new ArticleSubmissionConfirmationCorrespondingAuthorNotification($article));
+            }
+            else{
+            $author->notify(new ArticleSubmissionConfirmationNotification($article, $submitted_by));
+            }
+        }
 
         return redirect()->back();
     }

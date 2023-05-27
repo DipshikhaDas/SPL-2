@@ -391,27 +391,14 @@
 </div>
 
 <script>
-    ClassicEditor
-        .create(document.querySelector('#textEditor1'))
-        .catch(error => {
-            console.error(error);
-        });
-    ClassicEditor
-        .create(document.querySelector('#textEditor2'))
-        .catch(error => {
-            console.error(error);
-        });
-    ClassicEditor
-        .create(document.querySelector('#textEditor3'))
-        .catch(error => {
-            console.error(error);
-        });
 
     var authorCount = 1;
 
     function addAuthor() {
 
+        console.log(authorCount);
         authorCount++;
+        console.log(authorCount);
 
         var uniqueId = '_' + authorCount;
         var firstNameId = 'first_name' + uniqueId;
