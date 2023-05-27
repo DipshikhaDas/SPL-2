@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TestController extends Controller
 {
@@ -20,7 +22,7 @@ class TestController extends Controller
     {
         $user = User::role('author')->where('id', '104')->get();
     
-        dd($user);
+        // dd($user);
         return view('layouts.test');
     }
 
@@ -46,5 +48,14 @@ class TestController extends Controller
             ->get();
 
         return response()->json($results);
+    }
+
+    public function download($id)
+    {
+        $article = Article::findOrFail($id);
+
+        $path = storage_path('app/secure/'. $article->file_with_author_info);
+        $cleanFileName = Str::slug($article->title) . '.' . pathinfo($article->file_with_author_info, PATHINFO_EXTENSION);
+        return response()->download($path, $cleanFileName);
     }
 }

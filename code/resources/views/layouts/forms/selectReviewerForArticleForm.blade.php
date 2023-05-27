@@ -7,38 +7,73 @@
     </div>
     <div class="card-body" id="article_data">
 
+        @php
+            $i = 0;
+        @endphp
+        <br>
 
+        <div class="mx-auto col-sm-8">
+            <h5>Reviewers that have been considered: </h5>
+                <br>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Sl. no</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($article->consideredReviewers as $consideredReviewer)
+                            <tr>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $consideredReviewer->name }} </td>
+                                <td>{{ $consideredReviewer->email }} </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+        </div>
+        <hr>
         <form action="{{ route('sendReviewersToJournalAdmin') }}" method="POST"p-4" id="selectReviewer">
-           @csrf
+            @csrf
             <fieldset>
-                <input type="hidden" name="article_id" value="{{$article->id}}">
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="search" style="font-weight: bold">Search
                         Reviewer:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Enter name or email">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Enter name or email">
+                            <div class="input-group-append">
+                                <button class="btn btn-danger" onclick="clearSearch(event)">Cancel</button>
+                            </div>
+                        </div>
                         <div id="searchResults"></div>
                     </div>
                 </div>
+                <div class="col-sm-8 mx-auto">
+                    <h5>The reviewer(s) of the table below will be sent to the Journal Admin </h5>
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Email</td>
-                            <td>Action</td>
-                        </tr>
-                    </thead>
-                    <tbody id="selectedResults">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody id="selectedResults">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </fieldset>
             <div class="d-flex justify-content-center align-items-center">
 
-                    <button class="btn btn-primary m-4" onclick="sendReviewers(event)">
-                        Send Reviewers To Journal Admin
-                    </button>
+                <button class="btn btn-primary m-4" onclick="sendReviewers(event)">
+                    Send Reviewers To Journal Admin
+                </button>
             </div>
         </form>
 
@@ -53,7 +88,8 @@
                     url: "{{ route('searchReviewers') }}",
                     type: "GET",
                     data: {
-                        query: query
+                        query: query,
+                        article_id: "{{ $article->id }}",
                     },
                     success: function(response) {
                         // Clear previous results
@@ -126,8 +162,14 @@
             return;
         }
 
-        
+
         $('#selectReviewer').submit();
 
+    }
+
+    function clearSearch()
+    {   
+        event.preventDefault();
+        $('#searchResults').empty();
     }
 </script>

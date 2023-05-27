@@ -175,6 +175,7 @@ Route::middleware(['auth','verified'])->group( function () {
     Route::get('/test', [TestController::class, 'index'])->name('searchTest');
     Route::post('/selected', [TestController::class, 'selected'])->name('selectedTest');
     Route::get('/tsearch', [TestController::class, 'search'])->name('TestSearch');
+    Route::get('/test_article_download/{id}', [TestController::class, 'download'])->name('test_article_download');
 });
 
 Route::get('/reviewer', function () {
