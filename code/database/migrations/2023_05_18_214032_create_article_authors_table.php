@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('affiliation')->nullable();
             $table->text('bio_statement')->nullable();
+            $table->boolean('is_corresponding')->default(false);
             $table->timestamps();
 
 
@@ -29,6 +30,8 @@ return new class extends Migration
                     ->on('articles')
                     ->onDelete('cascade');
         });
+
+
     }
 
     /**

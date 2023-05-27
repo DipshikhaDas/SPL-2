@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class ArticleAuthor extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     protected $fillable = [
         'article_id',
         'first_name',
@@ -17,6 +18,11 @@ class ArticleAuthor extends Model
         'url',
         'affiliation',
         'bio_statement',
+        'is_corresponding',
+    ];
+
+    protected $casts = [
+        'is_corresponding' => 'boolean',
     ];
 
     public function article()
@@ -24,5 +30,5 @@ class ArticleAuthor extends Model
         return $this->belongsTo(Article::class);
     }
 
-    
+
 }
