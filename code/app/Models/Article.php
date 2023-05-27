@@ -56,4 +56,9 @@ class Article extends Model
     {
         return $this->belongsToMany(User::class, 'article_editor','article_id');
     }
+
+    public function consideredReviewers()
+    {
+        return $this->belongsToMany(User::class, 'considered_reviewers', 'article_id','reviewer_id')->withTimestamps();
+    }
 }

@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\article\articleSubmissionController;
 use App\Http\Controllers\author\authorDashboardController;
+use App\Http\Controllers\editor\EditorController;
 use App\Http\Controllers\journalAdmin\JournalController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
@@ -144,6 +145,17 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/journalVolume/create/{id}', [JournalController::class, 'createJournalVolume'])->name('createJournalVolumeForm');
     Route::get('/journalVolume/issue/create/{id}', [JournalController::class, 'createJournalVolumeIssue'])->name('createJournalVolumeIssueForm');
 });
+// EDITOR 
+Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(function(){
+    Route::get('/submittedArticles', [EditorController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles.editor');
+    Route::get('/submittedArticle/{article}' ,[EditorController::class, 'getArticle'])->name('getArticleEditor');
+
+    Route::get('/searchReviewer', [EditorController::class, 'searchReviewer'])->name('searchReviewers');
+
+    Route::post('/sendReviewersToJournalAdmin', [EditorController::class, 'sendReviewersToJournalAdmin'])->name('sendReviewersToJournalAdmin');
+
+    
+});
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
     Route::get('/',[authorDashboardController::class, 'index'])->name('author');
@@ -154,7 +166,10 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
 
 
 Route::middleware(['auth','verified'])->group( function () {
-    Route::get('/test',[TestController::class,'test'])->name('test');
+    // Route::get('/test',[TestController::class,'test'])->name('test');
+    Route::get('/test', [TestController::class, 'index'])->name('searchTest');
+    Route::post('/selected', [TestController::class, 'selected'])->name('selectedTest');
+    Route::get('/tsearch', [TestController::class, 'search'])->name('TestSearch');
 });
 
 Route::get('/reviewer', function () {
