@@ -168,7 +168,8 @@ class ArticleController extends Controller
             $article->save();
         }
 
-        return redirect()->back();
+        $request->session()->flash('Success', $article->title.' Sent To Editor');
+        return redirect()->route('viewSubmittedArticles');
 
     }
 }

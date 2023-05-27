@@ -25,7 +25,7 @@ class FakeArticleSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             // Create and save the article
             $article = new Article();
-            $article->journal_id = mt_rand(1,15); // Replace with the actual journal ID
+            $article->journal_id = mt_rand(1, 15); // Replace with the actual journal ID
             $article->title = $faker->sentence; // Generate a random title
             $article->abstract = $faker->paragraph; // Generate a random abstract
             $article->reference = $faker->sentence; // Generate a random reference
@@ -34,9 +34,9 @@ class FakeArticleSeeder extends Seeder
             $article->file_without_author_info = "asf";
 
             // Attach keywords to the article
-            $keywordsString = $faker->words(3, true); // Generate a string of 3 random words
-            $keywordsArray = explode(';', $keywordsString);
-            $keywordsArray = array_map('trim', $keywordsArray);
+            $keywordsArray = $faker->words(mt_rand(3,8));
+            $keywordsString = implode(';', $keywordsArray);
+
 
             $article->keywords = $keywordsString;
             $article->status = ArticleStatus::MANUSCRIPT_SUBMITTED;
