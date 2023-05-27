@@ -3,7 +3,7 @@
     <header class="top-bar animated-header">
         <nav class="d-flex">
             <ul class="left-elements">
-                <a href="{{ url('/') }}" style="max-width: 180px">
+                <a href="{{ route('home') }}" style="max-width: 180px">
                     <img class="bd-placeholder-img" style="height: 60px; width: 180px" src="{{asset('duLogo2.png')}}"
                     alt="">
                 </a>
@@ -18,7 +18,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Home
+                            <a class="nav-link" href="{{ route('home') }}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>

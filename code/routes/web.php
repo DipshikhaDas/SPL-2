@@ -76,6 +76,8 @@ Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/journal/{id}', [JournalController::class, 'individualJournal'])->name('individualJournal');
 
 Route::get('/aims&scope', function(){
