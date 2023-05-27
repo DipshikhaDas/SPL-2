@@ -5,7 +5,7 @@
          <div class="nano-content">
              <ul>
                 <div class="logo">
-                     <a href="{{ url('/') }}">
+                     <a href="{{ route('home') }}">
                         <img  src="{{ asset('logo2.png')}}" style="height: 60px; width: 180px;">
                      </a>
                 </div>

@@ -15,7 +15,7 @@ class FacultyController extends Controller
         return response()->json($faculties);
     }
 
-    public function store(Request $request)
+public function store(Request $request)
     {
         // dd($request);
 

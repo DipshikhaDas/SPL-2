@@ -9,6 +9,7 @@ use App\Notifications\AccountCreatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 class CreateUserController extends Controller
@@ -46,13 +47,14 @@ class CreateUserController extends Controller
                     'role.in' => 'Invalid role selected.',
                 ]);
 
+            $password = Str::random(10);
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
-                'password' => Hash::make("password"),
+                'password' => Hash::make($password),
             ])->assignRole($validatedData['role']);
 
-            $user->notify(new AccountCreatedNotification($validatedData['role'], 'email', 'password'));
+            $user->notify(new AccountCreatedNotification($validatedData['role'], $validatedData['email'], $password, $user->name));
 
             // $user->assignRole($validatedData['role']);
 
@@ -78,14 +80,18 @@ class CreateUserController extends Controller
                 return redirect()->back()->withInput()->withErrors(['role' => 'You are not authorized to create a user with Super Admin role.']);
             }
 
+            $password = Str::random(10);
+
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
-                'password' => Hash::make("password"),
+                'password' => Hash::make($password),
             ]);
 
 
             $user->assignRole($validatedData['role']);
+
+            $user->notify(new AccountCreatedNotification($validatedData['role'], $validatedData['email'], $password, $user->name));
 
 
             return redirect()->route('createUserIndex')->with('success', 'User created successfully.');
