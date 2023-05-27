@@ -89,14 +89,14 @@ class articleSubmissionController extends Controller
 
         if ($request->hasFile('file_with_author_info')) {
             $file = $request->file('file_with_author_info');
-            $filename = time() . $article->title . "with_author_info" . $file->hashName();
-            $path = $file->storeAs('public/article_submissions/with_author_info', $filename);
+            $filename = $file->hashName();
+            $path = $file->storeAs('file_without_info', $filename, 'secure');
             $article->file_with_author_info = $path;
         }
         if ($request->hasFile('file_without_author_info')) {
             $file = $request->file('file_without_author_info');
-            $filename = time() . $article->title . "without_author_info" . $file->hashName();
-            $path = $file->storeAs('public/article_submissions/without_author_info', $filename);
+            $filename = $file->hashName();
+            $path = $file->storeAs('file_with_info', $filename, 'secure');
             $article->file_without_author_info = $path;
 
         }
@@ -165,7 +165,7 @@ class articleSubmissionController extends Controller
                 if ($user) {
                     $article->correspondingAuthors()->sync([$user->id]);
                     $author->is_corresponding = true;
-                    $submitted_by = $author->first_name. ' ' . $author->middle_name . ' ' . $author->last_name;
+                    $submitted_by = $author->first_name . ' ' . $author->middle_name . ' ' . $author->last_name;
                 }
 
             }
@@ -194,11 +194,10 @@ class articleSubmissionController extends Controller
 
         foreach ($authors as $author) {
 
-            if($author->is_corresponding){
+            if ($author->is_corresponding) {
                 $author->notify(new ArticleSubmissionConfirmationCorrespondingAuthorNotification($article));
-            }
-            else{
-            $author->notify(new ArticleSubmissionConfirmationNotification($article, $submitted_by));
+            } else {
+                $author->notify(new ArticleSubmissionConfirmationNotification($article, $submitted_by));
             }
         }
 

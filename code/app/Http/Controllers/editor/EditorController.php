@@ -25,6 +25,7 @@ class EditorController extends Controller
         $article_editor_id = $article->journal->editor->id;
         $userId = auth()->user()->id;
 
+
         if ($article_editor_id != $userId) {
             abort(403, "You are not authorized to view this article");
         }
@@ -34,19 +35,31 @@ class EditorController extends Controller
 
     public function searchReviewer(Request $request)
     {
+        $request->validate([
+            'article_id' => 'exists:articles,id',
+        ]);
+
         $query = $request->input('query');
 
-        $results = User::where(function ($queryBuilder) use ($query) {
+        $allReviewers = User::where(function ($queryBuilder) use ($query) {
             $queryBuilder->where('name', 'like', "%$query%")
                 ->orWhere('email', 'like', "%$query%");
         })
             ->whereHas('roles', function ($roleQuery) {
                 $roleQuery->where('name', 'reviewer');
             })
-            ->get();
+        ->get();
+        $allReviewersIds = $allReviewers->pluck('id')->all();
 
+        $considered = Article::find($request->input('article_id'))->consideredReviewers()->get();
+        $consideredIds = $considered->pluck('id')->all();    
 
-        return response()->json($results);
+        $diffIds = array_diff($allReviewersIds, $consideredIds);
+        $filtered_res = $allReviewers->whereIn('id', $diffIds);
+
+        // dd($allReviewersIds, $filtered_res);
+
+        return response()->json($filtered_res);
     }
 
     public function sendReviewersToJournalAdmin(Request $request)
@@ -60,9 +73,13 @@ class EditorController extends Controller
         );
 
         $article = Article::findOrFail($request->input('article_id'));
+        $alreadyConsidered = $article->consideredReviewers()->get()->pluck('id')->all();
 
         $reviewerIds = $request->input('reviewers');
-        $reviewers = User::whereIn('id', $reviewerIds)
+
+        $diff = array_diff($reviewerIds, $alreadyConsidered);
+
+        $reviewers = User::whereIn('id', $diff)
             ->whereHas('roles', function ($query) {
                 $query->where('name', 'reviewer');
             })
@@ -70,6 +87,6 @@ class EditorController extends Controller
 
         $article->consideredReviewers()->attach($reviewers);
 
-
+        return redirect()->back();
     }
 }
