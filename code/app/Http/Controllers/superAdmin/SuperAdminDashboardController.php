@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\Faculty;
 use App\Models\User;
+use App\Notifications\AssignJournalAdminToFacultyNotification;
 use Illuminate\Http\Request;
 
 class SuperAdminDashboardController extends Controller
@@ -65,6 +66,8 @@ class SuperAdminDashboardController extends Controller
         $journalAdmin->faculties()->sync([$faculty->id]);
 
         $journalAdmin->save();
+
+        $journalAdmin->notify(new AssignJournalAdminToFacultyNotification($faculty->name, $journalAdmin->name));
 
         return redirect()->back();
     }

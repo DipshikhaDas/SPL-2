@@ -77,6 +77,8 @@ Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::get('/journal/{id}', [JournalController::class, 'individualJournal'])->name('individualJournal');
 
 Route::get('/aims&scope', function(){
@@ -143,7 +145,10 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
     Route::get('/journalVolume', [JournalController::class, 'getJournalsForView'])->name('createJournalVolumeView');
     Route::get('/journalVolume/create/{id}', [JournalController::class, 'createJournalVolume'])->name('createJournalVolumeForm');
+    Route::post('/storeVolume', [JournalController::class, 'storeVolume'])->name('storeVolume');
+
     Route::get('/journalVolume/issue/create/{id}', [JournalController::class, 'createJournalVolumeIssue'])->name('createJournalVolumeIssueForm');
+    Route::post('/storeIssue', [JournalController::class, 'storeIssue'])->name('storeIssue');
 });
 // EDITOR 
 Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(function(){

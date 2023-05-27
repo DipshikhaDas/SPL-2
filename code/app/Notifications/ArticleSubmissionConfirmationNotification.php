@@ -7,18 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class welcomeEmailNotification extends Notification
+class ArticleSubmissionConfirmationNotification extends Notification
 {
     use Queueable;
 
-    protected $user_name;
+    protected $article;
+    protected $submitted_by;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($user_name)
+    public function __construct($article, $submitted_by)
     {
-        $this->user_name = $user_name;
+        $this->article = $article;
+        $this->submitted_by = $submitted_by;
     }
 
     /**
@@ -26,7 +28,7 @@ class welcomeEmailNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
         return ['mail'];
     }
@@ -37,12 +39,12 @@ class welcomeEmailNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->greeting('Dear, '. $this->user_name)
-                    ->line('Welcome to Dhaka University Journal Publications.')
-                    ->line(' The goal of this journal system is to increase the visibility to the participating journals, use and impact of the university research publications by offering them to use through the university own online journal system.')
-                    ->line('Our website link: ')
-                    ->action('Our website', route('home'))
-                    ->line('Thank you for using our website!');
+            ->subject('Article Submission Confirmation')
+            ->greeting('Dear ' . $notifiable->last_name .',')
+            ->line('Your article has been submitted by '. $this->submitted_by)
+            ->line('Title: ' . $this->article->title)
+            ->line('Thank you for your submission!')
+            ->salutation('Regards');
     }
 
     /**
