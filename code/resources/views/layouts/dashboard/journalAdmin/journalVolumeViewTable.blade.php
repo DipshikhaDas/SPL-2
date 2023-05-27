@@ -8,8 +8,8 @@
                 <tr>
                     <th>Sl.no</th>
                     <th>Name</th>
-                    <th>Recent Volume</th>
-                    <th>Recent Issue</th>
+                    {{-- <th>Recent Volume</th> --}}
+                    {{-- <th>Recent Issue</th> --}}
                     <th>Action</th>
                 </tr>
             </thead>
@@ -24,16 +24,16 @@
                         </td>
                         <td>
 
-                            @if ($journal->volumes()->latest('created_at')->first())
+                            {{-- @if ($journal->volumes()->latest('created_at')->first())
                                 {{ $journal->volumes()->latest('created_at')->first()->volume_no }}
                             @else
                                 <i>Null</i>
-                            @endif
+                            @endif --}}
 
                         </td>
                         <td>
 
-                            @if ($journal->volumes()->latest('created_at')->first())
+                            {{-- @if ($journal->volumes()->latest('created_at')->first())
                                 @if ($journal->volumes()->latest('created_at')->first()->issues()->latest('created_at')->first())
                                     {{ $journal->volumes()->latest('created_at')->first()->issues()->latest('created_at')->first()->issue_no }}
                                 @else
@@ -41,7 +41,7 @@
                                 @endif
                             @else
                                 <i>Null</i>
-                            @endif
+                            @endif --}}
                         </td>
                         <td>
                             <a href="{{ route('createJournalVolumeForm', ['id' => $journal->id]) }}" class="btn btn-primary"
