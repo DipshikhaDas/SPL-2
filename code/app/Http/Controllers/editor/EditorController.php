@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\editor;
 
 use App\Enums\ArticleStatus;
+use App\Enums\ConsideredReviewerStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Journal;
@@ -85,7 +86,7 @@ class EditorController extends Controller
             })
             ->get();
 
-        $article->consideredReviewers()->attach($reviewers);
+        $article->consideredReviewers()->attach($reviewers, ['status' => ConsideredReviewerStatus::REQUEST_PENDING->value]);
 
         return redirect()->back();
     }

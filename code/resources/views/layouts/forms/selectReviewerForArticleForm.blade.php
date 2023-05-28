@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card m-4">
     <div class="card-header">
         <h4 class="card-title text-center font-weight-bold">
             Select Reviewer
@@ -21,6 +21,7 @@
                             <td>Sl. no</td>
                             <td>Name</td>
                             <td>Email</td>
+                            <td>Status</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,7 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $consideredReviewer->name }} </td>
                                 <td>{{ $consideredReviewer->email }} </td>
+                                <td>{!! $consideredReviewer->pivot->status !!}</td>
                             </tr>
                         @endforeach
                     </tbody>
