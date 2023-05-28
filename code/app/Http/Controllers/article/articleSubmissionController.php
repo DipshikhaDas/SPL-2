@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleAdditionalFile;
 use App\Models\ArticleAuthor;
+use App\Models\ArticleRevision;
 use App\Models\ArticleSubmission;
 use App\Models\Journal;
 use App\Models\Keyword;
@@ -104,6 +105,15 @@ class articleSubmissionController extends Controller
         $article->status = ArticleStatus::MANUSCRIPT_SUBMITTED;
         $article->save();
 
+
+        $articleRevision0 = new ArticleRevision();
+        $articleRevision0->article_id = $article->id;
+        $articleRevision0->file_without_author_info = $article->file_without_author_info;
+        $articleRevision0->revision_status = ArticleStatus::MANUSCRIPT_SUBMITTED;
+        $articleRevision0->save();
+
+        $article->revisions()->save($articleRevision0);
+
         // Get the keywords from the form
         $keywordsString = $request->input('keywords');
 
@@ -118,6 +128,9 @@ class articleSubmissionController extends Controller
 
         // Associate the keywords with the article
         $uniqueKeywords = [];
+
+
+
         foreach ($keywordsArray as $keyword) {
             $keyword = strtolower($keyword);
 

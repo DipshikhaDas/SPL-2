@@ -6,6 +6,7 @@ use App\Enums\ArticleStatus;
 use App\Models\Article;
 use App\Models\ArticleAdditionalFile;
 use App\Models\ArticleAuthor;
+use App\Models\ArticleRevision;
 use App\Models\Keyword;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,7 +23,7 @@ class FakeArticleSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 7; $i++) {
             // Create and save the article
             $article = new Article();
             $article->journal_id = mt_rand(1, 15); // Replace with the actual journal ID
@@ -34,7 +35,7 @@ class FakeArticleSeeder extends Seeder
             $article->file_without_author_info = "asf";
 
             // Attach keywords to the article
-            $keywordsArray = $faker->words(mt_rand(3,8));
+            $keywordsArray = $faker->words(mt_rand(3, 8));
             $keywordsString = implode(';', $keywordsArray);
 
 
@@ -43,6 +44,13 @@ class FakeArticleSeeder extends Seeder
 
             $article->save();
 
+            $articleRevision0 = new ArticleRevision();
+            $articleRevision0->article_id = $article->id;
+            $articleRevision0->file_without_author_info = $article->file_without_author_info;
+            $articleRevision0->revision_status = ArticleStatus::MANUSCRIPT_SUBMITTED;
+            $articleRevision0->save();
+
+            $article->revisions()->save($articleRevision0);
             $uniqueKeywords = [];
             foreach ($keywordsArray as $keyword) {
                 $keyword = strtolower($keyword);
@@ -109,6 +117,7 @@ class FakeArticleSeeder extends Seeder
 
                     if ($user) {
                         $article->correspondingAuthors()->sync([$user->id]);
+                        $author->is_corresponding = true;
                     }
                 }
             }

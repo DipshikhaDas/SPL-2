@@ -6,6 +6,7 @@ use App\Enums\ArticleStatus;
 use App\Models\Article;
 use App\Models\ArticleAdditionalFile;
 use App\Models\ArticleAuthor;
+use App\Models\ArticleRevision;
 use App\Models\Keyword;
 use App\Models\User;
 use GuzzleHttp\Psr7\UploadedFile;
@@ -31,17 +32,26 @@ class ArticleSeeder extends Seeder
         $article->file_with_author_info = "asd";
         $article->file_without_author_info = "asf";
         // Attach keywords to the article
- 
- 
+
+
         $keywordsString = 'keyword1; keyword2; keyword3'; // Replace with the actual keywords string
         $keywordsString = strtolower($keywordsString);
         $keywordsArray = explode(';', $keywordsString);
         $keywordsArray = array_map('trim', $keywordsArray);
-        
+
         $article->keywords = $keywordsString;
         $article->status = ArticleStatus::MANUSCRIPT_SUBMITTED;
-        
+
         $article->save();
+
+        $articleRevision0 = new ArticleRevision();
+        $articleRevision0->article_id = $article->id;
+        $articleRevision0->file_without_author_info = $article->file_without_author_info;
+        $articleRevision0->revision_status = ArticleStatus::MANUSCRIPT_SUBMITTED;
+        $articleRevision0->save();
+
+        $article->revisions()->save($articleRevision0);
+
         $uniqueKeywords = [];
         foreach ($keywordsArray as $keyword) {
             $keyword = strtolower($keyword);
@@ -108,6 +118,7 @@ class ArticleSeeder extends Seeder
 
                 if ($user) {
                     $article->correspondingAuthors()->sync([$user->id]);
+                    $author->is_corresponding = true;
                 }
             }
         }
@@ -116,8 +127,8 @@ class ArticleSeeder extends Seeder
 
         // Upload and save supplementary files
         $supplementaryFilesData = [
-            getenv('HOME').'/test.jpeg', // Replace with the actual file path
-            getenv('HOME').'/test.jpeg', // Replace with the actual file path
+            getenv('HOME') . '/test.jpeg', // Replace with the actual file path
+            getenv('HOME') . '/test.jpeg', // Replace with the actual file path
         ];
 
         $supplementaryFiles = [];
@@ -138,5 +149,5 @@ class ArticleSeeder extends Seeder
 
         $article->save();
     }
-    
+
 }

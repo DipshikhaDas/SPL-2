@@ -63,9 +63,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Article::class, 'article_editor','editor_id');
     }
 
-    public function consideredReviewerInArtcle()
+    public function reviews()
     {
-        return $this->belongsToMany(Article::class, 'considered_reviewer', 'reveiwer_id', 'article_id
-        ')->withPivot('status')->withTimestamps();
+        return $this->belongsToMany(Article::class, 'considered_reviewers', 'reviewer_id', 'article_id')->withPivot('status')->withTimestamps();
     }
 }
