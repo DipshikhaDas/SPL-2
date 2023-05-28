@@ -10,6 +10,7 @@ use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
 use App\Http\Controllers\MyArticlesController;
 use App\Http\Controllers\article\postArticleSubmissionController;
+use App\Http\Controllers\reviewer\ReviewerController;
 use App\Http\Controllers\superAdmin\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
@@ -174,6 +175,13 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::get('/myArticles', [MyArticlesController::class, 'index']);
 });
 
+Route::middleware(['auth', 'verified', 'role:reviewer'])->prefix('reviewer')->group(function(){
+    Route::get('/viewReviewRequests', [ReviewerController::class, 'viewReviewRequests'])->name('viewReviewRequests');
+    Route::get('/viewReviewRequest/{article}', [ReviewerController::class, 'viewReviewRequestSingle'])->name('viewReviewRequestSingle');
+    Route::post('/declineRequest', [ReviewerController::class, 'declineRequest'])->name('declineRequest');
+    Route::post('/acceptRequest', [ReviewerController::class, 'acceptRequest'])->name('acceptRequest');
+});
+
 
 Route::middleware(['auth','verified'])->group( function () {
     // Route::get('/test',[TestController::class,'test'])->name('test');
@@ -182,6 +190,7 @@ Route::middleware(['auth','verified'])->group( function () {
     Route::get('/tsearch', [TestController::class, 'search'])->name('TestSearch');
     Route::get('/test_article_download/{id}', [TestController::class, 'download'])->name('test_article_download');
 });
+
 
 Route::get('/reviewer', function () {
     return view('layouts.dashboard.reviewer');

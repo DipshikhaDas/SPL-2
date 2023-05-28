@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('article_id');
             $table->string('file_without_author_info');
-            $table->text('author_comments')->nullable();
+            $table->text('editor_comments')->nullable();
+            $table->string('revision_status')->nullable();
             // $table->integer('submission_count')->default(-1);
             $table->timestamps();
         });
