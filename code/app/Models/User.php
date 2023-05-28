@@ -48,7 +48,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Faculty::class);
     }
 
-    public function articles()
+    public function submittedArticles()
     {
         return $this->belongsToMany(Article::class);
     }
@@ -56,5 +56,15 @@ class User extends Authenticatable
     public function editJournal()
     {
         return $this->hasMany(Journal::class, 'editor_id');
+    }
+
+    public function editedArticles()
+    {
+        return $this->belongsToMany(Article::class, 'article_editor','editor_id');
+    }
+
+    public function reviews()
+    {
+        return $this->belongsToMany(Article::class, 'considered_reviewers', 'reviewer_id', 'article_id')->withPivot('status')->withTimestamps();
     }
 }

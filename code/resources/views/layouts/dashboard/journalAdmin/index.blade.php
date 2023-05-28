@@ -95,7 +95,7 @@
                             </div>
 
                             <div class="col-lg-3">
-                                <x-dashboard.card-link route="{{ route('rolesIndex') }}" logo="QuickReply"
+                                <x-dashboard.card-link route="{{ route('sendReviewRequestView') }}" logo="QuickReply"
                                     text="Send Review Request" />
                             </div>
                             <div class="col-lg-3">

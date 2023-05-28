@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('cover_photo')->nullable();
             $table->unsignedBigInteger('faculty_id')->nullable();
             $table->boolean('accepting_articles')->default(true);
+            $table->string('impact_factor')->nullable();
             $table->timestamps();
 
             $table->foreign('faculty_id')

@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('article_revisions', function (Blueprint $table) {
+        Schema::create('considered_reviewers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('article_id');
-            $table->string('file_without_author_info');
-            $table->text('editor_comments')->nullable();
-            $table->string('revision_status')->nullable();
-            // $table->integer('submission_count')->default(-1);
+            $table->unsignedBigInteger('reviewer_id');
+            $table->string('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreign('reviewer_id')->references('id')->on('users')->onDelete('cascade');
+
+
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('article_revisions');
+        Schema::dropIfExists('considered_reviewers');
     }
 };

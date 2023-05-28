@@ -1,12 +1,1 @@
-@foreach ($journals as $journal)
-
-    <li> {{$journal->title}}</li>  
-
-@endforeach
-
-
-@foreach (App\Enums\ArticleStatus::getValues() as $value)
-
-    <li>{{$value}}</li>
-    
-@endforeach
+<a href="{{route('test_article_download',['id' => '104'])}}"> download article </a>

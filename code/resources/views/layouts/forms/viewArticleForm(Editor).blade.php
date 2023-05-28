@@ -1,10 +1,13 @@
 <div class="card">
     <div class="card-header">
         <h4 class="card-title text-center font-weight-bold">
-            View Article Submission
+            {{ $article->title }}
         </h4>
+        <h5 class="card-title text-center text-muted">
+            {{ $article->journal->title }}
+        </h5>
     </div>
-    <div class="card-body">
+    <div class="card-body" id="article_data" style="display: none">
         <form action="" class="p-4">
             <fieldset id="form-data" disabled>
                 {{-- TITLE --}}
@@ -32,7 +35,7 @@
                 </div>
                 {{-- REFERENCE --}}
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="reference" style="font-weight: bold">Keywords:*</label>
+                    <label class="col-sm-2 col-form-label" for="reference" style="font-weight: bold">Reference*</label>
                     <div class="col-sm-10">
                         <textarea class="ckeditor form-control" style="height: 100px" name="reference" required readonly>{!! $article->reference !!}
                         </textarea>
@@ -93,7 +96,6 @@
                                 @endif
                             </tr>
                             <tr> </tr>
-
                         @endforeach
                     </table>
                 </div>
@@ -103,20 +105,57 @@
                     <table class="table table-borered table-striped">
                         <tr>
                             <td>File With Author Info:</td>
-                            <td><a href="{{$article->file_with_author_info}}" target="_blank" download=""> download </a></td>
+                            <td><a href="{{ $article->file_with_author_info }}" target="_blank" download=""> download
+                                </a></td>
                         </tr>
                     </table>
                 </div>
             </fieldset>
         </form>
 
-        <form action="{{route('sendArticleToEditor')}}" method="POST">
+        {{-- <form action="{{route('sendArticleToEditor')}}" method="POST">
             @csrf
             <input type="hidden" name="article_id" value="{{$article->id}}">
             <input type="hidden" name="journal_id" value="{{$article->journal_id}}">
             <button class="btn btn-primary">
                 Send Article To Editor
             </button>
-        </form>
+        </form> --}}
+
+        <div class="d-flex justify-content-center align-items-center p-4">
+            <form action="" method="POST" id="reject_article_form">
+                @csrf
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                <button class="btn btn-danger" onclick="confirmReject(event)">
+                    Reject Article
+                </button>
+            </form>
+        </div>
     </div>
+
+    <button class="btn btn-secondary" id="toggleButton" onclick="toggleData()">Expand</button>
 </div>
+
+
+<script>
+    function toggleData() {
+        var div = document.getElementById("article_data");
+        var button = document.getElementById("toggleButton");
+
+        if (div.style.display === "none") {
+            div.style.display = "block";
+            button.innerHTML = "Collapse";
+        } else {
+            div.style.display = "none";
+            button.innerHTML = "Expand";
+        }
+    }
+
+    function confirmReject(event){
+        event.preventDefault();
+
+        if (confirm("Are you sure you want to reject this article?")){
+            document.getElementById('reject_article_form').submit();
+        }
+    }
+</script>
