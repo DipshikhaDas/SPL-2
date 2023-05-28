@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <section id="main-content" class="center">
                         <div class="row">
-                            <div class="col-lg-8 mx-auto">
+                            <div class="col-lg-10 mx-auto">
                                 @include('layouts.dashboard.journalAdmin.submittedArticlesTable')
                             </div>
                         </div>

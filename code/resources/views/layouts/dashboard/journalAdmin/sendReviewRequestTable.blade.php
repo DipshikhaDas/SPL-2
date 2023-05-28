@@ -1,7 +1,7 @@
 <div class="card m-4">
-    <div class="card-header ">
+    <div class="card-header">
         <h4 class="card-title text-center font-weight-bold">
-            View Submitted Articles
+            Select an Article to Send Review Requests
         </h4>
     </div>
     <div class="card-body">
@@ -13,13 +13,14 @@
             </button>
         </div>
         @endif
-        <table class="table table-striped table-hover p-4">
+        <table class="table table-striped table-hover">
             <tr>
                 <th>Sl no.</th>
-                <th>Journal</th>
-                <th>Title</th>
+                <th>Article 
+                    Title</th>
                 <th>Editor</th>
                 <th>Authors</th>
+                <th>Article Status</th>
                 <th>Action</th>
             </tr>
             @php
@@ -30,9 +31,7 @@
                     <td>
                         {{ $i++ }}
                     </td>
-                    <td>
-                        {{ $article->journal->title }}
-                    </td>
+                    
                     <td>
                         {{ $article->title }}
                     </td>
@@ -43,10 +42,12 @@
                     <td>
                         {{ $article->authors->pluck('last_name')->join(', ') }}
                     </td>
-
                     <td>
-                        <a href="{{ route('viewArticle', ['article' => $article]) }}" target="_blank"
-                            class="btn btn-info">view</a>
+                        {!! $article->status !!}
+                    </td>
+                    <td>
+                        <a href="{{ route('sendReviewRequest', ['article' => $article]) }}" 
+                            class="badge badge-info">view</a>
                     </td>
                 </tr>
             @endforeach

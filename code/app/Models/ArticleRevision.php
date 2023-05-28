@@ -11,7 +11,8 @@ class ArticleRevision extends Model
     protected $fillable = [
         'article_id',
         'file_without_author_info',
-        'author_comments',
+        'editor_comments',
+        'revision_status'
         
     ];
     public function article()

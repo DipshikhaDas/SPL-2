@@ -4,11 +4,13 @@
 
 use App\Http\Controllers\article\articleSubmissionController;
 use App\Http\Controllers\author\authorDashboardController;
+use App\Http\Controllers\editor\EditorController;
 use App\Http\Controllers\journalAdmin\JournalController;
 use App\Http\Controllers\JournalAdmin\PermissionController;
 use App\Http\Controllers\JournalAdmin\RoleController;
 use App\Http\Controllers\MyArticlesController;
 use App\Http\Controllers\article\postArticleSubmissionController;
+use App\Http\Controllers\reviewer\ReviewerController;
 use App\Http\Controllers\superAdmin\FacultyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\superAdmin\SuperAdminDashboardController;
@@ -132,7 +134,7 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
 
     Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
-
+    Route::post('/sendArticleToEditor', [ArticleController::class, 'sendArticleToEditor'])->name('sendArticleToEditor');
 
     Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
     Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
@@ -148,6 +150,22 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
     Route::get('/journalVolume/issue/create/{id}', [JournalController::class, 'createJournalVolumeIssue'])->name('createJournalVolumeIssueForm');
     Route::post('/storeIssue', [JournalController::class, 'storeIssue'])->name('storeIssue');
+
+    Route::get('sendReviewRequest', [journalAdminDashboardController::class, 'sendReviewRequestView'])->name('sendReviewRequestView');
+    Route::get('sendReviewRequest/{article}', [journalAdminDashboardController::class, 'sendReviewRequest'])->name('sendReviewRequest');
+
+    Route::post('/sendReviewRequest', [journalAdminDashboardController::class, 'sendReviewRequestPost'])->name('sendReviewRequestPost');
+});
+// EDITOR 
+Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(function(){
+    Route::get('/submittedArticles', [EditorController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles.editor');
+    Route::get('/submittedArticle/{article}' ,[EditorController::class, 'getArticle'])->name('getArticleEditor');
+
+    Route::get('/searchReviewer', [EditorController::class, 'searchReviewer'])->name('searchReviewers');
+
+    Route::post('/sendReviewersToJournalAdmin', [EditorController::class, 'sendReviewersToJournalAdmin'])->name('sendReviewersToJournalAdmin');
+
+    
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
@@ -157,10 +175,22 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::get('/myArticles', [MyArticlesController::class, 'index']);
 });
 
+Route::middleware(['auth', 'verified', 'role:reviewer'])->prefix('reviewer')->group(function(){
+    Route::get('/viewReviewRequests', [ReviewerController::class, 'viewReviewRequests'])->name('viewReviewRequests');
+    Route::get('/viewReviewRequest/{article}', [ReviewerController::class, 'viewReviewRequestSingle'])->name('viewReviewRequestSingle');
+    Route::post('/declineRequest', [ReviewerController::class, 'declineRequest'])->name('declineRequest');
+    Route::post('/acceptRequest', [ReviewerController::class, 'acceptRequest'])->name('acceptRequest');
+});
+
 
 Route::middleware(['auth','verified'])->group( function () {
-    Route::get('/test',[TestController::class,'test'])->name('test');
+    // Route::get('/test',[TestController::class,'test'])->name('test');
+    Route::get('/test', [TestController::class, 'index'])->name('searchTest');
+    Route::post('/selected', [TestController::class, 'selected'])->name('selectedTest');
+    Route::get('/tsearch', [TestController::class, 'search'])->name('TestSearch');
+    Route::get('/test_article_download/{id}', [TestController::class, 'download'])->name('test_article_download');
 });
+
 
 Route::get('/reviewer', function () {
     return view('layouts.dashboard.reviewer');

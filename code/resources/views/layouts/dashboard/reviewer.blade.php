@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
+                                    route="{{ route('viewReviewRequests') }}"
                                     logo="reviews"
                                     text="View Review Requests"
                                 />

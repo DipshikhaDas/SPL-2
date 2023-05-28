@@ -9,13 +9,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>View Submitted Articles</title>
-        <style>
-            .table td:last-child {
-                text-align: left;
-            }
-        </style>
-        
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     </head>
 
     <body>
@@ -25,13 +18,14 @@
                     <section id="main-content" class="center">
                         <div class="row">
                             <div class="col-lg-10 mx-auto">
-                                @include('layouts.forms.viewArticleform')
+                                @include('layouts.dashboard.editor.viewArticlestable')
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
         </div>
+
     </body>
 
     </html>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\article;
 
+use App\Enums\ArticleStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleAdditionalFile;
 use App\Models\ArticleAuthor;
+use App\Models\ArticleRevision;
 use App\Models\ArticleSubmission;
 use App\Models\Journal;
 use App\Models\Keyword;
@@ -88,20 +90,29 @@ class articleSubmissionController extends Controller
 
         if ($request->hasFile('file_with_author_info')) {
             $file = $request->file('file_with_author_info');
-            $filename = time() . $article->title . "with_author_info" . $file->hashName();
-            $path = $file->storeAs('public/article_submissions/with_author_info', $filename);
+            $filename = $file->hashName();
+            $path = $file->storeAs('file_without_info', $filename, 'secure');
             $article->file_with_author_info = $path;
         }
         if ($request->hasFile('file_without_author_info')) {
             $file = $request->file('file_without_author_info');
-            $filename = time() . $article->title . "without_author_info" . $file->hashName();
-            $path = $file->storeAs('public/article_submissions/without_author_info', $filename);
+            $filename = $file->hashName();
+            $path = $file->storeAs('file_with_info', $filename, 'secure');
             $article->file_without_author_info = $path;
 
         }
         $article->author_comments = $request->input('comments_for_editor');
-
+        $article->status = ArticleStatus::MANUSCRIPT_SUBMITTED;
         $article->save();
+
+
+        $articleRevision0 = new ArticleRevision();
+        $articleRevision0->article_id = $article->id;
+        $articleRevision0->file_without_author_info = $article->file_without_author_info;
+        $articleRevision0->revision_status = ArticleStatus::MANUSCRIPT_SUBMITTED;
+        $articleRevision0->save();
+
+        $article->revisions()->save($articleRevision0);
 
         // Get the keywords from the form
         $keywordsString = $request->input('keywords');
@@ -117,6 +128,9 @@ class articleSubmissionController extends Controller
 
         // Associate the keywords with the article
         $uniqueKeywords = [];
+
+
+
         foreach ($keywordsArray as $keyword) {
             $keyword = strtolower($keyword);
 
@@ -164,7 +178,7 @@ class articleSubmissionController extends Controller
                 if ($user) {
                     $article->correspondingAuthors()->sync([$user->id]);
                     $author->is_corresponding = true;
-                    $submitted_by = $author->first_name. ' ' . $author->middle_name . ' ' . $author->last_name;
+                    $submitted_by = $author->first_name . ' ' . $author->middle_name . ' ' . $author->last_name;
                 }
 
             }
@@ -193,11 +207,10 @@ class articleSubmissionController extends Controller
 
         foreach ($authors as $author) {
 
-            if($author->is_corresponding){
+            if ($author->is_corresponding) {
                 $author->notify(new ArticleSubmissionConfirmationCorrespondingAuthorNotification($article));
-            }
-            else{
-            $author->notify(new ArticleSubmissionConfirmationNotification($article, $submitted_by));
+            } else {
+                $author->notify(new ArticleSubmissionConfirmationNotification($article, $submitted_by));
             }
         }
 
