@@ -25,5 +25,12 @@ class HomeController extends Controller
     {
         return view('layouts.home');
     }
-
+    public function privacyPolicy()
+    {
+        return view('layouts.privacyPolicy');
+    }
+    public function contact()
+    {
+        return view('layouts.contacts');
+    }
 }

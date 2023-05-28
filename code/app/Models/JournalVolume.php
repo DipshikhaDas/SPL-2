@@ -22,6 +22,5 @@ class JournalVolume extends Model
 
     public function issues()
     {
-        return $this->hasMany(JournalVolumeIssue::class);
     }
 }

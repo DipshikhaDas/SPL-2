@@ -109,7 +109,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <x-dashboard.card-link class="card-link"
-                                route="{{ route('viewCompletedArticles') }}"
+                                route="{{ route('submitPublishedArticle') }}"
                                 logo="library_add"
                                 text="Add Published Article" />
                             </div>
