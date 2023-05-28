@@ -17,7 +17,7 @@ class JournalController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
 
         $request->validate([
             'title' => 'required|max:255',

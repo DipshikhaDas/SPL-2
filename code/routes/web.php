@@ -164,8 +164,11 @@ Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(
     Route::get('/searchReviewer', [EditorController::class, 'searchReviewer'])->name('searchReviewers');
 
     Route::post('/sendReviewersToJournalAdmin', [EditorController::class, 'sendReviewersToJournalAdmin'])->name('sendReviewersToJournalAdmin');
+    Route::get('/viewArticlesForFeedback', [EditorController::class, 'viewArticlesForFeedback'])->name('viewArticlesForFeedback');
+    Route::get('/viewRevisedArticles/{article}', [EditorController::class, 'viewRevisedArticlesEditor'])->name('viewRevisedArticlesEditor');
+    Route::get('/submitFeedback/{r_article}', [EditorController::class, 'getRevisedArticle'])->name('getRevisedArticle');
+    Route::post('/submitFeedback', [EditorController::class, 'submitFeedback'])->name('submitFeedbackPost');
 
-    
 });
 
 Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(function(){
@@ -180,6 +183,10 @@ Route::middleware(['auth', 'verified', 'role:reviewer'])->prefix('reviewer')->gr
     Route::get('/viewReviewRequest/{article}', [ReviewerController::class, 'viewReviewRequestSingle'])->name('viewReviewRequestSingle');
     Route::post('/declineRequest', [ReviewerController::class, 'declineRequest'])->name('declineRequest');
     Route::post('/acceptRequest', [ReviewerController::class, 'acceptRequest'])->name('acceptRequest');
+    Route::get('/viewArticles', [ReviewerController::class, 'viewArticles'])->name('viewArticlesReviewer');
+    Route::get('/viewArticles/{article}', [ReviewerController::class, 'viewRevisedArticles'])->name('viewRevisedArticlesReviewer');
+    Route::get('/submitReview/{r_article}', [ReviewerController::class, 'getRevisedArticle'])->name('submitReview');
+    Route::post('/submitReview', [ReviewerController::class, 'submitReview'])->name('submitReviewPost');    
 });
 
 

@@ -56,21 +56,12 @@
                             </div>
                             <div class="col-lg-3">
                                 <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
+                                    route="{{ route('viewArticlesReviewer') }}"
                                     logo="feedback"
-                                    text="Send Feedback"
+                                    text="Review Articles"
                                 />
                             </div>
-                            <!-- <div class="col-lg-3">
-                              <div class="card">
-                                  <div class="stat-widget-one">
-                                      <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
-                                      <div class="stat-content dib">
-                                        <div class="stat-text"><a href="#" style="font-weight: bold;">View Review</a></div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div> -->
+      
                         </div>
                     </section>
                     <div class="footer">

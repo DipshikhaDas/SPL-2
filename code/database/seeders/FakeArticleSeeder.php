@@ -26,7 +26,7 @@ class FakeArticleSeeder extends Seeder
         for ($i = 0; $i < 7; $i++) {
             // Create and save the article
             $article = new Article();
-            $article->journal_id = mt_rand(1, 15); // Replace with the actual journal ID
+            $article->journal_id = mt_rand(2, 4); // Replace with the actual journal ID
             $article->title = $faker->sentence; // Generate a random title
             $article->abstract = $faker->paragraph; // Generate a random abstract
             $article->reference = $faker->sentence; // Generate a random reference
