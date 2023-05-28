@@ -30,5 +30,5 @@ class NotificationController extends Controller
     //     Notification::send($user, new SendEmailNotification($details));
 
     //     dd('done');
-    }
+    // }
 }

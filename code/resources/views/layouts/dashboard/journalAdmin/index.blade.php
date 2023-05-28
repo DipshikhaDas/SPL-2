@@ -90,7 +90,7 @@
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <x-dashboard.card-link route="{{ route('rolesIndex') }}" logo="Send"
+                                <x-dashboard.card-link route="{{ route('viewSubmittedArticles') }}" logo="Send"
                                     text="Send Articles to Editor" />
                             </div>
 
@@ -120,14 +120,14 @@
                                 text="Add Published Journal" />
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-3">
                                 <x-dashboard.card-link class="card-link"
                                 route="{{ route('viewSubmittedArticles') }}"
                                 logo="view_list"
                                 text="View Submitted Articles" />
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <div class="col-lg-3">
                                 <x-dashboard.card-link class="card-link"

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('revision_status')->nullable();
             // $table->integer('submission_count')->default(-1);
             $table->timestamps();
+
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
     }
 

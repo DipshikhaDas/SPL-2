@@ -16,7 +16,7 @@ class FakeJournalSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for($i=0;$i<15;$i++){
+        for($i=0;$i<5;$i++){
             $journal = Journal::create([
             'title' => $faker->sentence,
             'description' => $faker->paragraph,
@@ -26,8 +26,8 @@ class FakeJournalSeeder extends Seeder
 
             'editorial_board' => $faker->paragraph,
 
-            'faculty_id' => mt_rand(1,4),
-            'editor_id' => mt_rand(1,2),
+            'faculty_id' => 4,
+            'editor_id' => 1,
             // 'cover_photo' => 'public/' . Storage::disk('public')->putFileAs('cover-photos', $imagePath, $fileName),
         ]);
         }

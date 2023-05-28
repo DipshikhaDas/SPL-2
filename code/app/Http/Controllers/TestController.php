@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,9 +21,16 @@ class TestController extends Controller
     
     public function index()
     {
-        $user = User::role('author')->where('id', '104')->get();
+        $journal = Journal::find(1);
+        $volume = $journal->volumes()->where('volume_no', '2')->first();
+
+        $issue = $volume->issues;
+
+        dd($issue);
+
+        // $article = Article::find(1);
     
-        // dd($user);
+        // dd($article->revisions());
         return view('layouts.test');
     }
 

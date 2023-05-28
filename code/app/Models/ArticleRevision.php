@@ -20,5 +20,9 @@ class ArticleRevision extends Model
         return $this->belongsTo(Article::class);
     }
 
+    public function reviewFeedbacks()
+    {
+        return $this->hasMany(ArticleReview::class,'revised_article_id');
+    }
  
 }
