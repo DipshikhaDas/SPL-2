@@ -149,6 +149,11 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
     Route::get('/journalVolume/issue/create/{id}', [JournalController::class, 'createJournalVolumeIssue'])->name('createJournalVolumeIssueForm');
     Route::post('/storeIssue', [JournalController::class, 'storeIssue'])->name('storeIssue');
+
+    Route::get('sendReviewRequest', [journalAdminDashboardController::class, 'sendReviewRequestView'])->name('sendReviewRequestView');
+    Route::get('sendReviewRequest/{article}', [journalAdminDashboardController::class, 'sendReviewRequest'])->name('sendReviewRequest');
+
+    Route::post('/sendReviewRequest', [journalAdminDashboardController::class, 'sendReviewRequestPost'])->name('sendReviewRequestPost');
 });
 // EDITOR 
 Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(function(){

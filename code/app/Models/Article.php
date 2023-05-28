@@ -59,6 +59,6 @@ class Article extends Model
 
     public function consideredReviewers()
     {
-        return $this->belongsToMany(User::class, 'considered_reviewers', 'article_id','reviewer_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'considered_reviewers', 'article_id','reviewer_id')->withPivot('status')->withTimestamps();
     }
 }

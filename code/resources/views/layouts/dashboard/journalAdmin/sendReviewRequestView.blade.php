@@ -8,7 +8,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>View Submitted Articles</title>
+        <title>Send Review Request</title>
+        <script src="{{ asset('ckeditor/ckeditor.js')}}"></script>
     </head>
 
     <body>
@@ -18,7 +19,7 @@
                     <section id="main-content" class="center">
                         <div class="row">
                             <div class="col-lg-10 mx-auto">
-                                @include('layouts.dashboard.journalAdmin.submittedArticlesTable')
+                                @include('layouts.dashboard.journalAdmin.sendReviewRequestTable')
                             </div>
                         </div>
                     </section>

@@ -66,6 +66,6 @@ class User extends Authenticatable
     public function consideredReviewerInArtcle()
     {
         return $this->belongsToMany(Article::class, 'considered_reviewer', 'reveiwer_id', 'article_id
-        ')->withTimestamps();
+        ')->withPivot('status')->withTimestamps();
     }
 }
