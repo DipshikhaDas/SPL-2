@@ -17,7 +17,7 @@ class JournalController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
 
         $request->validate([
             'title' => 'required|max:255',
@@ -150,7 +150,8 @@ class JournalController extends Controller
     {
         $journal = Journal::findOrFail($id);
 
-        return view('layouts.guests.availableJournalDescription', compact('journal'));
+        $articles = $journal->publishedArtices()->limit(5)->get();
+        return view('layouts.guests.availableJournalDescription', compact('journal', 'articles'));
     }
     public function storeIssue(Request $request)
 {

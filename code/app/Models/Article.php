@@ -61,4 +61,9 @@ class Article extends Model
     {
         return $this->belongsToMany(User::class, 'considered_reviewers', 'article_id','reviewer_id')->withPivot('status')->withTimestamps();
     }
+
+    public function finalCopies()
+    {
+        return $this->hasMany(FinalCopy::class, 'article_id');
+    }
 }

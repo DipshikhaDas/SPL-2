@@ -25,7 +25,7 @@
                     <section id="main-content" class="center">
                         <div class="row">
                             <div class="col-lg-10 mx-auto">
-                                @include('layouts.dashboard.author.myarticlesTable')
+                                @include('layouts.dashboard.reviewer.viewRevisedArticlesTable')
                                 {{-- @include('layouts.forms.selectReviewerForArticleForm') --}}
                             </div>
                         </div>
