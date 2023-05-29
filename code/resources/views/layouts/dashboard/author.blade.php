@@ -39,19 +39,12 @@
                     <!-- /# row -->
                     <section id="main-content">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <x-dashboard.card-link
-                                    route="{{ route('submitArticle') }}"
-                                    logo="article"
-                                    text="Submit Article"
-                                />
-                            </div>
 
                             <div class="col-lg-3">
                                 <x-dashboard.card-link
-                                    route="{{ route('rolesIndex') }}"
+                                    route="{{ route('myarticles') }}"
                                     logo="description"
-                                    text="View Status of Article"
+                                    text="My Submissions"
                                 />
 
                             </div>

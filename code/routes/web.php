@@ -175,7 +175,13 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::get('/',[authorDashboardController::class, 'index'])->name('author');
     Route::get('/submitArticle/{journal_id}',[articleSubmissionController::class, 'create'])->name('submitArticle');
     Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
-    Route::get('/myArticles', [MyArticlesController::class, 'index']);
+    Route::get('/myArticles', [authorDashboardController::class, 'myArticles'])->name('myarticles');
+    Route::get('/myArticles/{article}', [authorDashboardController::class, 'mySubmittedArticle'])->name('mySubmittedArticle');
+    Route::post('/submitRevision', [authorDashboardController::class, 'submitRevision'])->name('submitRevision');
+    Route::get('/myArticles/{r_article}/feedback', [authorDashboardController::class, 'myarticlefeedback'])->name('myarticlefeedback');
+    Route::get('/finalCopyForm/{article}', [authorDashboardController::class, 'finalCopyForm'] )->name('finalCopyForm');
+    Route::post('/submitFinalCopy', [authorDashboardController::class, 'submitFinalCopy'])->name('submitFinalCopy');
+    
 });
 
 Route::middleware(['auth', 'verified', 'role:reviewer'])->prefix('reviewer')->group(function(){
