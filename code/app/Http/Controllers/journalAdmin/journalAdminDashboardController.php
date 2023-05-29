@@ -67,7 +67,7 @@ class journalAdminDashboardController extends Controller
             ->pluck('articles')
             ->flatten()
             ->where('status', ArticleStatus::MANUSCRIPT_SUBMITTED->value);
-    
+
 
         return view('layouts.dashboard.journalAdmin.viewSubmittedArticles', compact('articles'));
 
@@ -84,14 +84,19 @@ class journalAdminDashboardController extends Controller
             ->pluck('articles')
             ->flatten()
             ->where('status', ArticleStatus::WITH_EDITOR->value);
-    
+
 
         return view('layouts.dashboard.journalAdmin.sendReviewRequestView', compact('articles'));
     }
 
-    public function submitPublishedArticle(Article $article)
+    // public function submitPublishedArticle(Article $article)
+    // {
+    //     return view('layouts.dashboard.journalAdmin.submitPublishedArticle', compact('article'));
+    // }
+
+    public function submitPublishedArticle()
     {
-        return view('layouts.dashboard.journalAdmin.submitPublishedArticle', compact('article'));
+        return view('layouts.dashboard.journalAdmin.submitPublishedArticle');
     }
 
     public function sendReviewRequest(Article $article)
@@ -127,11 +132,11 @@ class journalAdminDashboardController extends Controller
         $reviwer = $article->consideredReviewers()->where('reviewer_id', $request->input('reviewer_id'))->first();
         // ->find($request->input('reviwer_id'));
 
-        
+
         if ($reviwer->pivot->status == ConsideredReviewerStatus::REQUEST_PENDING->value)
         {
-            $reviwer->pivot->status = ConsideredReviewerStatus::REQUEST_SENT->value;    
-            $reviwer->pivot->save();        
+            $reviwer->pivot->status = ConsideredReviewerStatus::REQUEST_SENT->value;
+            $reviwer->pivot->save();
         }
 
         return redirect()->back();

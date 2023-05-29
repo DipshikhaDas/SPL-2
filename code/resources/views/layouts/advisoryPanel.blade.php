@@ -51,8 +51,8 @@
           <div class="team-img">
             <img src="{{ asset('frontend/website/images/team/human.png') }}" class="team-pic" alt="">
           </div>
-          <h3 class="team_name">Jesmin Martina</h3>
-          {{-- <p class="team_designation">CEO, Project Manager</p> --}}
+          <h3 class="team_name">Professor B. C. Meikap</h3>
+          <p class="team_designation">CEO, Project Manager</p>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">

@@ -54,9 +54,20 @@ class ArticleController extends Controller
                 'article_file' => 'required|file',
                 'journal_id' => 'required|string',
                 'publication_date' => 'required|string',
+                'volume_no' => 'required|string',
+                'issue_no' => 'required|string'
 
             ]
         );
+
+        $journal = Journal::find($request->input('journal_id'));
+        $journal
+
+
+
+
+
+
 
         $article = new PublishedArticle();
         $article->journal_id = $request->input('journal_id');
@@ -157,11 +168,11 @@ class ArticleController extends Controller
         $article = Article::findOrFail($articleId);
         $journal = Journal::findOrFail($journalId);
 
-        
+
         $editor = $journal->editor()->first();
-        
+
         // dd($editor, $article);
-        
+
         if (!$editor->editedArticles()->where('article_id', $articleId)->exists()) {
             $editor->editedArticles()->attach($articleId);
             $article->status = ArticleStatus::WITH_EDITOR;
