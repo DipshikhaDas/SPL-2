@@ -12,7 +12,8 @@ class ArticleRevision extends Model
         'article_id',
         'file_without_author_info',
         'editor_comments',
-        'revision_status'
+        'revision_status',
+        'reply_letter',
         
     ];
     public function article()
@@ -20,5 +21,9 @@ class ArticleRevision extends Model
         return $this->belongsTo(Article::class);
     }
 
+    public function reviewFeedbacks()
+    {
+        return $this->hasMany(ArticleReview::class,'revised_article_id');
+    }
  
 }

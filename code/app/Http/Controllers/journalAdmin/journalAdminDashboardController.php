@@ -89,15 +89,15 @@ class journalAdminDashboardController extends Controller
         return view('layouts.dashboard.journalAdmin.sendReviewRequestView', compact('articles'));
     }
 
-    // public function submitPublishedArticle(Article $article)
-    // {
-    //     return view('layouts.dashboard.journalAdmin.submitPublishedArticle', compact('article'));
-    // }
-
-    public function submitPublishedArticle()
+    public function submitPublishedArticle(Article $article)
     {
-        return view('layouts.dashboard.journalAdmin.submitPublishedArticle');
+        return view('layouts.dashboard.journalAdmin.submitPublishedArticle', compact('article'));
     }
+
+    // public function submitPublishedArticle()
+    // {
+    //     return view('layouts.dashboard.journalAdmin.submitPublishedArticle');
+    // }
 
     public function sendReviewRequest(Article $article)
     {

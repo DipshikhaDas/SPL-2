@@ -43,4 +43,9 @@ class Journal extends Model
     public function volumes(){
         return $this->hasMany(JournalVolume::class);
     }
+
+    public function publishedArtices()
+    {
+        return $this->hasMany(PublishedArticle::class);
+    }
 }

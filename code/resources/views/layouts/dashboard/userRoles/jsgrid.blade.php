@@ -27,9 +27,15 @@
                     // $tempId = item.id;
                     return $.ajax({
                         type: "PUT",
-                        url: "/userRole/" + item.id,
-                        // url: "{{ route('userRoles.update', '') }}" + '/' + item.id,
-                        data: item
+                        // url: "/userRole/" + item.id,
+                        url: "{{ route('userRoles.update', ':id') }}".replace(':id', item
+                            .id),
+                        data: item,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        dataType: "json"
+
                     });
                 }
             },
@@ -73,15 +79,14 @@
                                 .attr("disabled", !item.$editing)
                                 .prop("checked", item.roles.some(r => r.name ===
                                     '{{ $role->name }}'));
-                            if (item.$editing){
+                            if (item.$editing) {
                                 $checkbox.prop("disabled", false)
-                                .addClass("jsgrid-editing");
+                                    .addClass("jsgrid-editing");
                             }
-                                return $checkbox;
+                            return $checkbox;
                         }
                     },
-                @endforeach 
-                {
+                @endforeach {
                     type: "control",
                     editButton: true
                 }

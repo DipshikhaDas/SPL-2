@@ -103,21 +103,23 @@
                         <div class="categories widget shadow">
                             <h3 class="widget-head">Latest Articles of this Journal</h3>
                             <ul>
+                                @foreach ($articles as $article)
+                                    
                                 <li class="row" style="border-bottom: 1px solid #999; border-top: 1px solid #999">
                                     <div class="col-6">
                                         <a href="#"
-                                            style="color:#0099ff; font-size:18px; text-decoration: underline">Article's
-                                            Name</a>
-                                        <p>Author's Name</p>
+                                        style="color:#0099ff; font-size:18px; text-decoration: underline">{{$article->title }}</a>
+                                        <p>{{$article->authors()->get()->pluck('last_name')->join(', ')}}</p>
                                         <p>Original Paper</p>
-                                        <p>Published on: Date</p>
+                                        <p>Published on: {{$article->publication_date }}</p>
                                     </div>
                                     <div class="col-6">
                                         <img src="{{ asset('frontend/website/images/journal2.jpg') }}"
-                                            style="width: 170px; height:130px; float: right; padding: 3%" alt="">
+                                        style="width: 170px; height:130px; float: right; padding: 3%" alt="">
                                     </div>
                                 </li>
-                                <li class="row" style="border-bottom: 1px solid #999;">
+                                @endforeach
+                                {{-- <li class="row" style="border-bottom: 1px solid #999;">
                                     <div class="col-6">
                                         <a href="#"
                                             style="color:#0099ff; font-size:18px; text-decoration: underline">Article's
@@ -130,7 +132,7 @@
                                         <img src="{{ asset('frontend/website/images/journal1.jpg') }}"
                                             style="width: 170px; height:130px; float: right; padding: 3%" alt="">
                                     </div>
-                                </li>
+                                </li> --}}
                             </ul>
                             <p><a href="" style="font-size:18px; text-decoration: underline">View all volumes and
                                     issues</a></p>
@@ -165,7 +167,7 @@
                             </div>
                         </div>
 
-                        <div class="recent-post widget shadow">
+                        {{-- <div class="recent-post widget shadow">
                             <ul>
                                 <li class="row">
                                     <div class="col-6">
@@ -188,7 +190,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                         <div class="categories widget shadow">
                             <h3 class="widget-head">For Authors</h3>
                             <ul>
@@ -233,7 +235,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
-                        <a href="" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s"
+                        <a href="{{route('atozjournals')}}" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s"
                             data-wow-duration="500ms">View A-Z Journals</a>
                     </div>
                 </div>

@@ -134,15 +134,15 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::put('/edit/{id}',[JournalController::class, 'update'])->name('journalUpdate');
 
     Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
-    // Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
+    Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
 
     Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
     Route::post('/sendArticleToEditor', [ArticleController::class, 'sendArticleToEditor'])->name('sendArticleToEditor');
 
-    // Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
-    // Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
+    Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+    Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
 
-    Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+    // Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
 
 
     Route::get('/addPublishedJournal',[journalAdminDashboardController::class, 'addPublishedJournalPage'])->name('addPublishedJournalTable');
@@ -170,7 +170,10 @@ Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(
     Route::get('/searchReviewer', [EditorController::class, 'searchReviewer'])->name('searchReviewers');
 
     Route::post('/sendReviewersToJournalAdmin', [EditorController::class, 'sendReviewersToJournalAdmin'])->name('sendReviewersToJournalAdmin');
-
+    Route::get('/viewArticlesForFeedback', [EditorController::class, 'viewArticlesForFeedback'])->name('viewArticlesForFeedback');
+    Route::get('/viewRevisedArticles/{article}', [EditorController::class, 'viewRevisedArticlesEditor'])->name('viewRevisedArticlesEditor');
+    Route::get('/submitFeedback/{r_article}', [EditorController::class, 'getRevisedArticle'])->name('getRevisedArticle');
+    Route::post('/submitFeedback', [EditorController::class, 'submitFeedback'])->name('submitFeedbackPost');
 
 });
 
@@ -178,7 +181,13 @@ Route::middleware(['auth', 'verified', 'role:author'])->prefix('author')->group(
     Route::get('/',[authorDashboardController::class, 'index'])->name('author');
     Route::get('/submitArticle/{journal_id}',[articleSubmissionController::class, 'create'])->name('submitArticle');
     Route::post('/submitArticle', [articleSubmissionController::class, 'store'])->name('submitArticle.store');
-    Route::get('/myArticles', [MyArticlesController::class, 'index']);
+    Route::get('/myArticles', [authorDashboardController::class, 'myArticles'])->name('myarticles');
+    Route::get('/myArticles/{article}', [authorDashboardController::class, 'mySubmittedArticle'])->name('mySubmittedArticle');
+    Route::post('/submitRevision', [authorDashboardController::class, 'submitRevision'])->name('submitRevision');
+    Route::get('/myArticles/{r_article}/feedback', [authorDashboardController::class, 'myarticlefeedback'])->name('myarticlefeedback');
+    Route::get('/finalCopyForm/{article}', [authorDashboardController::class, 'finalCopyForm'] )->name('finalCopyForm');
+    Route::post('/submitFinalCopy', [authorDashboardController::class, 'submitFinalCopy'])->name('submitFinalCopy');
+    
 });
 
 Route::middleware(['auth', 'verified', 'role:reviewer'])->prefix('reviewer')->group(function(){
@@ -186,6 +195,10 @@ Route::middleware(['auth', 'verified', 'role:reviewer'])->prefix('reviewer')->gr
     Route::get('/viewReviewRequest/{article}', [ReviewerController::class, 'viewReviewRequestSingle'])->name('viewReviewRequestSingle');
     Route::post('/declineRequest', [ReviewerController::class, 'declineRequest'])->name('declineRequest');
     Route::post('/acceptRequest', [ReviewerController::class, 'acceptRequest'])->name('acceptRequest');
+    Route::get('/viewArticles', [ReviewerController::class, 'viewArticles'])->name('viewArticlesReviewer');
+    Route::get('/viewArticles/{article}', [ReviewerController::class, 'viewRevisedArticles'])->name('viewRevisedArticlesReviewer');
+    Route::get('/submitReview/{r_article}', [ReviewerController::class, 'getRevisedArticle'])->name('submitReview');
+    Route::post('/submitReview', [ReviewerController::class, 'submitReview'])->name('submitReviewPost');    
 });
 
 
