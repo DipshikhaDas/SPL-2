@@ -23,7 +23,18 @@
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('atozjournals') }}">View All Journals
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Faculties
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Guidelines
@@ -32,9 +43,9 @@
                                 <a class="dropdown-item" href="{{ url('/authorGuidelines') }}">Author Guidelines</a>
                                 <a class="dropdown-item" href="{{ url('/reviewerGuidelines') }}">Reviewer Guidelines</a>
                             </div>
-                        </li>
+                        </li> --}}
 
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Members
@@ -43,15 +54,15 @@
                                 <a class="dropdown-item" href="{{ url('/editorialBoard') }}">Editorial Board</a>
                                 <a class="dropdown-item" href="{{ url('/advisoryPanel') }}">Advisory Panel</a>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Policies
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/privacyPolicy') }}">Privacy Policy</a>
-                                <a class="dropdown-item" href="{{ url('/contact') }}">Contact</a>
+                                <a class="dropdown-item" href="{{ route('privacyPolicy') }}">Privacy Policy</a>
+                                <a class="dropdown-item" href="{{ route('contact') }}">Contact</a>
                             </div>
                         </li>
                     </ul>
