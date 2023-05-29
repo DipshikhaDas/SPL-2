@@ -4,6 +4,7 @@ namespace App\Http\Controllers\editor;
 
 use App\Enums\ArticleStatus;
 use App\Enums\ConsideredReviewerStatus;
+use App\Enums\ReviewStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleRevision;
@@ -130,11 +131,11 @@ class EditorController extends Controller
         $r_article->revision_status = $status;
         $r_article->save();
 
-        if ($status == ArticleStatus::ACCEPTED->value){
+        if ($status == ReviewStatus::ACCEPTED->value){
             $article->status = $status;
             $article->save();
         }
-        if ($status == ArticleStatus::REJECTED->value){
+        if ($status == ReviewStatus::REJECTED->value){
             $article->status = $status;
             $article->save();
         }

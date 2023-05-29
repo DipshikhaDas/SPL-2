@@ -12,7 +12,8 @@ class ArticleRevision extends Model
         'article_id',
         'file_without_author_info',
         'editor_comments',
-        'revision_status'
+        'revision_status',
+        'reply_letter',
         
     ];
     public function article()

@@ -16,6 +16,7 @@
         </style>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     </head>
 
     <body>
@@ -25,8 +26,7 @@
                     <section id="main-content" class="center">
                         <div class="row">
                             <div class="col-lg-10 mx-auto">
-                                @include('layouts.dashboard.author.myarticlesTable')
-                                {{-- @include('layouts.forms.selectReviewerForArticleForm') --}}
+                                @include('layouts.forms.articleRevisionForm')
                             </div>
                         </div>
                     </section>
