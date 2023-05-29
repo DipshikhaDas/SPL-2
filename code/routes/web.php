@@ -40,11 +40,11 @@ use App\Http\Controllers\PublishedJournalController;
 
 Route::get('/', function () {
     return view('layouts.home');
-})->name('/');
+})->name('home');
 
 Route::get('/contact', function () {
     return view('layouts.contacts');
-});
+})->name('contact');
 
 Route::get('/index', function () {
     return view('layouts.dashboard.author');
@@ -68,7 +68,7 @@ Route::get('/reviewerGuidelines', function(){
 
 Route::get('/privacyPolicy', function(){
     return view('layouts.privacyPolicy');
-});
+})->name('privacyPolicy');
 
 Route::get('/ui', function(){
     return view('layouts.headerModified');
@@ -78,7 +78,10 @@ Route::get('/submit', function(){
     return view('layouts.dashboard.author.submitArticle');
 });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Route::get('articleDescription', [JournalController::class, 'articleDescription'])->name('articleDescription');
+Route::get('/atozJournals',[JournalController::class, 'atozjournals'])->name('atozjournals');
+// Route::get('/aims&scope', [JournalController::class, 'aims&scope'])->name('aims&scope');
 
 Route::get('/journal/{id}', [JournalController::class, 'individualJournal'])->name('individualJournal');
 
@@ -86,11 +89,11 @@ Route::get('/aims&scope', function(){
     return view('layouts.guests.aims&scopeofAvailableJournal');
 });
 
-Route::get('/articleDescription', function(){
-    return view('layouts.guests.viewPublishedArticleDescription');
-});
+// Route::get('/articleDescription', function(){
+//     return view('layouts.guests.viewPublishedArticleDescription');
+// });
 
-Route::get('/atozJournals',[JournalController::class, 'atozjournals'])->name('atozjournals');
+
 
 // Route::get('sendNotification',[NotificationController::class,"sendNotification"]);
 
@@ -131,13 +134,16 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
     Route::put('/edit/{id}',[JournalController::class, 'update'])->name('journalUpdate');
 
     Route::get('/submittedArticles', [journalAdminDashboardController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles');
-    Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
+    // Route::get('/viewCompletedArticles', [ArticleController::class, 'viewCompletedArticles'])->name('viewCompletedArticles');
 
     Route::get('/submittedArticles/{article}', [postArticleSubmissionController::class, 'viewArticle'])->name('viewArticle');
     Route::post('/sendArticleToEditor', [ArticleController::class, 'sendArticleToEditor'])->name('sendArticleToEditor');
 
-    Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
-    Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
+    // Route::get('/submitPublishedArticle/{article}',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+    // Route::post('/submitPublishedArticle',[ArticleController::class, 'storePublishedArticle'])->name('storePublishedArticle');
+
+    Route::get('/submitPublishedArticle',[journalAdminDashboardController::class, 'submitPublishedArticle'])->name('submitPublishedArticle');
+
 
     Route::get('/addPublishedJournal',[journalAdminDashboardController::class, 'addPublishedJournalPage'])->name('addPublishedJournalTable');
 
@@ -156,7 +162,7 @@ Route::middleware(['auth', 'verified', 'role:journalAdmin'])->prefix('journalAdm
 
     Route::post('/sendReviewRequest', [journalAdminDashboardController::class, 'sendReviewRequestPost'])->name('sendReviewRequestPost');
 });
-// EDITOR 
+// EDITOR
 Route::middleware(['auth', 'verified', 'role:editor'])->prefix('editor')->group(function(){
     Route::get('/submittedArticles', [EditorController::class, 'viewSubmittedArticles'])->name('viewSubmittedArticles.editor');
     Route::get('/submittedArticle/{article}' ,[EditorController::class, 'getArticle'])->name('getArticleEditor');
