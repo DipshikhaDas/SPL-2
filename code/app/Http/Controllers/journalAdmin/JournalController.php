@@ -150,7 +150,8 @@ class JournalController extends Controller
     {
         $journal = Journal::findOrFail($id);
 
-        return view('layouts.guests.availableJournalDescription', compact('journal'));
+        $articles = $journal->publishedArtices()->limit(5)->get();
+        return view('layouts.guests.availableJournalDescription', compact('journal', 'articles'));
     }
     public function storeIssue(Request $request)
 {

@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title text-center"><b>Published Journal that has not been Uploaded</b></h4>
+        <h4 class="card-title text-center"><b>Upload a published article </b></h4>
     </div>
     <div class="card-body p-4">
         <div class="table table-responsive">
@@ -35,7 +35,7 @@
 
                             <td>
                                 <a href="{{ route('submitPublishedArticle', ['article' => $article]) }}" target="_blank"
-                                    class="badge badge-info">Submit</a>
+                                    class="btn btn-info">Submit</a>
                             </td>
                         </tr>
                     @endforeach

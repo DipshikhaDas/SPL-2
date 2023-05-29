@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\journalAdmin;
 
 use App\Enums\ArticleStatus;
+use App\Enums\ReviewStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Journal;
@@ -30,7 +31,7 @@ class ArticleController extends Controller
             ->flatten()
             ->pluck('articles')
             ->flatten()
-            ->where('status', null);
+            ->where('status', ReviewStatus::ACCEPTED->value);
         //    dd($articles);
 
         return view('layouts.dashboard.journalAdmin.viewSubmittedArticlesButton', compact('articles'));
@@ -38,6 +39,8 @@ class ArticleController extends Controller
 
     public function storePublishedArticle(Request $request)
     {
+
+        // dd($request);
 
         $validatedData = $request->validate(
             [
@@ -52,7 +55,7 @@ class ArticleController extends Controller
                 'reference' => 'required|string',
                 'cover_photo' => 'nullable|file',
                 'article_file' => 'required|file',
-                'journal_id' => 'required|string',
+                
                 'publication_date' => 'required|string',
                 'volume_no' => 'required|string',
                 'issue_no' => 'required|string'
@@ -60,17 +63,23 @@ class ArticleController extends Controller
             ]
         );
 
-        $journal = Journal::find($request->input('journal_id'));
-        $journal
+        $mainArticle = Article::find($request->input('article_id'));
 
 
+        $journal = Journal::find($mainArticle->journal_id);
+        
+        $volume = $journal->volumes()->where('volume_no', $request->input('volume_no'))->first();
+        $issue = $volume->issues()->where('issue_no', $request->input('issue_no'))->first();
 
 
+        if (!$journal or !$issue){
+            abort(403, "ERROR");
+        }
 
 
 
         $article = new PublishedArticle();
-        $article->journal_id = $request->input('journal_id');
+        $article->journal_id = $mainArticle->journal_id;
         $article->title = $request->input('title');
         $article->abstract = $request->input('abstract');
         $article->reference = $request->input('reference');
@@ -151,6 +160,7 @@ class ArticleController extends Controller
 
         $article->authors()->saveMany($authors);
 
+        return redirect()->back();
     }
 
     public function sendArticleToEditor(Request $request)
