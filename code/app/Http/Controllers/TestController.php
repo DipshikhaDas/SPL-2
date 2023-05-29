@@ -24,7 +24,7 @@ class TestController extends Controller
         $journal = Journal::find(1);
         $volume = $journal->volumes()->where('volume_no', '2')->first();
 
-        $issue = $volume->issues;
+        $issue = $volume->issues()->where('issue_no', '1')->first();
 
         dd($issue);
 
